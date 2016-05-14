@@ -6,6 +6,15 @@ body {
     background: linear-gradient(to bottom right, #00af00, #0000af); /* Standard syntax */
 }
 
+a {
+    color: #0000af;
+}
+
 .darkGray {
-    background-color: #525252;
+    background-color: #8a8a8a;
+}
+
+.square-45-percent {
+    height: 45%;
+    width: 45%;
 }
