@@ -1,4 +1,5 @@
 body {
+    padding-top: 100px; /* pad based on heading size */
     background-color: #af0000;
 }
 
@@ -13,4 +14,20 @@ a {
 .square-45-percent {
     height: 45%;
     width: 45%;
+}
+
+.sticky-header {
+    background-color: black;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+}
+
+.sticky-footer {
+    background-color: black;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
 }
