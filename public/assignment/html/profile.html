@@ -24,24 +24,42 @@
             </div>
         </nav>
 
-        <p>Username</p>
-        <input type="text" placeholder="dunbarb" class="form-control">
+        <form>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" placeholder="dunbarb">
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="dunbar.b@husky.neu.edu">
+            </div>
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" class="form-control" id="firstName" placeholder="Ben">
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" class="form-control" id="lastName" placeholder="Dunbar">
+            </div>
+        </form>
 
-        <p>Email</p>
-        <input type="email" placeholder="dunbar.b@husky.neu.edu" class="form-control">
 
-        <p>First Name</p>
-        <input type="text" placeholder="Ben" class="form-control">
-
-        <p>Last Name</p>
-        <input type="text" placeholder="Dunbar" class="form-control">
-
-        <a href="website-list.html">
-            <button class="btn btn-block btn-primary">Websites</button>
+        <a href="website-list.html" class="btn btn-block btn-primary">
+            Websites
         </a>
-        <a href="login.html">
-            <button class="btn btn-block btn-danger">Logout</button>
+        <a href="login.html" class="btn btn-block btn-danger">
+            Logout
         </a>
+
+        <nav class="navbar navbar-default navbar-fixed-bottom">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a href="profile.html">
+                        <span class="glyphicon glyphicon-person pull-right"></span>
+                    </a>
+                </div>
+            </div>
+        </nav>
     </div>
 </body>
 </html>
