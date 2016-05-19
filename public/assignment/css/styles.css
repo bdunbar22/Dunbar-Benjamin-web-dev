@@ -1,3 +1,7 @@
 .header-present {
     padding-top: 75px;
 }
+
+.header-glyphicon {
+    padding-right: 10px;
+}
