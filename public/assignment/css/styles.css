@@ -2,11 +2,41 @@
     padding-top: 75px;
 }
 
+.footer-present {
+    padding-bottom: 75px;
+}
+
 .header-glyphicon {
     padding-right: 10px;
 }
 
 .bmd-widget {
+    width: 100%;
+    height: auto;
+    display: inline-block;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.bmd-widget-text {
     width: 95%;
     height: auto;
+    display: block;
+    margin-left: 0px;
+    margin-top: 0px;
+}
+
+.bmd-widget-media {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-left: 0px;
+    margin-top: 0px;
+}
+
+.bmd-widget-edit {
+    display: block;
+    float: right!important;
+    margin-right: 0px;
+    margin-top: 0px;
 }
