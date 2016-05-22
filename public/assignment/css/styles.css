@@ -19,24 +19,6 @@
     position: relative;
 }
 
-.bmd-widget-text {
-    width: 85%;
-    height: auto;
-    display: inline-block;
-    margin-left: 0px;
-    margin-top: 0px;
-}
-
-.bmd-widget-media {
-    width: 85%;
-    height: auto;
-    display: inline-block;
-    margin-left: 0px;
-    margin-top: 0px;
-    z-index: 1;
-    position: relative;
-}
-
 .bmd-widget-edit {
     display: block;
     float: right!important;
