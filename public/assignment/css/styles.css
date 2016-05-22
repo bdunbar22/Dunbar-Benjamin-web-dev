@@ -5,3 +5,8 @@
 .header-glyphicon {
     padding-right: 10px;
 }
+
+.bmd-widget {
+    width: 95%;
+    height: auto;
+}
