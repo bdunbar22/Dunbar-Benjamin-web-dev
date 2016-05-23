@@ -7,5 +7,5 @@
  * This design patter is IIFE - Immediately Invoked Function Environment.
  */
 (function () {
-    angular.module("WebAppMaker", []);
+    angular.module("WebAppMaker", ["ngRoute"]);
 })();
