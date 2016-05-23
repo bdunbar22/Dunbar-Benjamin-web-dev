@@ -5,7 +5,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="viewport" content="initial-scale=1.25, user-scalable = no">
-    <title>Widget Youtube</title>
+    <title>Page New</title>
     <!-- Link necessary pages -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
@@ -16,15 +16,15 @@
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a href="widget-list.html" class="navbar-link navbar-brand">
+                <a href="page-list.view.client.html" class="navbar-link navbar-brand">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
                 <a class="navbar-brand"
                    href="">
-                    Widget Edit
+                    New Page
                 </a>
                 <p class="navbar-text pull-right">
-                    <a href="widget-list.html" class="navbar-link">
+                    <a href="page-list.view.client.html" class="navbar-link">
                         <span class="glyphicon glyphicon-ok header-glyphicon"></span>
                     </a>
                 </p>
@@ -38,35 +38,16 @@
                 <input type="text"
                        class="form-control"
                        id="name"
-                       value="Transistors">
+                       placeholder="Page Name">
             </div>
             <div class="form-group">
-                <label for="text">Text</label>
+                <label for="title">Title</label>
                 <input type="text"
                        class="form-control"
-                       id="text"
-                       value="This is a video about transistors.">
-            </div>
-            <div class="form-group">
-                <label for="url">URL</label>
-                <input type="text"
-                       class="form-control"
-                       id="url"
-                       value="https://www.youtube.com/embed/IcrBqCFLHIY?list=PLkahZjV5wKe_dajngssVLffaCh2gbq55_">
-            </div>
-            <div class="form-group">
-                <label for="width">Width</label>
-                <input type="text"
-                       class="form-control"
-                       id="width"
-                       value="100%">
+                       id="title"
+                       placeholder="Page Title">
             </div>
         </form>
-
-        <a href="widget-list.html"
-           class="btn btn-block btn-danger">
-            Delete
-        </a>
     </div>
     <nav class="navbar navbar-default navbar-fixed-bottom">
         <div class="container-fluid">

@@ -5,7 +5,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="viewport" content="initial-scale=1.25, user-scalable = no">
-    <title>Widget Header</title>
+    <title>Page Edit</title>
     <!-- Link necessary pages -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
@@ -16,15 +16,15 @@
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a href="widget-list.html" class="navbar-link navbar-brand">
+                <a href="page-list.view.client.html" class="navbar-link navbar-brand">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
                 <a class="navbar-brand"
                    href="">
-                     Widget Edit
+                    Edit Page
                 </a>
                 <p class="navbar-text pull-right">
-                    <a href="widget-list.html" class="navbar-link">
+                    <a href="page-list.view.client.html" class="navbar-link">
                         <span class="glyphicon glyphicon-ok header-glyphicon"></span>
                     </a>
                 </p>
@@ -38,25 +38,18 @@
                 <input type="text"
                        class="form-control"
                        id="name"
-                       value="Info Post">
+                       value="Blog Post">
             </div>
             <div class="form-group">
-                <label for="text">Text</label>
+                <label for="title">Title</label>
                 <input type="text"
                        class="form-control"
-                       id="text"
-                       value="I have a gray bike.">
-            </div>
-            <div class="form-group">
-                <label for="size">Size</label>
-                <input type="text"
-                       class="form-control"
-                       id="size"
-                       value="4">
+                       id="title"
+                       placeholder="Page Title">
             </div>
         </form>
 
-        <a href="widget-list.html"
+        <a href="page-list.view.client.html"
            class="btn btn-block btn-danger">
             Delete
         </a>
