@@ -6,6 +6,10 @@ a {
     color: #0000af;
 }
 
+a:hover {
+    text-decoration: none;
+}
+
 .darkGray {
     background-color: #8a8a8a;
 }
