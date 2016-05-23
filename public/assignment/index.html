@@ -9,6 +9,7 @@
     <!-- Link necessary pages -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="app.js"></script>
     <link rel="stylesheet" href="css/styles.css">
@@ -17,15 +18,7 @@
     <div class="container">
         <h1>Assignment Home Page</h1>
 
-        <a href="views/user/login.view.client.html"
-           class="btn btn-block btn-primary">
-            Login Page
-        </a>
-
-        <a href="views/user/register.view.client.html"
-           class="btn btn-block btn-success">
-            Register Page
-        </a>
+        <div ng-view></div>
     </div>
 </body>
 </html>
