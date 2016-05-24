@@ -7,17 +7,19 @@
         .module("WebAppMaker")
         .controller("LoginController", LoginController)
         .controller("ProfileController", ProfileController);
-    
+
+    var users =
+        [
+            {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
+            {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley"  },
+            {_id: "345", username: "charly",   password: "charly",   firstName: "Charly", lastName: "Garcia"  },
+            {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi" }
+        ];
+
     function LoginController($location) {
         var viewModel = this;
 
-        var users =
-            [
-                {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
-                {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley"  },
-                {_id: "345", username: "charly",   password: "charly",   firstName: "Charly", lastName: "Garcia"  },
-                {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi" }
-            ];
+
 
         viewModel.login = login;
 
@@ -35,6 +37,10 @@
     function ProfileController($routeParams) {
         var vm = this;
         var id = $routeParams["uid"];
-        console.log(id);
+        for(var i in users) {
+            if(users[i]._id === id) {
+                vm.user = users[i];
+            }
+        }
     }
 })();
