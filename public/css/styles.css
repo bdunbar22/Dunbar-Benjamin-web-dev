@@ -18,19 +18,3 @@ a:hover {
     height: 45%;
     width: 45%;
 }
-
-.sticky-header {
-    background-color: black;
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-}
-
-.sticky-footer {
-    background-color: black;
-    position: fixed;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
-}
