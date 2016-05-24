@@ -5,7 +5,8 @@
 (function() {
     angular
         .module("WebAppMaker")
-        .controller("LoginController", LoginController);
+        .controller("LoginController", LoginController)
+        .controller("ProfileController", ProfileController);
     
     function LoginController($location) {
         var viewModel = this;
@@ -29,5 +30,11 @@
                 }
             }
         }
+    }
+    
+    function ProfileController($routeParams) {
+        var vm = this;
+        var id = $routeParams["uid"];
+        console.log(id);
     }
 })();
