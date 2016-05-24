@@ -10,16 +10,14 @@
 
     var users =
         [
-            {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
-            {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley"  },
-            {_id: "345", username: "charly",   password: "charly",   firstName: "Charly", lastName: "Garcia"  },
-            {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi" }
+            {_id: "123", username: "alice",    password: "alice",    email: "", firstName: "Alice",  lastName: "Wonder"},
+            {_id: "234", username: "bob",      password: "bob",      email: "", firstName: "Bob",    lastName: "Marley"},
+            {_id: "345", username: "charly",   password: "charly",   email: "", firstName: "Charly", lastName: "Garcia"},
+            {_id: "456", username: "jannunzi", password: "jannunzi", email: "", firstName: "Jose",   lastName: "Annunzi"}
         ];
 
     function LoginController($location) {
         var viewModel = this;
-
-
 
         viewModel.login = login;
 
@@ -40,6 +38,19 @@
         for(var i in users) {
             if(users[i]._id === id) {
                 vm.user = users[i];
+            }
+        }
+
+        vm.updateUser = updateUser;
+
+        function updateUser() {
+            for(var i in users) {
+                if(users[i]._id === id) {
+                    users[i].username = vm.user.username;
+                    users[i].firstName = vm.user.firstName;
+                    users[i].lastName = vm.user.lastName;
+                    users[i].email = vm.user.email;
+                }
             }
         }
     }
