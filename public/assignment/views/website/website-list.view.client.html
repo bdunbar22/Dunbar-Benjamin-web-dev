@@ -2,7 +2,7 @@
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a href="#/user/5" class="navbar-link navbar-brand">
+                <a href="#/user/{{model.userId}}" class="navbar-link navbar-brand">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
                 <a class="navbar-brand"
@@ -10,7 +10,7 @@
                     Websites
                 </a>
                 <p class="navbar-text pull-right">
-                    <a href="#/user/5/website/new" class="navbar-link">
+                    <a href="#/user/{{model.userId}}/website/new" class="navbar-link">
                         <span class="glyphicon glyphicon-plus header-glyphicon"></span>
                     </a>
                 </p>
@@ -19,25 +19,12 @@
     </nav>
     <div class="container">
         <ul class="list-group">
-            <li class="list-group-item">
-                <a href="#/user/5/website/5/page">Blogger</a>
-                <a href="#/user/5/website/5"><span class="glyphicon glyphicon-play pull-right"></span></a>
-                <a href="#/user/5/website/5"><span class="glyphicon glyphicon-cog pull-right"></span></a>
-            </li>
-            <li class="list-group-item">
-                <a href="#/user/5/website/5/page">Address Book App</a>
-                <a href="#/user/5/website/5"><span class="glyphicon glyphicon-play pull-right"></span></a>
-                <a href="#/user/5/website/5"><span class="glyphicon glyphicon-cog pull-right"></span></a>
-            </li>
-            <li class="list-group-item">
-                <a href="#/user/5/website/5/page">Ben Dunbar App</a>
-                <a href="#/user/5/website/5"><span class="glyphicon glyphicon-play pull-right"></span></a>
-                <a href="#/user/5/website/5"><span class="glyphicon glyphicon-cog pull-right"></span></a>
-            </li>
-            <li class="list-group-item">
-                <a href="#/user/5/website/5/page">Game App</a>
-                <a href="#/user/5/website/5"><span class="glyphicon glyphicon-play pull-right"></span></a>
-                <a href="#/user/5/website/5"><span class="glyphicon glyphicon-cog pull-right"></span></a>
+            <li ng-repeat="website in model.websites" class="list-group-item">
+                <a href="#/user/{{model.userId}}/website/{{website.developerId}}/page">{{website.name}}</a>
+                <a href="#/user/5/website/{{website.developerId}}">
+                    <span class="glyphicon glyphicon-play pull-right"></span>
+                    <span class="glyphicon glyphicon-cog pull-right"></span>
+                </a>
             </li>
         </ul>
     </div>
@@ -45,7 +32,7 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <p class="navbar-text pull-right">
-                    <a href="#/user/5">
+                    <a href="#/user/{{model.userId}}">
                         <span class="glyphicon glyphicon-user header-glyphicon"></span>
                     </a>
                 </p>
