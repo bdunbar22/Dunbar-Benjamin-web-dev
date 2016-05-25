@@ -20,7 +20,8 @@
 
         var api = {
             createWebsite: createWebsite,
-            findWebsitesByDeveloperId: findWebsitesByDeveloperId
+            findWebsitesByDeveloperId: findWebsitesByDeveloperId,
+            findWebsitesById: findWebsitesById
         };
         return api;
 
@@ -37,6 +38,16 @@
                 }
             }
             return websitesForUser;
+        }
+
+        function findWebsitesById(id) {
+            var websitesForId = [];
+            for(var i in websites) {
+                if(websites[i]._id === id) {
+                    websitesForId.push(websites[i]);
+                }
+            }
+            return websitesForId;
         }
     }
 })();
