@@ -21,6 +21,12 @@
     <div class="container">
 
         <div ng-repeat="widget in model.widgets" ng-switch="widget.widgetType">
+            <a href="#/user/5/website/5/page/5/widget/5"
+               class="bmd-widget-edit">
+                <span class="glyphicon glyphicon-cog"></span>
+                <span class="glyphicon glyphicon-align-justify"></span>
+            </a>
+
             <div ng-switch-when="HEADER"
                  class="bmd-widget">
 
@@ -40,88 +46,33 @@
                     <p ng-switch-default
                        class="col-xs-10">{{widget.text}}</p>
                 </div>
-
-                <a href="#/user/5/website/5/page/5/widget/5"
-                   class="bmd-widget-edit">
-                    <span class="glyphicon glyphicon-cog"></span>
-                    <span class="glyphicon glyphicon-align-justify"></span>
-                </a>
+            </div>
+            <div ng-switch-when="HTML"
+                 class="bmd-widget"
+                 ng-bind-html="model.getTrustedHtml(widget)">
             </div>
             <div ng-switch-when="IMAGE"
                  class="bmd-widget">
+
                 <img class="col-xs-10"
-                     src="images/mountain.jpeg">
-                <a href="#/user/5/website/5/page/5/widget/5"
-                   class="bmd-widget-edit">
-                    <span class="glyphicon glyphicon-cog"></span>
-                    <span class="glyphicon glyphicon-align-justify"></span>
-                </a>
+                     ng-src="{{widget.url}}"
+                     width="{{widget.width}}">
+            </div>
+            <div ng-switch-when="YOUTUBE"
+                 class="bmd-widget">
+                <iframe width="100%"
+                        height="100%"
+                        class="col-xs-10"
+                        ng-src="{{model.getTrustedUrl(widget)}}"
+                        frameborder="0"
+                        allowfullscreen>
+                </iframe>
             </div>
             <div ng-switch-default
                  class="bmd-widget">
                 <p>{{widget.text}}</p>
-                <a href="#/user/5/website/5/page/5/widget/5"
-                   class="bmd-widget-edit">
-                    <span class="glyphicon glyphicon-cog"></span>
-                    <span class="glyphicon glyphicon-align-justify"></span>
-                </a>
             </div>
         </div>
-
-
-        <!-- DIFFERENT TYPE EXAMPLES
-        <div class="bmd-widget">
-            <h1 class="col-xs-10">GIZMODO</h1>
-            <a href="#/user/5/website/5/page/5/widget/5"
-               class="bmd-widget-edit">
-                <span class="glyphicon glyphicon-cog"></span>
-                <span class="glyphicon glyphicon-align-justify"></span>
-            </a>
-        </div>
-
-        <div class="bmd-widget">
-            <h4 class="col-xs-10">US Senate Reaches Compromise on Emergency Zika Funding</h4>
-            <a href="#/user/5/website/5/page/5/widget/5"
-               class="bmd-widget-edit">
-                <span class="glyphicon glyphicon-cog"></span>
-                <span class="glyphicon glyphicon-align-justify"></span>
-            </a>
-        </div>
-
-        <div class="bmd-widget">
-            <img class="col-xs-10"
-                 src="images/mountain.jpeg">
-            <a href="#/user/5/website/5/page/5/widget/5"
-               class="bmd-widget-edit">
-                <span class="glyphicon glyphicon-cog"></span>
-                <span class="glyphicon glyphicon-align-justify"></span>
-            </a>
-        </div>
-
-        <div class="bmd-widget">
-            <iframe width="100%"
-                    height="100%"
-                    class="col-xs-10"
-                    src="https://www.youtube.com/embed/IcrBqCFLHIY?list=PLkahZjV5wKe_dajngssVLffaCh2gbq55_"
-                    frameborder="0"
-                    allowfullscreen>
-            </iframe>
-            <a href="#/user/5/website/5/page/5/widget/5"
-               class="bmd-widget-edit">
-                <span class="glyphicon glyphicon-cog"></span>
-                <span class="glyphicon glyphicon-align-justify"></span>
-            </a>
-        </div>
-
-        <div class="bmd-widget">
-            <p class="col-xs-10">Above is a cool video that other computer engineering students should find interesting. Veritasium is a cool science youtube channel to check out.</p>
-            <a href="#/user/5/website/5/page/5/widget/5"
-               class="bmd-widget-edit">
-                <span class="glyphicon glyphicon-cog"></span>
-                <span class="glyphicon glyphicon-align-justify"></span>
-            </a>
-        </div>
-        -->
     </div>
     <nav class="navbar navbar-default navbar-fixed-bottom">
         <div class="container-fluid">
