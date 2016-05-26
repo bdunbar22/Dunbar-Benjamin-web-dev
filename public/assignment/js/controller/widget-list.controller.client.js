@@ -11,6 +11,7 @@
         var vm = this;
         var pageId = $routeParams.pid;
 
+        vm.userId = $routeParams.uid;
         vm.widgets = WidgetService.findByPageId(pageId);
 
         vm.getTrustedHtml = getTrustedHtml;
