@@ -19,6 +19,57 @@
         </div>
     </nav>
     <div class="container">
+
+        <div ng-repeat="widget in model.widgets" ng-switch="widget.widgetType">
+            <div ng-switch-when="HEADER"
+                 class="bmd-widget">
+
+                <div ng-switch="widget.size">
+                    <h1 ng-switch-when="1"
+                        class="col-xs-10">{{widget.text}}</h1>
+                    <h2 ng-switch-when="2"
+                        class="col-xs-10">{{widget.text}}</h2>
+                    <h3 ng-switch-when="3"
+                        class="col-xs-10">{{widget.text}}</h3>
+                    <h4 ng-switch-when="4"
+                        class="col-xs-10">{{widget.text}}</h4>
+                    <h5 ng-switch-when="5"
+                        class="col-xs-10">{{widget.text}}</h5>
+                    <h6 ng-switch-when="6"
+                        class="col-xs-10">{{widget.text}}</h6>
+                    <p ng-switch-default
+                       class="col-xs-10">{{widget.text}}</p>
+                </div>
+
+                <a href="#/user/5/website/5/page/5/widget/5"
+                   class="bmd-widget-edit">
+                    <span class="glyphicon glyphicon-cog"></span>
+                    <span class="glyphicon glyphicon-align-justify"></span>
+                </a>
+            </div>
+            <div ng-switch-when="IMAGE"
+                 class="bmd-widget">
+                <img class="col-xs-10"
+                     src="images/mountain.jpeg">
+                <a href="#/user/5/website/5/page/5/widget/5"
+                   class="bmd-widget-edit">
+                    <span class="glyphicon glyphicon-cog"></span>
+                    <span class="glyphicon glyphicon-align-justify"></span>
+                </a>
+            </div>
+            <div ng-switch-default
+                 class="bmd-widget">
+                <p>{{widget.text}}</p>
+                <a href="#/user/5/website/5/page/5/widget/5"
+                   class="bmd-widget-edit">
+                    <span class="glyphicon glyphicon-cog"></span>
+                    <span class="glyphicon glyphicon-align-justify"></span>
+                </a>
+            </div>
+        </div>
+
+
+        <!-- DIFFERENT TYPE EXAMPLES
         <div class="bmd-widget">
             <h1 class="col-xs-10">GIZMODO</h1>
             <a href="#/user/5/website/5/page/5/widget/5"
@@ -70,6 +121,7 @@
                 <span class="glyphicon glyphicon-align-justify"></span>
             </a>
         </div>
+        -->
     </div>
     <nav class="navbar navbar-default navbar-fixed-bottom">
         <div class="container-fluid">
