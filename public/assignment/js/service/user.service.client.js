@@ -18,37 +18,59 @@
 
         var api = {
             createUser: createUser,
-            deleteUser: deleteUser,
-            editUser: editUser,
-            findUserByUsernameAndPassword: findUserByUsernameAndPassword,
-            findUserById: findUserById
+            findUserById: findUserById,
+            findUserByUsername: findUserByUsername,
+            findUserByCredentials: findUserByCredentials,
+            updateUser: updateUser,
+            deleteUser: deleteUser
         };
         return api;
 
-        function createUser() {
-            //TODO: implement
+        /**
+         * Adds the given user to the array. Assumes all necessary fields are filled.
+         * @param user
+         * @returns {null}
+         */
+        function createUser(user) {
+            users.push(user);
             return null;
         }
 
-        function deleteUser() {
-            //TODO: implement
-            return null;
-        }
-
-        function editUser(id, newUser) {
+        /**
+         * Returns the user in local users array whose _ id matches the  userId parameter.
+         * @param id
+         * @returns user
+         */
+        function findUserById(userId) {
             for(var i in users) {
-                if(users[i]._id === id) {
-                    users[i].firstName = newUser.firstName;
-                    users[i].lastName = newUser.lastName;
-                    users[i].username = newUser.username;
-                    users[i].email = newUser.email;
-                    return true;
+                if(users[i]._id === userId) {
+                    return users[i];
                 }
             }
-            return false;
+            return null;
         }
 
-        function findUserByUsernameAndPassword(username, password) {
+        /**
+         * returns the user in local u sers array whose  username matches the parameter  username.
+         * @param username
+         * @returns user
+         */
+        function findUserByUsername(username) {
+            for(var i in users) {
+                if(users[i].username === username) {
+                    return users[i];
+                }
+            }
+            return null;
+        }
+
+        /**
+         * Returns the user whose u sername and  password match the  username and  password parameters.
+         * @param username
+         * @param password
+         * @returns user
+         */
+        function findUserByCredentials(username, password) {
             for(var i in users) {
                 if(users[i].username === username && users[i].password === password) {
                     return users[i];
@@ -57,13 +79,40 @@
             return null;
         }
 
-        function findUserById(id) {
+        /**
+         * Updates the user in local u sers array whose _ id matches the  userId parameter.
+         * @param userId
+         * @param user
+         * @returns {boolean}
+         */
+        function updateUser(userId, user) {
             for(var i in users) {
-                if(users[i]._id === id) {
-                    return users[i];
+                if(users[i]._id === userId) {
+                    users[i].firstName = user.firstName;
+                    users[i].lastName = user.lastName;
+                    users[i].username = user.username;
+                    users[i].email = user.email;
+                    return true;
                 }
             }
-            return null;
+            return false;
+        }
+
+        /**
+         * Remove a user from the user list if the _id matches the userId parameter.
+         * @param userId
+         * @returns boolean true a user was removed.
+         */
+        function deleteUser(userId) {
+            var startLength = users.length;
+            users.filter(checkId);
+
+            //Items that pass this check will remain in the list.
+            function checkId(user) {
+                return user._id != userId;
+            }
+
+            return users.length < startLength;
         }
     }
 })();
