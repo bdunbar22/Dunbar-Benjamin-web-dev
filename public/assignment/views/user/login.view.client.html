@@ -1,5 +1,5 @@
 <div class="container">
-    <div ng-if="model.error" class="alert alert-danger">
+    <div ng-if="model.error" class="alert alert-danger bmd-margin-top-10">
         {{model.error}}
     </div>
 
@@ -20,7 +20,8 @@
     </div>
 
     <!-- Will have to send user id -->
-    <a ng-click="model.login(username, password)"
+    <a href=""
+       ng-click="model.login(username, password)"
        class="btn btn-block btn-primary">Login</a>
 
     <a href="#/register"

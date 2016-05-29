@@ -21,7 +21,7 @@
         init();
 
         function updateUser() {
-            vm.success = UserService.editUser(id, vm.user);
+            vm.success = UserService.updateUser(id, vm.user);
         }
     }
 })();

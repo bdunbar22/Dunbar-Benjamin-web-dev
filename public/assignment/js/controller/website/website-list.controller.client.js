@@ -12,7 +12,7 @@
         
         function init() {
             vm.userId = $routeParams.uid;
-            vm.websites = WebsiteService.findWebsitesByDeveloperId(vm.userId);
+            vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
         }
         init();
     }

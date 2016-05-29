@@ -27,23 +27,26 @@
         return api;
 
         /**
-         * Adds the given user to the array. Assumes all necessary fields are filled.
+         * Adds the given user to the array if it has a unique id.
          * @param user
-         * @returns {null}
+         * @returns {boolean} true if made.
          */
         function createUser(user) {
-            users.push(user);
-            return null;
+            if(!findUserById(user._id)) {
+                users.push(user);
+                return true;
+            }
+            return false;
         }
 
         /**
          * Returns the user in local users array whose _ id matches the  userId parameter.
-         * @param id
+         * @param userId
          * @returns user
          */
         function findUserById(userId) {
             for(var i in users) {
-                if(users[i]._id === userId) {
+                if(users[i]._id == userId) {
                     return users[i];
                 }
             }

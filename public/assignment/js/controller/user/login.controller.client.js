@@ -8,11 +8,11 @@
         .controller("LoginController", LoginController)
 
     function LoginController($location, UserService) {
-        var viewModel = this;
-        viewModel.login = login;
+        var vm = this;
+        vm.login = login;
 
         function login(username, password) {
-            var user = UserService.findUserByUsernameAndPassword(username, password);
+            var user = UserService.findUserByCredentials(username, password);
             if(user) {
                 $location.url("/user/" + user._id);
             }
