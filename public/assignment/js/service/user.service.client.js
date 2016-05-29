@@ -54,7 +54,7 @@
         }
 
         /**
-         * returns the user in local u sers array whose  username matches the parameter  username.
+         * returns the user in local users array whose  username matches the parameter username.
          * @param username
          * @returns user
          */
