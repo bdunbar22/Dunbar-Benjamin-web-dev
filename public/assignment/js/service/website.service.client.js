@@ -32,12 +32,15 @@
          * set to the  userId parameter.
          * @param userId
          * @param website
-         * @returns {null}
+         * @returns {boolean} true if made.
          */
         function createWebsite(userId, website) {
-            website.developerId = userId;
-            websites.push(website);
-            return null;
+            if(!findWebsiteById(website._id)) {
+                website.developerId = userId;
+                websites.push(website);
+                return true;
+            }
+            return false
         }
 
         /**
@@ -62,7 +65,7 @@
          */
         function findWebsiteById(websiteId) {
             for(var i in websites) {
-                if(websites[i]._id === websiteId) {
+                if(websites[i]._id == websiteId) {
                     return websites[i];
                 }
             }

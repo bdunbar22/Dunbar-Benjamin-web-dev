@@ -5,7 +5,7 @@
 (function () {
     angular
         .module("WebAppMaker")
-        .controller("EditWebsiteController", EditWebsiteController)
+        .controller("EditWebsiteController", EditWebsiteController);
 
     function EditWebsiteController($routeParams, WebsiteService) {
         var vm = this;

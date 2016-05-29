@@ -2,7 +2,7 @@
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a href="#/user/5/website" class="navbar-link navbar-brand">
+                <a href="#/user/{{model.userId}}/website" class="navbar-link navbar-brand">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
                 <a class="navbar-brand"
@@ -10,7 +10,9 @@
                     New Website
                 </a>
                 <p class="navbar-text pull-right">
-                    <a href="#/user/5/website" class="navbar-link">
+                    <a href=""
+                       ng-click="model.createWebsite(name, description)"
+                       class="navbar-link">
                         <span class="glyphicon glyphicon-ok header-glyphicon"></span>
                     </a>
                 </p>
@@ -18,17 +20,25 @@
         </div>
     </nav>
     <div class="container">
+        <div ng-if="model.error" class="alert alert-danger bmd-margin-top-10">
+            {{model.error}}
+        </div>
         <form>
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text"
                        class="form-control"
                        id="name"
-                       placeholder="Name">
+                       placeholder="Name"
+                       ng-model="name">
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea rows="5" id="description" class="form-control" placeholder="Description"></textarea>
+                <textarea rows="5"
+                          id="description"
+                          class="form-control"
+                          placeholder="Description"
+                          ng-model="description"></textarea>
             </div>
         </form>
     </div>
@@ -36,7 +46,7 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <p class="navbar-text pull-right">
-                    <a href="#/user/5">
+                    <a href="#/user/{{model.userId}}">
                         <span class="glyphicon glyphicon-user header-glyphicon"></span>
                     </a>
                 </p>

@@ -3,7 +3,7 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand"
-                   href="#/user/5">Profile</a>
+                   href="#/user/{{model.user._id}}">Profile</a>
                 <p class="navbar-text pull-right">
                     <a ng-click="model.updateUser()"
                        class="navbar-link">
@@ -66,7 +66,7 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <p class="navbar-text pull-right">
-                    <a href="#/user/5">
+                    <a href="#/user/{{model.user._id}}">
                         <span class="glyphicon glyphicon-user header-glyphicon"></span>
                     </a>
                 </p>
