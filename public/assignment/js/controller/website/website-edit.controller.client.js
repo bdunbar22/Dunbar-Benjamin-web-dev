@@ -7,8 +7,9 @@
         .module("WebAppMaker")
         .controller("EditWebsiteController", EditWebsiteController);
 
-    function EditWebsiteController($routeParams, WebsiteService) {
+    function EditWebsiteController($routeParams, $location, WebsiteService) {
         var vm = this;
+        vm.updateWebsite = updateWebsite;
 
         function init() {
             vm.userId = $routeParams["uid"];
@@ -16,5 +17,14 @@
             vm.website = WebsiteService.findWebsiteById(vm.websiteId);
         }
         init();
+
+        function updateWebsite() {
+            if(WebsiteService.updateWebsite(vm.websiteId, vm.website)) {
+                $location.url("/user/" + vm.userId + "/website");
+            } else {
+                vm.error = "Error editing website.";
+                return false;
+            }
+        }
     }
 })();

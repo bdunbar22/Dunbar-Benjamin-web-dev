@@ -2,7 +2,7 @@
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a href="#/user/5/website" class="navbar-link navbar-brand">
+                <a href="#/user/{{model.userId}}/website" class="navbar-link navbar-brand">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
                 <a class="navbar-brand"
@@ -10,7 +10,9 @@
                     Edit Website
                 </a>
                 <p class="navbar-text pull-right">
-                    <a href="#/user/5/website" class="navbar-link">
+                    <a href=""
+                       ng-click="model.updateWebsite()"
+                       class="navbar-link">
                         <span class="glyphicon glyphicon-ok header-glyphicon"></span>
                     </a>
                 </p>
@@ -18,21 +20,29 @@
         </div>
     </nav>
     <div class="container">
+        <div ng-if="model.error" class="alert alert-danger bmd-margin-top-10">
+            {{model.error}}
+        </div>
         <form>
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text"
                        class="form-control"
                        id="name"
-                       value="Blogger">
+                       placeholder="Test Website"
+                       ng-model="model.website.name">
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea rows="5" id="description" class="form-control">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</textarea>
+                <textarea rows="5"
+                          id="description"
+                          class="form-control"
+                          placeholder="Lorem Ipsum"
+                          ng-model="model.website.description"></textarea>
             </div>
         </form>
 
-        <a href="#/user/5/website"
+        <a href="#/user/{{model.userId}}/website"
            class="btn btn-block btn-danger">
             Delete
         </a>
@@ -41,7 +51,7 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <p class="navbar-text pull-right">
-                    <a href="#/user/5">
+                    <a href="#/user/{{model.userId}}">
                         <span class="glyphicon glyphicon-user header-glyphicon"></span>
                     </a>
                 </p>
