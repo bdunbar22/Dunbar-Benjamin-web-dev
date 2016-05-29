@@ -23,26 +23,32 @@
 
         var api = {
             createWidget: createWidget,
+            findWidgetsByPageId: findWidgetsByPageId,
             findWidgetById: findWidgetById,
-            findByPageId: findByPageId
+            updateWidget: updateWidget,
+            deleteWidget: deleteWidget
         };
         return api;
 
-        function createWidget() {
-            //TODO: implement
+        /**
+         * Adds the widget parameter instance to the local widgets array.
+         * The new widget's pageId is set to the pageId parameter.
+         * @param pageId
+         * @param widget
+         * @returns {null}
+         */
+        function createWidget(pageId, widget) {
+            widget.pageId = pageId;
+            widgets.push(widget);
             return null;
         }
 
-        function findWidgetById(id) {
-            for(var i in widgets) {
-                if(widgets[i]._id === id) {
-                    return widgets[i];
-                }
-            }
-            return null;
-        }
-
-        function findByPageId(pageId) {
+        /**
+         * Retrieves the widgets in local widgets array whose pageId match the parameter pageId.
+         * @param pageId
+         * @returns {Array}
+         */
+        function findWidgetsByPageId(pageId) {
             var widgetsForPage = [];
             for(var i in widgets) {
                 if(widgets[i].pageId === pageId) {
@@ -50,6 +56,66 @@
                 }
             }
             return widgetsForPage;
+        }
+
+        /**
+         * Retrieves the widget in local widgets array whose _id matches the widgetId parameter.
+         * @param widgetId
+         * @returns {*}
+         */
+        function findWidgetById(widgetId) {
+            for(var i in widgets) {
+                if(widgets[i]._id === widgetId) {
+                    return widgets[i];
+                }
+            }
+            return null;
+        }
+
+        /**
+         * Updates the widget in local widgets array whose _id matches the widgetId parameter.
+         * @param widgetId
+         * @param widget
+         * @returns {boolean} true if updated.
+         */
+        function updateWidget(widgetId, widget) {
+            for(var i in widgets) {
+                if(widgets[i]._id === widgetId) {
+                    widgets[i].widgetType = widget.widgetType;
+                    widgets[i].pageId = widget.pageId;
+
+                    //Some attributes depend on type.
+                    if(widget.widgetType === "HEADER") {
+                        widgets[i].size = widget.size;
+                    }
+                    if(widget.widgetType === "HEADER" || widget.widgetType === "HTML") {
+                        widgets[i].text = widget.text;
+                    }
+                    if(widget.widgetType === "YOUTUBE" || widget.widgetType === "IMAGE") {
+                        widgets[i].width = widget.width;
+                        widgets[i].url = widget.url;
+                    }
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /**
+         * Removes the widget from local widgets array whose _id matches the widgetId parameter.
+         * @param widgetId
+         * @returns {boolean} true if removed.
+         */
+        function deleteWidget(widgetId) {
+            var startLength = widgets.length;
+            widgets.filter(checkId);
+
+            //Items that pass this check will remain in the list.
+            function checkId(widget) {
+                return widget._id != widgetId;
+            }
+
+            return widgets.length < startLength;
         }
     }
 })();
