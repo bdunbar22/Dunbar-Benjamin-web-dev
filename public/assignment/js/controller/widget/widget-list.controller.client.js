@@ -12,13 +12,13 @@
         var pageId = $routeParams.pid;
 
         vm.userId = $routeParams.uid;
-        vm.widgets = WidgetService.findByPageId(pageId);
+        vm.widgets = WidgetService.findWidgetsByPageId(pageId);
 
         vm.getTrustedHtml = getTrustedHtml;
         vm.getTrustedUrl = getTrustedUrl;
 
         function getTrustedHtml(widget) {
-            var html = $sce.trustAsHtml(widget.txt);
+            var html = $sce.trustAsHtml(widget.text);
             return html;
         }
 
