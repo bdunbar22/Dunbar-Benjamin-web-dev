@@ -2,7 +2,7 @@
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a href="#/user/5/website" class="navbar-link navbar-brand">
+                <a href="#/user/{{model.userId}}/website" class="navbar-link navbar-brand">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
                 <a class="navbar-brand"
@@ -10,7 +10,7 @@
                     Pages
                 </a>
                 <p class="navbar-text pull-right">
-                    <a href="#/user/5/website/5/page/new" class="navbar-link">
+                    <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/new" class="navbar-link">
                         <span class="glyphicon glyphicon-plus header-glyphicon"></span>
                     </a>
                 </p>
@@ -19,25 +19,12 @@
     </nav>
     <div class="container">
         <ul class="list-group">
-            <li class="list-group-item">
-                <a href="#/user/5/website/5/page/5/widget">Blog Post</a>
-                <a href="#/user/5/website/5/page/5"><span class="glyphicon glyphicon-cog pull-right"></span></a>
-            </li>
-            <li class="list-group-item">
-                <a href="#/user/5/website/5/page/5/widget">Blogs</a>
-                <a href="#/user/5/website/5/page/5"><span class="glyphicon glyphicon-cog pull-right"></span></a>
-            </li>
-            <li class="list-group-item">
-                <a href="#/user/5/website/5/page/5/widget">Home</a>
-                <a href="#/user/5/website/5/page/5"><span class="glyphicon glyphicon-cog pull-right"></span></a>
-            </li>
-            <li class="list-group-item">
-                <a href="#/user/5/website/5/page/5/widget">About</a>
-                <a href="#/user/5/website/5/page/5"><span class="glyphicon glyphicon-cog pull-right"></span></a>
-            </li>
-            <li class="list-group-item">
-                <a href="#/user/5/website/5/page/5/widget">Contact Us</a>
-                <a href="#/user/5/website/5/page/5"><span class="glyphicon glyphicon-cog pull-right"></span></a>
+            <li ng-repeat="page in model.pages"
+                class="list-group-item">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget">{{page.name}}</a>
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}">
+                    <span class="glyphicon glyphicon-cog pull-right"></span>
+                </a>
             </li>
         </ul>
     </div>
@@ -45,7 +32,7 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <p class="navbar-text pull-right">
-                    <a href="#/user/5">
+                    <a href="#/user/{{model.userId}}">
                         <span class="glyphicon glyphicon-user header-glyphicon"></span>
                     </a>
                 </p>

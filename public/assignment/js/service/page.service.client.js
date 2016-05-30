@@ -45,7 +45,7 @@
         function findPagesByWebsiteId(websiteId) {
             var pagesForId = [];
             for(var i in pages) {
-                if(pages[i].websiteId === websiteId) {
+                if(pages[i].websiteId == websiteId) {
                     pagesForId.push(pages[i]);
                 }
             }
@@ -59,7 +59,7 @@
          */
         function findPageById(pageId) {
             for(var i in pages) {
-                if(pages[i]._id === pageId) {
+                if(pages[i]._id == pageId) {
                     return pages[i];
                 }
             }
@@ -74,7 +74,7 @@
          */
         function updatePage(pageId, page) {
             for(var i in pages) {
-                if(pages[i]._id === pageId) {
+                if(pages[i]._id == pageId) {
                     pages[i].name = page.name;
                     pages[i].websiteId = page.websiteId;
                     return true;
