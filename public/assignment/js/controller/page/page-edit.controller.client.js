@@ -10,6 +10,7 @@
     function EditPageController($routeParams, $location, PageService) {
         var vm = this;
         vm.updatePage = updatePage;
+        vm.deletePage = deletePage;
 
         function init() {
             vm.userId = $routeParams["uid"];
@@ -24,6 +25,15 @@
                 $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
             } else {
                 vm.error = "Error editing page.";
+                return false;
+            }
+        }
+
+        function deletePage() {
+            if(PageService.deletePage(vm.pageId)) {
+                $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
+            } else {
+                vm.error = "Error deleting page.";
                 return false;
             }
         }
