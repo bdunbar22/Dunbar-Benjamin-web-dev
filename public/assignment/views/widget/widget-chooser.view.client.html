@@ -2,7 +2,7 @@
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a href="#/user/5/website/5/page/5/widget"
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget"
                    class="navbar-link navbar-brand">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
@@ -17,30 +17,39 @@
         <a href=""
            ng-click="model.createWidget('HEADER')"
             class="row">Header</a>
-        <a href="#/user/5/website/5/page/5/widget/5"
+        <a href=""
+           ng-click="model.createWidget('HEADER')"
            class="row">Label</a>
-        <a href="#/user/5/website/5/page/5/widget/5"
+        <a href=""
+           ng-click="model.createWidget('HTML')"
            class="row">HTML</a>
-        <a href="#/user/5/website/5/page/5/widget/5"
+        <a href=""
+           ng-click="model.createWidget('HEADER')"
            class="row">Text Input</a>
-        <a href="#/user/5/website/5/page/5/widget/5"
+        <a href=""
+           ng-click="model.createWidget('HEADER')"
            class="row">Link</a>
-        <a href="#/user/5/website/5/page/5/widget/5"
+        <a href=""
+           ng-click="model.createWidget('HEADER')"
            class="row">Button</a>
-        <a href="#/user/5/website/5/page/5/widget/5"
+        <a href=""
+           ng-click="model.createWidget('IMAGE')"
            class="row">Image</a>
-        <a href="#/user/5/website/5/page/5/widget/5"
+        <a href=""
+           ng-click="model.createWidget('YOUTUBE')"
            class="row">YouTube</a>
-        <a href="#/user/5/website/5/page/5/widget/5"
+        <a href=""
+           ng-click="model.createWidget('HEADER')"
            class="row">Data Table</a>
-        <a href="#/user/5/website/5/page/5/widget/5"
+        <a href=""
+           ng-click="model.createWidget('HEADER')"
            class="row">Repeater</a>
     </div>
     <nav class="navbar navbar-default navbar-fixed-bottom">
         <div class="container-fluid">
             <div class="navbar-header">
                 <p class="navbar-text pull-right">
-                    <a href="#/user/5">
+                    <a href="#/user/{{model.userId}}">
                         <span class="glyphicon glyphicon-user header-glyphicon"></span>
                     </a>
                 </p>
