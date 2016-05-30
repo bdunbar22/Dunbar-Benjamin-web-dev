@@ -69,10 +69,14 @@
                 controllerAs: "model"
             })
             .when("/user/:uid/website/:wid/page/:pid/widget/new", {
-                templateUrl: "views/widget/widget-chooser.view.client.html"
+                templateUrl: "views/widget/widget-chooser.view.client.html",
+                controller: "NewWidgetController",
+                controllerAs: "model"
             })
             .when("/user/:uid/website/:wid/page/:pid/widget/:wgid", {
-                templateUrl: "views/widget/widget-heading.view.client.html"
+                templateUrl: "views/widget/widget-heading.view.client.html",
+                controller: "EditWidgetController",
+                controllerAs: "model"
             })
             .otherwise({
                 templateUrl: "views/user/login.view.client.html",

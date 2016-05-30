@@ -35,12 +35,15 @@
          * The new widget's pageId is set to the pageId parameter.
          * @param pageId
          * @param widget
-         * @returns {null}
+         * @returns {boolean} true if created.
          */
         function createWidget(pageId, widget) {
-            widget.pageId = pageId;
-            widgets.push(widget);
-            return null;
+            if(!findWidgetById(widget._id)) {
+                widget.pageId = pageId;
+                widgets.push(widget);
+                return true;
+            }
+            return false;
         }
 
         /**
