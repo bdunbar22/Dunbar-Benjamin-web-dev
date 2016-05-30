@@ -108,12 +108,15 @@
          */
         function deleteUser(userId) {
             var startLength = users.length;
-            users.filter(checkId);
 
-            //Items that pass this check will remain in the list.
-            function checkId(user) {
-                return user._id != userId;
+            var keepUsers = [];
+            for(var i in users) {
+                if(users[i]._id != userId) {
+                    keepUsers.push(users[i]);
+                }
             }
+
+            users = keepUsers;
 
             return users.length < startLength;
         }

@@ -108,12 +108,15 @@
          */
         function deleteWidget(widgetId) {
             var startLength = widgets.length;
-            widgets.filter(checkId);
 
-            //Items that pass this check will remain in the list.
-            function checkId(widget) {
-                return widget._id != widgetId;
+            var keepWidgets = [];
+            for(var i in widgets) {
+                if(widgets[i]._id != widgetId) {
+                    keepWidgets.push(widgets[i]);
+                }
             }
+
+            widgets = keepWidgets;
 
             return widgets.length < startLength;
         }

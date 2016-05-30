@@ -93,12 +93,15 @@
          */
         function deletePage(pageId) {
             var startLength = pages.length;
-            pages.filter(checkId);
 
-            //Items that pass this check will remain in the list.
-            function checkId(page) {
-                return page._id != pageId;
+            var keepPages = [];
+            for(var i in pages) {
+                if(pages[i]._id != pageId) {
+                    keepPages.push(pages[i]);
+                }
             }
+
+            pages = keepPages;
 
             return pages.length < startLength;
         }

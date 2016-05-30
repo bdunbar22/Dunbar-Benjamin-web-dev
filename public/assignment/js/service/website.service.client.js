@@ -96,12 +96,15 @@
          */
         function deleteWebsite(websiteId) {
             var startLength = websites.length;
-            websites.filter(checkId);
 
-            //Items that pass this check will remain in the list.
-            function checkId(website) {
-                return website._id != websiteId;
+            var keepWebsites = [];
+            for(var i in websites) {
+                if(websites[i]._id != websiteId) {
+                    keepWebsites.push(websites[i]);
+                }
             }
+
+            websites = keepWebsites;
 
             return websites.length < startLength;
         }
