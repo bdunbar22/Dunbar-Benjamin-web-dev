@@ -9,10 +9,11 @@
 
     function WidgetListController($routeParams, $sce, WidgetService) {
         var vm = this;
-        var pageId = $routeParams.pid;
 
-        vm.userId = $routeParams.uid;
-        vm.widgets = WidgetService.findWidgetsByPageId(pageId);
+        vm.userId = $routeParams["uid"];
+        vm.websiteId = $routeParams["wid"];
+        vm.pageId = $routeParams["pid"];
+        vm.widgets = WidgetService.findWidgetsByPageId(vm.pageId);
 
         vm.getTrustedHtml = getTrustedHtml;
         vm.getTrustedUrl = getTrustedUrl;

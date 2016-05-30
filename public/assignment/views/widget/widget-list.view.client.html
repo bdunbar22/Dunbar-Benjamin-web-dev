@@ -2,7 +2,7 @@
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a href="#/user/5/website/5/page"
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page"
                    class="navbar-link navbar-brand">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
@@ -11,7 +11,8 @@
                     Widgets
                 </a>
                 <p class="navbar-text pull-right">
-                    <a href="#/user/5/website/5/page/5/widget/new" class="navbar-link">
+                    <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new"
+                       class="navbar-link">
                         <span class="glyphicon glyphicon-plus header-glyphicon"></span>
                     </a>
                 </p>
@@ -21,7 +22,7 @@
     <div class="container">
 
         <div ng-repeat="widget in model.widgets" ng-switch="widget.widgetType">
-            <a href="#/user/5/website/5/page/5/widget/5"
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}"
                class="bmd-widget-edit">
                 <span class="glyphicon glyphicon-cog"></span>
                 <span class="glyphicon glyphicon-align-justify"></span>
