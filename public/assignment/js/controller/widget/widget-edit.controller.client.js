@@ -9,12 +9,17 @@
 
     function EditWidgetController($routeParams, $location, WidgetService) {
         var vm = this;
-        vm.userId = $routeParams["uid"];
-        vm.websiteId = $routeParams["wid"];
-        vm.pageId = $routeParams["pid"];
-        vm.widgetId = $routeParams["wgid"];
         vm.updateWidget = updateWidget;
         vm.deleteWidget = deleteWidget;
+
+        function init() {
+            vm.userId = $routeParams["uid"];
+            vm.websiteId = $routeParams["wid"];
+            vm.pageId = $routeParams["pid"];
+            vm.widgetId = $routeParams["wgid"];
+            vm.widget = WidgetService.findWidgetById(vm.widgetId);
+        }
+        init();
 
         function updateWidget() {
             //TODO: update.
