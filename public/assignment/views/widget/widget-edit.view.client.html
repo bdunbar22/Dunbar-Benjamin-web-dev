@@ -2,7 +2,8 @@
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a href="#/user/5/website/5/page/5/widget" class="navbar-link navbar-brand">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget"
+                   class="navbar-link navbar-brand">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
                 <a class="navbar-brand"
@@ -10,7 +11,9 @@
                     Widget Edit
                 </a>
                 <p class="navbar-text pull-right">
-                    <a href="#/user/5/website/5/page/5/widget" class="navbar-link">
+                    <a ng-click="model.updateWidget()"
+                       href=""
+                       class="navbar-link">
                         <span class="glyphicon glyphicon-ok header-glyphicon"></span>
                     </a>
                 </p>
@@ -42,7 +45,7 @@
             </div>
         </form>
 
-        <a ng-click="deleteWidget()"
+        <a ng-click="model.deleteWidget()"
            href=""
            class="btn btn-block btn-danger">Delete</a>
     </div>
