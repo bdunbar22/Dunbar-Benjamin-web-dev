@@ -30,12 +30,15 @@
          * websiteId parameter.
          * @param websiteId
          * @param page
-         * @returns {null}
+         * @returns {boolean} true if created.
          */
         function createPage(websiteId, page) {
-            page.websiteId = websiteId;
-            pages.push(page);
-            return null;
+            if(!findPageById(page._id)) {
+                page.websiteId = websiteId;
+                pages.push(page);
+                return true;
+            }
+            return false;
         }
 
         /**

@@ -2,7 +2,8 @@
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a href="#/user/5/website/5/page" class="navbar-link navbar-brand">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page"
+                   class="navbar-link navbar-brand">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
                 <a class="navbar-brand"
@@ -10,7 +11,9 @@
                     New Page
                 </a>
                 <p class="navbar-text pull-right">
-                    <a href="#/user/5/website/5/page" class="navbar-link">
+                    <a ng-click="model.createPage(name, title)"
+                       href=""
+                       class="navbar-link">
                         <span class="glyphicon glyphicon-ok header-glyphicon"></span>
                     </a>
                 </p>
@@ -24,14 +27,16 @@
                 <input type="text"
                        class="form-control"
                        id="name"
-                       placeholder="Page Name">
+                       placeholder="Page Name"
+                       ng-model="name">
             </div>
             <div class="form-group">
                 <label for="title">Title</label>
                 <input type="text"
                        class="form-control"
                        id="title"
-                       placeholder="Page Title">
+                       placeholder="Page Title"
+                       ng-model="title">
             </div>
         </form>
     </div>
@@ -39,7 +44,7 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <p class="navbar-text pull-right">
-                    <a href="#/user/5">
+                    <a href="#/user/{{model.userId}}">
                         <span class="glyphicon glyphicon-user header-glyphicon"></span>
                     </a>
                 </p>

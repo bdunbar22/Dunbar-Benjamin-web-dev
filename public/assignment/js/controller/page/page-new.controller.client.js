@@ -5,30 +5,31 @@
 (function () {
     angular
         .module("WebAppMaker")
-        .controller("NewWebsiteController", NewWebsiteController);
+        .controller("NewPageController", NewPageController);
 
-    function NewWebsiteController($routeParams, $location, WebsiteService) {
+    function NewPageController($routeParams, $location, PageService) {
         var vm = this;
-        vm.createWebsite = createWebsite;
+        vm.createPage = createPage;
 
         function init() {
             vm.userId = $routeParams["uid"];
+            vm.websiteId = $routeParams["wid"];
         }
         init();
 
-        function createWebsite(name, description) {
-            var website = {};
+        function createPage(name, title) {
+            var page = {};
             if(name == "" || name == null) {
-                vm.error = "Website needs a name.";
+                vm.error = "Page needs a name.";
                 return false;
             }
-            website._id = (new Date()).getTime();
-            website.name = name;
-            website.description = description;
-            if(WebsiteService.createWebsite(vm.userId, website)) {
-                $location.url("/user/" + vm.userId + "/website");
+            page._id = (new Date()).getTime();
+            page.name = name;
+            page.title = title;
+            if(PageService.createPage(vm.websiteId, page)) {
+                $location.url("/user/" + vm.userId + "/website/" + vm.websiteId +"/page");
             } else {
-                vm.error = "Error creating website.";
+                vm.error = "Error creating page.";
                 return false;
             }
         }
