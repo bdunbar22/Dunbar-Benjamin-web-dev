@@ -5,24 +5,25 @@
 (function () {
     angular
         .module("WebAppMaker")
-        .controller("EditWebsiteController", EditWebsiteController);
+        .controller("EditPageController", EditPageController);
 
-    function EditWebsiteController($routeParams, $location, WebsiteService) {
+    function EditPageController($routeParams, $location, PageService) {
         var vm = this;
-        vm.updateWebsite = updateWebsite;
+        vm.updatePage = updatePage;
 
         function init() {
             vm.userId = $routeParams["uid"];
             vm.websiteId = $routeParams["wid"];
-            vm.website = WebsiteService.findWebsiteById(vm.websiteId);
+            vm.pageId = $routeParams["pid"];
+            vm.page = PageService.findPageById(vm.pageId);
         }
         init();
 
-        function updateWebsite() {
-            if(WebsiteService.updateWebsite(vm.websiteId, vm.website)) {
-                $location.url("/user/" + vm.userId + "/website");
+        function updatePage() {
+            if(PageService.updatePage(vm.pageId, vm.page)) {
+                $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
             } else {
-                vm.error = "Error editing website.";
+                vm.error = "Error editing page.";
                 return false;
             }
         }
