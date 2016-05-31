@@ -11,6 +11,15 @@
 }
 
 .bmd-widget {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.bmd-widget img {
+    padding-top: 2px;
+}
+
+.bmd-widget iframe {
     padding-top: 2px;
 }
 
