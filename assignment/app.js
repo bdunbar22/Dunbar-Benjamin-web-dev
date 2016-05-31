@@ -26,25 +26,20 @@ module.exports = function(app) {
         console.log("Hello from the server. Message: " + note);
     });
 
+    /* User service practice */
+
+    var users = [
+        {_id: "123", username: "alice",    password: "alice",    email: "", firstName: "Alice",  lastName: "Wonder"},
+        {_id: "234", username: "bob",      password: "bob",      email: "", firstName: "Bob",    lastName: "Marley"},
+        {_id: "345", username: "charly",   password: "charly",   email: "", firstName: "Charly", lastName: "Garcia"},
+        {_id: "456", username: "jannunzi", password: "jannunzi", email: "", firstName: "Jose",   lastName: "Annunzi"}
+    ];
+
     //Could return json object of users.
-    app.get("/allUsers", function (req, resp) {
-        resp.send({users: [
-            {_id: "123", username: "alice",    password: "alice",    email: "", firstName: "Alice",  lastName: "Wonder"},
-            {_id: "234", username: "bob",      password: "bob",      email: "", firstName: "Bob",    lastName: "Marley"},
-            {_id: "345", username: "charly",   password: "charly",   email: "", firstName: "Charly", lastName: "Garcia"},
-            {_id: "456", username: "jannunzi", password: "jannunzi", email: "", firstName: "Jose",   lastName: "Annunzi"}
-        ]});
-    });
+    app.get("/user/", getUsers);
 
     //Can search for specific users.
     app.get("/user/:username", function (req, resp) {
-        var users = [
-            {_id: "123", username: "alice",    password: "alice",    email: "", firstName: "Alice",  lastName: "Wonder"},
-            {_id: "234", username: "bob",      password: "bob",      email: "", firstName: "Bob",    lastName: "Marley"},
-            {_id: "345", username: "charly",   password: "charly",   email: "", firstName: "Charly", lastName: "Garcia"},
-            {_id: "456", username: "jannunzi", password: "jannunzi", email: "", firstName: "Jose",   lastName: "Annunzi"}
-        ];
-
         var username = req.params["username"];
         for(var i in users) {
             if(users[i].username === username) {
@@ -52,4 +47,35 @@ module.exports = function(app) {
             }
         }
     });
+
+    function getUsers(req, resp) {
+        var username = req.query["username"];
+        var password = req.query["password"];
+        if(username && password) {
+            findUserByCredentials(username, password, resp);
+        }
+        if(username) {
+            findUserByUsername(username, resp);
+        } else {
+            //In the future maybe check if admin.
+            resp.send(users);
+        }
+    }
+
+    function findUserByCredentials(username, password, resp) {
+        for(var i in users) {
+            if(users[i].username === username &&
+               users[i].password === password) {
+                resp.send(users[i]);
+            }
+        }
+    }
+
+    function findUserByUsername(username, resp) {
+        for(var i in users) {
+            if(users[i].username === username) {
+                resp.send(users[i]);
+            }
+        }
+    }
 };
