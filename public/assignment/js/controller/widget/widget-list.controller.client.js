@@ -25,10 +25,9 @@
 
         function getTrustedUrl(widget) {
             var urlParts = widget.url.split("/");
-            var urlId = urlParts[urlParts.length - 1];
-            var urlToEmbed = "https://www.youtube.com/embed/" + urlId;
-            $sce.trustAsResourceUrl(urlToEmbed);
-            return urlToEmbed;
+            var id = urlParts[urlParts.length - 1];
+            var url = "https://www.youtube.com/embed/" + id;
+            return $sce.trustAsResourceUrl(url);
         }
     }
 })();
