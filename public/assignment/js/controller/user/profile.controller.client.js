@@ -16,7 +16,11 @@
         vm.updateUser = updateUser;
 
         function init() {
-            vm.user = UserService.findUserById(id);
+            UserService.findUserById(id)
+                .then(function (res) {
+                    vm.user = res.data;
+                });
+
         }
         init();
 

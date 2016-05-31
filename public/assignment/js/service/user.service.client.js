@@ -45,12 +45,8 @@
          * @returns user
          */
         function findUserById(userId) {
-            for(var i in users) {
-                if(users[i]._id == userId) {
-                    return users[i];
-                }
-            }
-            return null;
+            var url = "/user/" + userId;
+            return $http.get(url);
         }
 
         /**
@@ -74,7 +70,7 @@
          * @returns user
          */
         function findUserByCredentials(username, password) {
-            var url = "http://localhost:3000/user/?username=" + username + "&password=" + password;
+            var url = "/user/?username=" + username + "&password=" + password;
             return $http.get(url);
         }
 

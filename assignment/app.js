@@ -39,10 +39,10 @@ module.exports = function(app) {
     app.get("/user/", getUsers);
 
     //Can search for specific users.
-    app.get("/user/:username", function (req, resp) {
-        var username = req.params["username"];
+    app.get("/user/:userId", function (req, resp) {
+        var userId = req.params["userId"];
         for(var i in users) {
-            if(users[i].username === username) {
+            if(users[i]._id == userId) {
                 resp.send(users[i]);
             }
         }
