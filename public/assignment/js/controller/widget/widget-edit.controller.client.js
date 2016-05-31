@@ -22,7 +22,12 @@
         init();
 
         function updateWidget() {
-            //TODO: update.
+            if(WidgetService.updateWidget(vm.widgetId, vm.widget)) {
+                $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
+            } else {
+                vm.error = "Error editing widget.";
+                return false;
+            }
         }
 
         function deleteWidget() {

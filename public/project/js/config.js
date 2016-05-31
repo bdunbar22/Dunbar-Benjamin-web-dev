@@ -9,19 +9,19 @@
     function Config($routeProvider) {
         $routeProvider
             .when("/login", {
-                templateUrl: "views/user/login.view.client.html"
+                templateUrl: "templates/user/login.view.client.html"
             })
             .when("/", {
-                templateUrl: "views/user/login.view.client.html"
+                templateUrl: "templates/user/login.view.client.html"
             })
             .when("/default", {
-                templateUrl: "views/user/login.view.client.html"
+                templateUrl: "templates/user/login.view.client.html"
             })
             .when("/register", {
-                templateUrl: "views/user/register.view.client.html"
+                templateUrl: "templates/user/register.view.client.html"
             })
             .when("/user/:uid", {
-                templateUrl: "views/user/profile.view.client.html"
+                templateUrl: "templates/user/profile.view.client.html"
             });
     }
 })();
