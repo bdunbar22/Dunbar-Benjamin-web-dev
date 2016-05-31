@@ -54,7 +54,7 @@
         function findWidgetsByPageId(pageId) {
             var widgetsForPage = [];
             for(var i in widgets) {
-                if(widgets[i].pageId === pageId) {
+                if(widgets[i].pageId == pageId) {
                     widgetsForPage.push(widgets[i]);
                 }
             }
@@ -68,7 +68,7 @@
          */
         function findWidgetById(widgetId) {
             for(var i in widgets) {
-                if(widgets[i]._id === widgetId) {
+                if(widgets[i]._id == widgetId) {
                     return widgets[i];
                 }
             }
@@ -83,7 +83,7 @@
          */
         function updateWidget(widgetId, widget) {
             for(var i in widgets) {
-                if(widgets[i]._id === widgetId) {
+                if(widgets[i]._id == widgetId) {
                     widgets[i].widgetType = widget.widgetType;
                     widgets[i].pageId = widget.pageId;
 

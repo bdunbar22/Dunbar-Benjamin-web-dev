@@ -24,16 +24,128 @@
         <div ng-switch="model.widget.widgetType">
 
             <div ng-switch-when="HEADER">
-                 <div ng­include="'/assignment/views/widget/widget­heading.view.client.html'"></div>
+                 <!-- <div ng­include="'/assignment/views/widget/widget­heading.view.client.html'"></div> -->
+                <form>
+                    <div class="form-group">
+                        <label for="nameHEADER">Name</label>
+                        <input type="text"
+                               class="form-control"
+                               id="nameHEADER"
+                               ng-model="model.widget.name">
+                    </div>
+                    <div class="form-group">
+                        <label for="textHEADER">Text</label>
+                        <input type="text"
+                               class="form-control"
+                               id="textHeader"
+                               ng-model="model.widget.text">
+                    </div>
+                    <div class="form-group">
+                        <label for="sizeHEADER">Size</label>
+                        <input type="text"
+                               class="form-control"
+                               id="sizeHEADER"
+                               ng-model="model.widget.size">
+                    </div>
+                </form>
             </div>
             <div ng-switch-when="IMAGE">
-                <div ng-include="'/assignment/views/widget/widget­image.view.client.html'"></div>
+                <!-- <div ng­include="'/assignment/views/widget/widget­image.view.client.html'"></div> -->
+                <form>
+                    <div class="form-group">
+                        <label for="nameIMAGE">Name</label>
+                        <input type="text"
+                               class="form-control"
+                               id="nameIMAGE"
+                               ng-model="model.widget.name">
+                    </div>
+                    <div class="form-group">
+                        <label for="textIMAGE">Text</label>
+                        <input type="text"
+                               class="form-control"
+                               id="textIMAGE"
+                               ng-model="model.widget.text">
+                    </div>
+                    <div class="form-group">
+                        <label for="urlIMAGE">URL</label>
+                        <input type="text"
+                               class="form-control"
+                               id="urlIMAGE"
+                               ng-model="model.widget.url">
+                    </div>
+                    <div class="form-group">
+                        <label for="widthIMAGE">Width</label>
+                        <input type="text"
+                               class="form-control"
+                               id="widthIMAGE"
+                               ng-model="model.widget.width">
+                    </div>
+                    <div class="form-group">
+                        <label for="uploadIMAGE">Upload</label>
+                        <input type="file"
+                               class="form-control"
+                               id="uploadIMAGE">
+                    </div>
+                </form>
             </div>
             <div ng-switch-when="YOUTUBE">
-                <div ng-include="'/assignment/views/widget/widget­youtube.view.client.html'"></div>
+                <!-- <div ng­include="'/assignment/views/widget/widget­youtube.view.client.html'"></div> -->
+                <form>
+                    <div class="form-group">
+                        <label for="nameYOUTUBE">Name</label>
+                        <input type="text"
+                               class="form-control"
+                               id="nameYOUTUBE"
+                               ng-model="model.widget.name">
+                    </div>
+                    <div class="form-group">
+                        <label for="textYOUTUBE">Text</label>
+                        <input type="text"
+                               class="form-control"
+                               id="textYOUTUBE"
+                               ng-model="model.widget.text">
+                    </div>
+                    <div class="form-group">
+                        <label for="urlYOUTUBE">URL</label>
+                        <input type="text"
+                               class="form-control"
+                               id="urlYOUTUBE"
+                               ng-model="model.widget.url">
+                    </div>
+                    <div class="form-group">
+                        <label for="widthYOUTUBE">Width</label>
+                        <input type="text"
+                               class="form-control"
+                               id="widthYOUTUBE"
+                               ng-model="model.widget.width">
+                    </div>
+                </form>
             </div>
             <div ng-switch-default>
-                <div ng-include="'/assignment/views/widget/widget­heading.view.client.html'"></div>
+                <!-- <div ng­include="'/assignment/views/widget/widget­heading.view.client.html'"></div> -->
+                <form>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text"
+                               class="form-control"
+                               id="name"
+                               ng-model="model.widget.name">
+                    </div>
+                    <div class="form-group">
+                        <label for="text">Text</label>
+                        <input type="text"
+                               class="form-control"
+                               id="text"
+                               ng-model="model.widget.text">
+                    </div>
+                    <div class="form-group">
+                        <label for="size">Size</label>
+                        <input type="text"
+                               class="form-control"
+                               id="size"
+                               ng-model="model.widget.size">
+                    </div>
+                </form>
             </div>
 
         </div>
