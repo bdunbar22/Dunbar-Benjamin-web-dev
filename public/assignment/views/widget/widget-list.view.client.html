@@ -22,30 +22,31 @@
     <div class="container">
 
         <div ng-repeat="widget in model.widgets" ng-switch="widget.widgetType">
-            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}"
-               class="bmd-widget-edit">
-                <span class="glyphicon glyphicon-cog"></span>
-                <span class="glyphicon glyphicon-align-justify"></span>
-            </a>
+            <div class="bmd-widget-edit">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}"
+                    >
+                    <span class="glyphicon glyphicon-cog"></span>
+                    <span class="glyphicon glyphicon-align-justify"></span>
+                </a>
+            </div>
 
             <div ng-switch-when="HEADER"
                  class="bmd-widget">
 
                 <div ng-switch="widget.size">
-                    <h1 ng-switch-when="1"
-                        class="col-xs-10">{{widget.text}}</h1>
-                    <h2 ng-switch-when="2"
-                        class="col-xs-10">{{widget.text}}</h2>
-                    <h3 ng-switch-when="3"
-                        class="col-xs-10">{{widget.text}}</h3>
-                    <h4 ng-switch-when="4"
-                        class="col-xs-10">{{widget.text}}</h4>
-                    <h5 ng-switch-when="5"
-                        class="col-xs-10">{{widget.text}}</h5>
-                    <h6 ng-switch-when="6"
-                        class="col-xs-10">{{widget.text}}</h6>
-                    <p ng-switch-default
-                       class="col-xs-10">{{widget.text}}</p>
+                    <h1 ng-switch-when="1">{{widget.text}}</h1>
+
+                    <h2 ng-switch-when="2">{{widget.text}}</h2>
+
+                    <h3 ng-switch-when="3">{{widget.text}}</h3>
+
+                    <h4 ng-switch-when="4">{{widget.text}}</h4>
+
+                    <h5 ng-switch-when="5">{{widget.text}}</h5>
+
+                    <h6 ng-switch-when="6">{{widget.text}}</h6>
+
+                    <p ng-switch-default>{{widget.text}}</p>
                 </div>
             </div>
             <div ng-switch-when="HTML"
@@ -54,8 +55,7 @@
             </div>
             <div ng-switch-when="IMAGE"
                  class="bmd-widget">
-
-                <img class="col-xs-10"
+                <img
                      ng-src="{{widget.url}}"
                      width="{{widget.width}}">
             </div>
@@ -63,7 +63,6 @@
                  class="bmd-widget">
                 <iframe width="100%"
                         height="100%"
-                        class="col-xs-10"
                         ng-src="{{model.getTrustedUrl(widget)}}"
                         frameborder="0"
                         allowfullscreen>

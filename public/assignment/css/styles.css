@@ -11,23 +11,17 @@
 }
 
 .bmd-widget {
-    width: 100%;
-    height: auto;
-    display: inline-block;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    position: relative;
+    padding-top: 2px;
 }
 
 .bmd-widget-edit {
-    display: block;
-    float: right!important;
-    margin-right: 0px;
-    margin-top: 0px;
-    position: relative;
-    z-index: 2;
+    position: absolute;
+    right: 0px;
     background-color: white;
-    border-bottom-left-radius: 5px;
+    padding-left: 5px;
+    padding-bottom: 5px;
+    border-bottom-left-radius: 8px;
+    margin-right: 5px;
 }
 
 a:hover {
