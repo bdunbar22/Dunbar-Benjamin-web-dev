@@ -7,7 +7,7 @@
         .module("WebAppMaker")
         .factory("UserService", UserService);
 
-    function UserService() {
+    function UserService($http) {
         var users =
             [
                 {_id: "123", username: "alice",    password: "alice",    email: "", firstName: "Alice",  lastName: "Wonder"},
@@ -74,12 +74,8 @@
          * @returns user
          */
         function findUserByCredentials(username, password) {
-            for(var i in users) {
-                if(users[i].username === username && users[i].password === password) {
-                    return users[i];
-                }
-            }
-            return null;
+            var url = "http://localhost:3000/user/?username=" + username + "&password=" + password;
+            return $http.get(url);
         }
 
         /**
