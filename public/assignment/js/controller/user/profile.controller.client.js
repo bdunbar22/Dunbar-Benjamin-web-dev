@@ -43,7 +43,7 @@
                     $location.url("/login");
                 },
                 function (error) {
-                    vm.error = error;
+                    vm.error = error.data;
                 });
         }
     }
