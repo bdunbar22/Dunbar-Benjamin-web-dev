@@ -15,8 +15,10 @@
     </nav>
     <div class="container">
         <div ng-show="model.success"
-             class="alert alert-success">
-            Successfully updated your profile!
+             class="alert alert-success">{{model.success}}
+        </div>
+        <div ng-show="model.error"
+             class="alert alert-error">{{model.error}}
         </div>
         <form>
             <div class="form-group">
@@ -54,13 +56,12 @@
         </form>
 
         <a href="#/user/{{model.user._id}}/website"
-           class="btn btn-block btn-primary">
-            Websites
-        </a>
+           class="btn btn-block btn-primary">Websites</a>
         <a href="#/login"
-           class="btn btn-block btn-danger">
-            Logout
-        </a>
+           class="btn btn-block btn-danger">Logout</a>
+        <a ng-click="model.deleteUser()"
+           href=""
+           class="btn btn-block btn-danger">Logout</a>
     </div>
     <nav class="navbar navbar-default navbar-fixed-bottom">
         <div class="container-fluid">

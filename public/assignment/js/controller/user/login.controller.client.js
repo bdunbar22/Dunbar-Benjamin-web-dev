@@ -14,14 +14,17 @@
         function login(username, password) {
             UserService
                 .findUserByCredentials(username, password)
-                .then(function (res) {
-                    var user = res.data;
+                .then(function (resp) {
+                    var user = resp.data;
                     if(user) {
                        $location.url("/user/" + user._id);
                     }
                     else {
                       vm.error = "Could not match username and password.";
                     }
+                },
+                function (error) {
+                    vm.error = "Could not match username and password.";
                 });
         }
     }

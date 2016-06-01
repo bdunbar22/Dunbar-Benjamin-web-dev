@@ -35,11 +35,49 @@ module.exports = function(app) {
         {_id: "456", username: "jannunzi", password: "jannunzi", email: "", firstName: "Jose",   lastName: "Annunzi"}
     ];
 
-    //Could return json object of users.
-    app.get("/user/", getUsers);
+    //Paths that are allowed.
+    app.get("/api/user/", getUsers);
+    app.get("/api/user/:userId", findUserById);
+    app.put("/api/user/:userId", updateUser);
+    app.delete("/api/user/:userId", deleteUser);
 
-    //Can search for specific users.
-    app.get("/user/:userId", function (req, resp) {
+    function deleteUser(req, resp) {
+        var userId = req.params["userId"];
+        var startLength = users.length;
+
+        var keepUsers = [];
+        for(var i in users) {
+            if(users[i]._id != userId) {
+                keepUsers.push(users[i]);
+            }
+        }
+
+        users = keepUsers;
+
+        if(users.length < startLength) {
+            resp.send(200);
+        } else {
+            resp.send(404, "User with id: " + userId + " could not be deleted.");
+        }
+    }
+
+     function updateUser(req, resp) {
+         var userId = req.params["userId"];
+         var newUser = req.body;
+         for(var i in users) {
+             if(users[i]._id == userId) {
+                 users[i].firstName = newUser.firstName;
+                 users[i].lastName = newUser.lastName;
+                 users[i].username = newUser.username;
+                 users[i].email = newUser.email;
+                 resp.send(200);
+                 return;
+             }
+         }
+         resp.send(400, "User with id: " + userId + " was not found.");
+     }
+
+    function findUserById(req, resp) {
         var userId = req.params["userId"];
         for(var i in users) {
             if(users[i]._id == userId) {
@@ -47,8 +85,8 @@ module.exports = function(app) {
                 return;
             }
         }
-        resp.send(null);
-    });
+        resp.send(403);
+    }
 
     function getUsers(req, resp) {
         var username = req.query["username"];
@@ -71,7 +109,7 @@ module.exports = function(app) {
                 return;
             }
         }
-        resp.send(null);
+        resp.send(403);
     }
 
     function findUserByUsername(username, resp) {
@@ -81,6 +119,6 @@ module.exports = function(app) {
                 return;
             }
         }
-        resp.send(null);
+        resp.send(403);
     }
 };

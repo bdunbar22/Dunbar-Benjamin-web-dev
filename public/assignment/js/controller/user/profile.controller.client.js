@@ -10,22 +10,41 @@
     /**
      * At start retrieve user based on url uid parameter. Found in init function.
      */
-    function ProfileController($routeParams, UserService) {
+    function ProfileController($routeParams, $location, UserService) {
         var vm = this;
         var id = $routeParams["uid"];
         vm.updateUser = updateUser;
+        vm.deleteUser = deleteUser;
 
         function init() {
-            UserService.findUserById(id)
-                .then(function (res) {
-                    vm.user = res.data;
+            UserService
+                .findUserById(id)
+                .then(function (resp) {
+                    vm.user = resp.data;
                 });
-
         }
         init();
 
         function updateUser() {
-            vm.success = UserService.updateUser(id, vm.user);
+            UserService
+                .updateUser(id, vm.user)
+                .then(function (resp) {
+                    vm.success = "User successfully updated.";
+                },
+                function (error) {
+                    vm.error = error;
+                });
+        }
+
+        function deleteUser() {
+            UserService
+                .deleteUser(id)
+                .then(function (resp) {
+                    $location.url("/login");
+                },
+                function (error) {
+                    vm.error = error;
+                });
         }
     }
 })();

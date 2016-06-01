@@ -45,7 +45,7 @@
          * @returns user
          */
         function findUserById(userId) {
-            var url = "/user/" + userId;
+            var url = "/api/user/" + userId;
             return $http.get(url);
         }
 
@@ -70,7 +70,7 @@
          * @returns user
          */
         function findUserByCredentials(username, password) {
-            var url = "/user/?username=" + username + "&password=" + password;
+            var url = "/api/user/?username=" + username + "&password=" + password;
             return $http.get(url);
         }
 
@@ -81,16 +81,8 @@
          * @returns {boolean}
          */
         function updateUser(userId, user) {
-            for(var i in users) {
-                if(users[i]._id == userId) {
-                    users[i].firstName = user.firstName;
-                    users[i].lastName = user.lastName;
-                    users[i].username = user.username;
-                    users[i].email = user.email;
-                    return true;
-                }
-            }
-            return false;
+            var url = "/api/user/" + userId;
+            return $http.put(url, user);
         }
 
         /**
@@ -99,18 +91,8 @@
          * @returns boolean true a user was removed.
          */
         function deleteUser(userId) {
-            var startLength = users.length;
-
-            var keepUsers = [];
-            for(var i in users) {
-                if(users[i]._id != userId) {
-                    keepUsers.push(users[i]);
-                }
-            }
-
-            users = keepUsers;
-
-            return users.length < startLength;
+            var url = "/api/user/" + userId;
+            return $http.delete(url);
         }
     }
 })();
