@@ -44,8 +44,10 @@ module.exports = function(app) {
         for(var i in users) {
             if(users[i]._id == userId) {
                 resp.send(users[i]);
+                return;
             }
         }
+        resp.send(null);
     });
 
     function getUsers(req, resp) {
@@ -53,8 +55,7 @@ module.exports = function(app) {
         var password = req.query["password"];
         if(username && password) {
             findUserByCredentials(username, password, resp);
-        }
-        if(username) {
+        } else if(username) {
             findUserByUsername(username, resp);
         } else {
             //In the future maybe check if admin.
@@ -67,15 +68,19 @@ module.exports = function(app) {
             if(users[i].username === username &&
                users[i].password === password) {
                 resp.send(users[i]);
+                return;
             }
         }
+        resp.send(null);
     }
 
     function findUserByUsername(username, resp) {
         for(var i in users) {
             if(users[i].username === username) {
                 resp.send(users[i]);
+                return;
             }
         }
+        resp.send(null);
     }
 };
