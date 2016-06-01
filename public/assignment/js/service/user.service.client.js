@@ -32,11 +32,8 @@
          * @returns {boolean} true if made.
          */
         function createUser(user) {
-            if(!findUserById(user._id)) {
-                users.push(user);
-                return true;
-            }
-            return false;
+            var url = "/api/user";
+            return $http.post(url, user);
         }
 
         /**

@@ -17,15 +17,18 @@
                 return false;
             }
             var user = {};
-            user._id = (new Date()).getTime();
             user.username = username;
             user.password = password;
-            if(UserService.createUser(user)) {
-                $location.url("/user/" + user._id);
-            } else {
-                vm.error = "Error creating user.";
-                return false;
-            }
+            UserService
+                .createUser(user)
+                .then(function (resp) {
+                    var userId = resp.data._id;
+                    $location.url("/user/" + userId);
+                },
+                function(error) {
+                    vm.error = error.data;
+                    return false;
+                });
         }
     }
 })();

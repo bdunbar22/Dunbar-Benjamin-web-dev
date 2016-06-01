@@ -36,11 +36,27 @@ module.exports = function(app) {
     ];
 
     //Paths that are allowed.
+    app.post("/api/user/", createUser);
     app.get("/api/user/", getUsers);
     app.get("/api/user/:userId", findUserById);
     app.put("/api/user/:userId", updateUser);
     app.delete("/api/user/:userId", deleteUser);
 
+    function createUser(req, resp) {
+        var newUser = req.body;
+        
+        for(var i in users) {
+            if(users[i].username === newUser.username) {
+                resp.status(400).send("Username " + newUser.username + " is already in use.");
+                return;
+            }
+        }
+        
+        newUser._id = (new Date()).getTime() + "";
+        users.push(newUser);
+        resp.send(newUser);
+    }
+    
     function deleteUser(req, resp) {
         var userId = req.params["userId"];
         var startLength = users.length;
@@ -80,7 +96,7 @@ module.exports = function(app) {
     function findUserById(req, resp) {
         var userId = req.params["userId"];
         for(var i in users) {
-            if(users[i]._id == userId) {
+            if(users[i]._id === userId) {
                 resp.send(users[i]);
                 return;
             }

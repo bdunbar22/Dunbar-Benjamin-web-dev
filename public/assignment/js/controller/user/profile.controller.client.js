@@ -32,7 +32,7 @@
                     vm.success = "User successfully updated.";
                 },
                 function (error) {
-                    vm.error = error;
+                    vm.error = error.data;
                 });
         }
 
