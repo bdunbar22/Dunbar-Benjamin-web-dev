@@ -15,26 +15,34 @@
         function init() {
             vm.userId = $routeParams["uid"];
             vm.websiteId = $routeParams["wid"];
-            vm.website = WebsiteService.findWebsiteById(vm.websiteId);
+            WebsiteService
+                .findWebsiteById(vm.websiteId)
+                .then(function (resp) {
+                    vm.website = resp.data;
+                });
         }
         init();
 
         function updateWebsite() {
-            if(WebsiteService.updateWebsite(vm.websiteId, vm.website)) {
-                $location.url("/user/" + vm.userId + "/website");
-            } else {
-                vm.error = "Error editing website.";
-                return false;
-            }
+            WebsiteService
+                .updateWebsite(vm.websiteId, vm.website)
+                .then(function (resp) {
+                        $location.url("/user/" + vm.userId + "/website");
+                },
+                function (error) {
+                    vm.error = error.data;
+                });
         }
 
         function deleteWebsite() {
-            if(WebsiteService.deleteWebsite(vm.websiteId)) {
-                $location.url("/user/" + vm.userId + "/website");
-            } else {
-                vm.error = "Error deleting website.";
-                return false;
-            }
+            WebsiteService
+                .deleteWebsite(vm.websiteId)
+                .then(function (resp) {
+                    $location.url("/user/" + vm.userId + "/website");
+                },
+                function (error) {
+                    vm.error = error.data;
+                });
         }
     }
 })();

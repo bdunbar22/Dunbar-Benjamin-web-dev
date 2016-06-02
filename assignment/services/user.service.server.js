@@ -1,5 +1,6 @@
 /**
  * Created by Ben on 6/1/16.
+ * Allows for user CRUD operations. (Create, Read, Update, Delete)
  */
 
 module.exports = function(app) {
@@ -15,6 +16,9 @@ module.exports = function(app) {
     /* Paths that are allowed. */
     app.post("/api/user/", createUser);
     app.get("/api/user/", getUsers);
+    //Above covers query cases:
+    //api/user/?username=username
+    //api/user/?username=username&password=password
     app.get("/api/user/:userId", findUserById);
     app.put("/api/user/:userId", updateUser);
     app.delete("/api/user/:userId", deleteUser);
@@ -79,7 +83,7 @@ module.exports = function(app) {
                 return;
             }
         }
-        resp.sendStatus(403);
+        resp.status(403).send("Could not find user with id: " + userId);
     }
 
     function getUsers(req, resp) {

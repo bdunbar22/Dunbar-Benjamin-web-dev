@@ -18,6 +18,9 @@
         </div>
     </nav>
     <div class="container">
+        <div ng-if="model.message"
+             class="alert alert-info bmd-margin-top-10">{{model.message}}</div>
+
         <ul class="list-group">
             <li ng-repeat="website in model.websites"
                 class="list-group-item">

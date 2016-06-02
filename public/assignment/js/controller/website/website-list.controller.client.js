@@ -12,7 +12,14 @@
         
         function init() {
             vm.userId = $routeParams["uid"];
-            vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
+            WebsiteService
+                .findWebsitesByUser(vm.userId)
+                .then(function (resp) {
+                    vm.websites = resp.data;
+                }, function (error) {
+                    vm.websites = [];
+                    vm.message = "You have no websites right now.";
+                })
         }
         init();
     }

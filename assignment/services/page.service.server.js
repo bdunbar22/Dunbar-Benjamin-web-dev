@@ -1,5 +1,6 @@
 /**
  * Created by Ben on 6/1/16.
+ * Allows for page CRUD operations. (Create, Read, Update, Delete)
  */
 
 module.exports = function(app) {
@@ -49,9 +50,9 @@ module.exports = function(app) {
         users = keepUsers;
 
         if (users.length < startLength) {
-            resp.send(200);
+            resp.sendStatus(200);
         } else {
-            resp.send(404, "User with id: " + userId + " could not be deleted.");
+            resp.status(404).send("User with id: " + userId + " could not be deleted.");
         }
     }
 
@@ -64,11 +65,11 @@ module.exports = function(app) {
                 users[i].lastName = newUser.lastName;
                 users[i].username = newUser.username;
                 users[i].email = newUser.email;
-                resp.send(200);
+                resp.sendStatus(200);
                 return;
             }
         }
-        resp.send(400, "User with id: " + userId + " was not found.");
+        resp.status(400).send("User with id: " + userId + " was not found.");
     }
 
     function findUserById(req, resp) {
@@ -79,7 +80,7 @@ module.exports = function(app) {
                 return;
             }
         }
-        resp.send(403);
+        resp.sendStatus(403);
     }
 
     function getUsers(req, resp) {
@@ -103,7 +104,7 @@ module.exports = function(app) {
                 return;
             }
         }
-        resp.send(403);
+        resp.status(403).send("Could not match username and password for user with username " + username);
     }
 
     function findUserByUsername(username, resp) {
@@ -113,6 +114,6 @@ module.exports = function(app) {
                 return;
             }
         }
-        resp.send(403);
+        resp.status(403).send("Could not find user with username " + username);
     }
 };
