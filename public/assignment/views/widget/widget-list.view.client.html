@@ -20,6 +20,8 @@
         </div>
     </nav>
     <div class="container">
+        <div ng-if="model.message"
+             class="alert alert-info bmd-margin-top-10">{{model.message}}</div>
 
         <div ng-repeat="widget in model.widgets" ng-switch="widget.widgetType">
             <div class="bmd-widget-edit">

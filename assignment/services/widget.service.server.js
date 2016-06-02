@@ -4,14 +4,40 @@
  */
 
 module.exports = function(app) {
+    /* Image upload */
+    var multer = require('multer'); //npm install multer --save
+    var upload = multer({dest: __dirname+'/../../public/uploads' });
+
+    app.post("/api/upload", upload.single('myFile'), uploadImage);
+
+    function uploadImage(req, resp) {
+        var widgetId = req.body.widgetId;
+        var width = req.body.width;
+        var myFile = req.file; //Dedicated attribute for files.
+
+        var originalname = myFile.originalname;
+        var filename     = myFile.filename; //Service will need this filename to find the file in the future.
+        var path         = myFile.path;
+        var destination  = myFile.destination;
+        var size         = myFile.size;
+        var mimetype     = myFile.mimetype;
+
+        //TODO: find widget and update to match this new file.
+    }
 
     /* Data */
-    var users = [
-        {_id: "123", username: "alice", password: "alice", email: "", firstName: "Alice", lastName: "Wonder"},
-        {_id: "234", username: "bob", password: "bob", email: "", firstName: "Bob", lastName: "Marley"},
-        {_id: "345", username: "charly", password: "charly", email: "", firstName: "Charly", lastName: "Garcia"},
-        {_id: "456", username: "jannunzi", password: "jannunzi", email: "", firstName: "Jose", lastName: "Annunzi"}
-    ];
+    var widgets =
+        [
+            { "_id": "123", "widgetType": "HEADER", "pageId": "321", "size": 2, "text": "GIZMODO"},
+            { "_id": "234", "widgetType": "HEADER", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
+            { "_id": "345", "widgetType": "IMAGE", "pageId": "321", "width": "100%",
+                "url": "http://lorempixel.com/400/200/"},
+            { "_id": "456", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"},
+            { "_id": "567", "widgetType": "HEADER", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
+            { "_id": "678", "widgetType": "YOUTUBE", "pageId": "321", "width": "100%",
+                "url": "https://youtu.be/AM2Ivdi9c4E" },
+            { "_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
+        ];
 
     /* Paths that are allowed. */
     app.post("/api/user/", createUser);
