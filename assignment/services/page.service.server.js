@@ -6,114 +6,93 @@
 module.exports = function(app) {
 
     /* Data */
-    var users = [
-        {_id: "123", username: "alice", password: "alice", email: "", firstName: "Alice", lastName: "Wonder"},
-        {_id: "234", username: "bob", password: "bob", email: "", firstName: "Bob", lastName: "Marley"},
-        {_id: "345", username: "charly", password: "charly", email: "", firstName: "Charly", lastName: "Garcia"},
-        {_id: "456", username: "jannunzi", password: "jannunzi", email: "", firstName: "Jose", lastName: "Annunzi"}
-    ];
+    var pages =
+        [
+            { "_id": "321", "name": "Post 1", "websiteId": "456" },
+            { "_id": "432", "name": "Post 2", "websiteId": "456" },
+            { "_id": "543", "name": "Post 3", "websiteId": "456" }
+        ];
 
     /* Paths that are allowed. */
-    app.post("/api/user/", createUser);
-    app.get("/api/user/", getUsers);
-    app.get("/api/user/:userId", findUserById);
-    app.put("/api/user/:userId", updateUser);
-    app.delete("/api/user/:userId", deleteUser);
+    app.post("/api/website/:websiteId/page", createPage);
+    app.get("/api/website/:websiteId/page", findPagesByWebsiteId);
+    app.get("/api/page/:pageId", findPageById);
+    app.put("/api/page/:pageId", updatePage);
+    app.delete("/api/page/:pageId", deletePage);
 
     /* Functions */
-    function createUser(req, resp) {
-        var newUser = req.body;
+    function createPage(req, resp) {
+        var newPage = req.body;
+        newPage.websiteId = req.params["websiteId"];
 
-        for (var i in users) {
-            if (users[i].username === newUser.username) {
-                resp.status(400).send("Username " + newUser.username + " is already in use.");
+        for (var i in pages) {
+            if (pages[i].name === newPage.name && pages[i].websiteId === newPage.websiteId) {
+                resp.status(400).send("This website already has a page with the name: " + newPage.name + ".");
                 return;
             }
         }
 
-        newUser._id = (new Date()).getTime() + "";
-        users.push(newUser);
-        resp.send(newUser);
+        newPage._id = (new Date()).getTime() + "";
+        pages.push(newPage);
+        resp.send(newPage);
     }
 
-    function deleteUser(req, resp) {
-        var userId = req.params["userId"];
-        var startLength = users.length;
-
-        var keepUsers = [];
-        for (var i in users) {
-            if (users[i]._id != userId) {
-                keepUsers.push(users[i]);
+    function findPagesByWebsiteId(req, resp) {
+        var websiteId =  req.params["websiteId"];
+        var pagesForWebsite = [];
+        for(var i in pages) {
+            if(pages[i].websiteId === websiteId) {
+                pagesForWebsite.push(pages[i]);
             }
         }
-
-        users = keepUsers;
-
-        if (users.length < startLength) {
-            resp.sendStatus(200);
-        } else {
-            resp.status(404).send("User with id: " + userId + " could not be deleted.");
+        if(pagesForWebsite.length > 0) {
+            resp.send(pagesForWebsite);
+            return;
         }
+        resp.status(403).send("Website with id: " + websiteId + " has no pages.");
     }
 
-    function updateUser(req, resp) {
-        var userId = req.params["userId"];
-        var newUser = req.body;
-        for (var i in users) {
-            if (users[i]._id == userId) {
-                users[i].firstName = newUser.firstName;
-                users[i].lastName = newUser.lastName;
-                users[i].username = newUser.username;
-                users[i].email = newUser.email;
+    function findPageById(req, resp) {
+        var pageId =  req.params["pageId"];
+        for(var i in pages) {
+            if(pages[i]._id === pageId) {
+                resp.send(pages[i]);
+                return;
+            }
+        }
+        resp.status(403).send("Could not find page with id: " + pageId);
+    }
+
+    function updatePage(req, resp) {
+        var pageId =  req.params["pageId"];
+        var newPage = req.body;
+        for(var i in pages) {
+            if(pages[i]._id === pageId) {
+                pages[i].name = newPage.name;
                 resp.sendStatus(200);
                 return;
             }
         }
-        resp.status(400).send("User with id: " + userId + " was not found.");
+        resp.status(400).send("Page with id: " + pageId + " could not be updated. Page not found.");
     }
 
-    function findUserById(req, resp) {
-        var userId = req.params["userId"];
-        for (var i in users) {
-            if (users[i]._id === userId) {
-                resp.send(users[i]);
-                return;
+    function deletePage(req, resp) {
+        var pageId =  req.params["pageId"];
+        var startLength = pages.length;
+
+        var keepPages = [];
+        for(var i in pages) {
+            if(pages[i]._id != pageId) {
+                keepPages.push(pages[i]);
             }
         }
-        resp.sendStatus(403);
-    }
 
-    function getUsers(req, resp) {
-        var username = req.query["username"];
-        var password = req.query["password"];
-        if (username && password) {
-            findUserByCredentials(username, password, resp);
-        } else if (username) {
-            findUserByUsername(username, resp);
+        pages = keepPages;
+
+        if (pages.length < startLength) {
+            resp.sendStatus(200);
         } else {
-            //In the future maybe check if admin.
-            resp.send(users);
+            resp.status(404).send("Page with id: " + pageId + " could not be deleted. Page not found.");
         }
-    }
-
-    function findUserByCredentials(username, password, resp) {
-        for (var i in users) {
-            if (users[i].username === username &&
-                users[i].password === password) {
-                resp.send(users[i]);
-                return;
-            }
-        }
-        resp.status(403).send("Could not match username and password for user with username " + username);
-    }
-
-    function findUserByUsername(username, resp) {
-        for (var i in users) {
-            if (users[i].username === username) {
-                resp.send(users[i]);
-                return;
-            }
-        }
-        resp.status(403).send("Could not find user with username " + username);
     }
 };

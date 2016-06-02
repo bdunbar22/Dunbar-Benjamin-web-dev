@@ -6,12 +6,13 @@
 module.exports = function(app) {
 
     /* Data */
-    var users = [
-        {_id: "123", username: "alice", password: "alice", email: "", firstName: "Alice", lastName: "Wonder"},
-        {_id: "234", username: "bob", password: "bob", email: "", firstName: "Bob", lastName: "Marley"},
-        {_id: "345", username: "charly", password: "charly", email: "", firstName: "Charly", lastName: "Garcia"},
-        {_id: "456", username: "jannunzi", password: "jannunzi", email: "", firstName: "Jose", lastName: "Annunzi"}
-    ];
+    var users = 
+        [
+            {_id: "123", username: "alice", password: "alice", email: "", firstName: "Alice", lastName: "Wonder"},
+            {_id: "234", username: "bob", password: "bob", email: "", firstName: "Bob", lastName: "Marley"},
+            {_id: "345", username: "charly", password: "charly", email: "", firstName: "Charly", lastName: "Garcia"},
+            {_id: "456", username: "jannunzi", password: "jannunzi", email: "", firstName: "Jose", lastName: "Annunzi"}
+        ];
 
     /* Paths that are allowed. */
     app.post("/api/user/", createUser);
