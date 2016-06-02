@@ -30,7 +30,7 @@ module.exports = function(app) {
             if(widgets[i]._id === widgetId && widgets[i].pageId === pageId) {
                 widgetFound = true;
                 widgets[i].width = width;
-                widgets[i].url = myFile.path;
+                widgets[i].url = path;
             }
         }
         if(widgetFound) {
@@ -63,6 +63,8 @@ module.exports = function(app) {
 
     /* Functions */
     function createWidget(req, resp) {
+
+        //Example
         var newPage = req.body;
         newPage.websiteId = req.params["websiteId"];
 
@@ -79,6 +81,8 @@ module.exports = function(app) {
     }
 
     function findWidgetsByPageId(req, resp) {
+
+        //Example
         var websiteId =  req.params["websiteId"];
         var pagesForWebsite = [];
         for(var i in pages) {
@@ -94,6 +98,8 @@ module.exports = function(app) {
     }
 
     function findWidgetById(req, resp) {
+
+        //Example
         var pageId =  req.params["pageId"];
         for(var i in pages) {
             if(pages[i]._id === pageId) {
@@ -105,6 +111,8 @@ module.exports = function(app) {
     }
 
     function updateWidget(req, resp) {
+
+        //Example
         var pageId =  req.params["pageId"];
         var newPage = req.body;
         for(var i in pages) {
@@ -118,6 +126,8 @@ module.exports = function(app) {
     }
 
     function deleteWidget(req, resp) {
+
+        //Example
         var pageId =  req.params["pageId"];
         var startLength = pages.length;
 
