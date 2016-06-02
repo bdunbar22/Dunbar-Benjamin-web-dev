@@ -7,10 +7,10 @@ module.exports = function(app) {
     /**
      * Get the services from the different service files.
      */
-    require("services/user.service.server.js")(app);
-    require("services/website.service.server.js")(app);
-    require("services/page.service.server.js")(app);
-    require("services/widget.service.server.js")(app);
+    require("./services/user.service.server.js")(app);
+    require("./services/website.service.server.js")(app);
+    require("./services/page.service.server.js")(app);
+    require("./services/widget.service.server.js")(app);
 
     /**
      * Examples of how to use paths.
