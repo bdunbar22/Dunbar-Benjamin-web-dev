@@ -21,21 +21,25 @@
         init();
 
         function updatePage() {
-            if(PageService.updatePage(vm.pageId, vm.page)) {
-                $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
-            } else {
-                vm.error = "Error editing page.";
-                return false;
-            }
+            PageService
+                .updatePage(vm.pageId, vm.page)
+                .then(function(resp) {
+                    $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
+                }, function(error) {
+                    vm.error = "Error editing page.";
+                    return false;
+                });
         }
 
         function deletePage() {
-            if(PageService.deletePage(vm.pageId)) {
-                $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
-            } else {
-                vm.error = "Error deleting page.";
-                return false;
-            }
+            PageService
+                .deletePage(vm.pageId)
+                .then(function(resp) {
+                    $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
+                }, function(error) {
+                    vm.error = error.data;
+                    return false;
+                });
         }
     }
 })();

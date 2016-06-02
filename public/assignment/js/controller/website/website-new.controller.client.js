@@ -22,15 +22,16 @@
                 vm.error = "Website needs a name.";
                 return false;
             }
-            website._id = (new Date()).getTime();
             website.name = name;
             website.description = description;
-            if(WebsiteService.createWebsite(vm.userId, website)) {
-                $location.url("/user/" + vm.userId + "/website");
-            } else {
-                vm.error = "Error creating website.";
-                return false;
-            }
+            WebsiteService
+                .createWebsite(vm.userId, website)
+                .then(function (resp) {
+                    $location.url("/user/" + vm.userId + "/website");
+                }, function (error) {
+                    vm.error = error.data;
+                    return false;
+                });
         }
     }
 })();

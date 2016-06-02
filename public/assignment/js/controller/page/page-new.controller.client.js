@@ -23,15 +23,16 @@
                 vm.error = "Page needs a name.";
                 return false;
             }
-            page._id = (new Date()).getTime();
             page.name = name;
             page.title = title;
-            if(PageService.createPage(vm.websiteId, page)) {
-                $location.url("/user/" + vm.userId + "/website/" + vm.websiteId +"/page");
-            } else {
-                vm.error = "Error creating page.";
-                return false;
-            }
+            PageService
+                .createPage(vm.websiteId, page)
+                .then(function (resp) {
+                    $location.url("/user/" + vm.userId + "/website/" + vm.websiteId +"/page");
+                }, function (error) {
+                    vm.error = error.data;
+                    return false;
+                });
         }
     }
 })();

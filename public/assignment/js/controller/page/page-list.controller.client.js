@@ -13,7 +13,14 @@
         function init() {
             vm.userId = $routeParams["uid"];
             vm.websiteId = $routeParams["wid"];
-            vm.pages = PageService.findPagesByWebsiteId(vm.websiteId);
+            PageService
+                .findPagesByWebsiteId(vm.websiteId)
+                .then(function (resp) {
+                    vm.pages = resp.data;
+                }, function (error) {
+                    vm.pages = [];
+                    vm.message = error.data;
+                })
         }
         init();
     }
