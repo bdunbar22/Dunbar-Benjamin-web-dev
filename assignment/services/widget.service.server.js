@@ -12,6 +12,9 @@ module.exports = function(app) {
 
     function uploadImage(req, resp) {
         var widgetId = req.body.widgetId;
+        var pageId = req.body.pageId;
+        var websiteId = req.body.websiteId;
+        var userId = req.body.userId;
         var width = req.body.width;
         var myFile = req.file; //Dedicated attribute for files.
 
@@ -22,7 +25,19 @@ module.exports = function(app) {
         var size         = myFile.size;
         var mimetype     = myFile.mimetype;
 
-        //TODO: find widget and update to match this new file.
+        var widgetFound = false;
+        for(var i in widgets) {
+            if(widgets[i]._id === widgetId && widgets[i].pageId === pageId) {
+                widgetFound = true;
+                widgets[i].width = width;
+                widgets[i].url = myFile.path;
+            }
+        }
+        if(widgetFound) {
+            resp.redirect("./../assignment/index.html#/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId);
+        } else {
+            resp.status(404).send("Could not add image to widget with id: " + widgetId);
+        }
     }
 
     /* Data */
@@ -40,106 +55,85 @@ module.exports = function(app) {
         ];
 
     /* Paths that are allowed. */
-    app.post("/api/user/", createUser);
-    app.get("/api/user/", getUsers);
-    app.get("/api/user/:userId", findUserById);
-    app.put("/api/user/:userId", updateUser);
-    app.delete("/api/user/:userId", deleteUser);
+    app.post("/api/page/:pageId/widget", createWidget);
+    app.get("/api/page/:pageId/widget", findWidgetsByPageId);
+    app.get("/api/widget/:widgetId", findWidgetById);
+    app.put("/api/widget/:widgetId", updateWidget);
+    app.delete("/api/widget/:widgetId", deleteWidget);
 
     /* Functions */
-    function createUser(req, resp) {
-        var newUser = req.body;
+    function createWidget(req, resp) {
+        var newPage = req.body;
+        newPage.websiteId = req.params["websiteId"];
 
-        for (var i in users) {
-            if (users[i].username === newUser.username) {
-                resp.status(400).send("Username " + newUser.username + " is already in use.");
+        for (var i in pages) {
+            if (pages[i].name === newPage.name && pages[i].websiteId === newPage.websiteId) {
+                resp.status(400).send("This website already has a page with the name: " + newPage.name + ".");
                 return;
             }
         }
 
-        newUser._id = (new Date()).getTime() + "";
-        users.push(newUser);
-        resp.send(newUser);
+        newPage._id = (new Date()).getTime() + "";
+        pages.push(newPage);
+        resp.send(newPage);
     }
 
-    function deleteUser(req, resp) {
-        var userId = req.params["userId"];
-        var startLength = users.length;
-
-        var keepUsers = [];
-        for (var i in users) {
-            if (users[i]._id != userId) {
-                keepUsers.push(users[i]);
+    function findWidgetsByPageId(req, resp) {
+        var websiteId =  req.params["websiteId"];
+        var pagesForWebsite = [];
+        for(var i in pages) {
+            if(pages[i].websiteId === websiteId) {
+                pagesForWebsite.push(pages[i]);
             }
         }
-
-        users = keepUsers;
-
-        if (users.length < startLength) {
-            resp.sendStatus(200);
-        } else {
-            resp.status(404).send("User with id: " + userId + " could not be deleted.");
+        if(pagesForWebsite.length > 0) {
+            resp.send(pagesForWebsite);
+            return;
         }
+        resp.status(403).send("Website with id: " + websiteId + " has no pages.");
     }
 
-    function updateUser(req, resp) {
-        var userId = req.params["userId"];
-        var newUser = req.body;
-        for (var i in users) {
-            if (users[i]._id == userId) {
-                users[i].firstName = newUser.firstName;
-                users[i].lastName = newUser.lastName;
-                users[i].username = newUser.username;
-                users[i].email = newUser.email;
+    function findWidgetById(req, resp) {
+        var pageId =  req.params["pageId"];
+        for(var i in pages) {
+            if(pages[i]._id === pageId) {
+                resp.send(pages[i]);
+                return;
+            }
+        }
+        resp.status(403).send("Could not find page with id: " + pageId);
+    }
+
+    function updateWidget(req, resp) {
+        var pageId =  req.params["pageId"];
+        var newPage = req.body;
+        for(var i in pages) {
+            if(pages[i]._id === pageId) {
+                pages[i].name = newPage.name;
                 resp.sendStatus(200);
                 return;
             }
         }
-        resp.status(400).send("User with id: " + userId + " was not found.");
+        resp.status(400).send("Page with id: " + pageId + " could not be updated. Page not found.");
     }
 
-    function findUserById(req, resp) {
-        var userId = req.params["userId"];
-        for (var i in users) {
-            if (users[i]._id === userId) {
-                resp.send(users[i]);
-                return;
+    function deleteWidget(req, resp) {
+        var pageId =  req.params["pageId"];
+        var startLength = pages.length;
+
+        var keepPages = [];
+        for(var i in pages) {
+            if(pages[i]._id != pageId) {
+                keepPages.push(pages[i]);
             }
         }
-        resp.sendStatus(403);
-    }
 
-    function getUsers(req, resp) {
-        var username = req.query["username"];
-        var password = req.query["password"];
-        if (username && password) {
-            findUserByCredentials(username, password, resp);
-        } else if (username) {
-            findUserByUsername(username, resp);
+        pages = keepPages;
+
+        if (pages.length < startLength) {
+            resp.sendStatus(200);
         } else {
-            //In the future maybe check if admin.
-            resp.send(users);
+            resp.status(404).send("Page with id: " + pageId + " could not be deleted. Page not found.");
         }
-    }
-
-    function findUserByCredentials(username, password, resp) {
-        for (var i in users) {
-            if (users[i].username === username &&
-                users[i].password === password) {
-                resp.send(users[i]);
-                return;
-            }
-        }
-        resp.status(403).send("Could not match username and password for user with username " + username);
-    }
-
-    function findUserByUsername(username, resp) {
-        for (var i in users) {
-            if (users[i].username === username) {
-                resp.send(users[i]);
-                return;
-            }
-        }
-        resp.status(403).send("Could not find user with username " + username);
     }
 };
