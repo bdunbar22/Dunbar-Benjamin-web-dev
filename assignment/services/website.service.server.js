@@ -77,7 +77,7 @@ module.exports = function(app) {
                 return;
             }
         }
-        resp.status(400).send("Website with id: " + websiteId + " was not found.");
+        resp.status(400).send("Website with id: " + websiteId + " was not found. Update failed.");
     }
 
     function deleteWebsite(req, resp) {
@@ -96,7 +96,7 @@ module.exports = function(app) {
         if (websites.length < startLength) {
             resp.sendStatus(200);
         } else {
-            resp.status(404).send("Website with id: " + websiteId + " could not be deleted.");
+            resp.status(404).send("Website with id: " + websiteId + " could not be deleted. Website not found.");
         }
     }
 };

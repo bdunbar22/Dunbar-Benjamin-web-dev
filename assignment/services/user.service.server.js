@@ -56,7 +56,7 @@ module.exports = function(app) {
         if (users.length < startLength) {
             resp.sendStatus(200);
         } else {
-            resp.status(404).send("User with id: " + userId + " could not be deleted.");
+            resp.status(404).send("User with id: " + userId + " could not be deleted. User not found.");
         }
     }
 
@@ -73,7 +73,7 @@ module.exports = function(app) {
                 return;
             }
         }
-        resp.status(400).send("User with id: " + userId + " was not found.");
+        resp.status(400).send("User with id: " + userId + " was not found. Could not update user.");
     }
 
     function findUserById(req, resp) {
@@ -108,7 +108,7 @@ module.exports = function(app) {
                 return;
             }
         }
-        resp.status(403).send("Could not match username and password for user with username " + username);
+        resp.status(403).send("Could not match username and password for user with username " + username + ".");
     }
 
     function findUserByUsername(username, resp) {
@@ -118,6 +118,6 @@ module.exports = function(app) {
                 return;
             }
         }
-        resp.status(403).send("Could not find user with username " + username);
+        resp.status(403).send("Could not find user with username " + username + ".");
     }
 };
