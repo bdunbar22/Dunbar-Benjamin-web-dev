@@ -63,87 +63,78 @@ module.exports = function(app) {
 
     /* Functions */
     function createWidget(req, resp) {
-
-        //Example
-        var newPage = req.body;
-        newPage.websiteId = req.params["websiteId"];
-
-        for (var i in pages) {
-            if (pages[i].name === newPage.name && pages[i].websiteId === newPage.websiteId) {
-                resp.status(400).send("This website already has a page with the name: " + newPage.name + ".");
-                return;
-            }
-        }
-
-        newPage._id = (new Date()).getTime() + "";
-        pages.push(newPage);
-        resp.send(newPage);
+        var newWidget = req.body;
+        newWidget.pageId = req.params["pageId"];
+        newWidget._id = (new Date()).getTime() + "";
+        widgets.push(newWidget);
+        resp.send(newWidget);
     }
 
     function findWidgetsByPageId(req, resp) {
-
-        //Example
-        var websiteId =  req.params["websiteId"];
-        var pagesForWebsite = [];
-        for(var i in pages) {
-            if(pages[i].websiteId === websiteId) {
-                pagesForWebsite.push(pages[i]);
+        var pageId =  req.params["pageId"];
+        var widgetsForPage = [];
+        for(var i in widgets) {
+            if(widgets[i].pageId === pageId) {
+                widgetsForPage.push(widgets[i]);
             }
         }
-        if(pagesForWebsite.length > 0) {
-            resp.send(pagesForWebsite);
+        if(widgetsForPage.length > 0) {
+            resp.send(widgetsForPage);
             return;
         }
-        resp.status(403).send("Website with id: " + websiteId + " has no pages.");
+        resp.status(403).send("Page with id: " + pageId + " has no widgets.");
     }
 
     function findWidgetById(req, resp) {
-
-        //Example
-        var pageId =  req.params["pageId"];
-        for(var i in pages) {
-            if(pages[i]._id === pageId) {
-                resp.send(pages[i]);
+        var widgetId =  req.params["widgetId"];
+        for(var i in widgets) {
+            if(widgets[i]._id === widgetId) {
+                resp.send(widgets[i]);
                 return;
             }
         }
-        resp.status(403).send("Could not find page with id: " + pageId);
+        resp.status(403).send("Could not find widget with id: " + widgetId);
     }
 
     function updateWidget(req, resp) {
-
-        //Example
-        var pageId =  req.params["pageId"];
-        var newPage = req.body;
-        for(var i in pages) {
-            if(pages[i]._id === pageId) {
-                pages[i].name = newPage.name;
+        var widgetId =  req.params["widgetId"];
+        var newWidget = req.body;
+        for(var i in widgets) {
+            if(widgets[i]._id === widgetId) {
+                if(newWidget.widgetType === "HEADER") {
+                    widgets[i].size = newWidget.size;
+                }
+                if(newWidget.widgetType === "HEADER" || newWidget.widgetType === "HTML") {
+                    widgets[i].text = newWidget.text;
+                }
+                if(newWidget.widgetType === "YOUTUBE" || newWidget.widgetType === "IMAGE") {
+                    widgets[i].width = newWidget.width;
+                    widgets[i].url = newWidget.url;
+                }
                 resp.sendStatus(200);
                 return;
             }
         }
-        resp.status(400).send("Page with id: " + pageId + " could not be updated. Page not found.");
+        resp.status(400).send("Widget with id: " + widgetId + " could not be updated. Widget not found.");
     }
 
     function deleteWidget(req, resp) {
+        var widgetId =  req.params["widgetId"];
+        var startLength = widgets.length;
 
-        //Example
-        var pageId =  req.params["pageId"];
-        var startLength = pages.length;
-
-        var keepPages = [];
-        for(var i in pages) {
-            if(pages[i]._id != pageId) {
-                keepPages.push(pages[i]);
+        var keepWidgets = [];
+        for(var i in widgets) {
+            if(widgets[i]._id != widgetId) {
+                keepWidgets.push(widgets[i]);
             }
         }
 
-        pages = keepPages;
+        widgets = keepWidgets;
 
-        if (pages.length < startLength) {
+        if (widgets.length < startLength) {
             resp.sendStatus(200);
         } else {
-            resp.status(404).send("Page with id: " + pageId + " could not be deleted. Page not found.");
+            resp.status(404).send("Widget with id: " + widgetId + " could not be deleted. Widget not found.");
         }
     }
 };
