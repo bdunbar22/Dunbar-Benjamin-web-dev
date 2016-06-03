@@ -31,6 +31,8 @@ module.exports = function(app) {
                 widgetFound = true;
                 widgets[i].width = width;
                 widgets[i].url = "/../uploads/" + filename;
+                /* Stored at: http://webdev-bendunbar.rhcloud.com/uploads */
+                /* Keep relative path for localhost. */
             }
         }
         if(widgetFound) {
