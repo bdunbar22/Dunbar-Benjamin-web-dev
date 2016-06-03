@@ -13,14 +13,20 @@
         vm.userId = $routeParams["uid"];
         vm.websiteId = $routeParams["wid"];
         vm.pageId = $routeParams["pid"];
-        vm.widgets = WidgetService.findWidgetsByPageId(vm.pageId);
+        WidgetService
+            .findWidgetsByPageId(vm.pageId)
+            .then(function (resp) {
+                vm.widgets = resp.data;
+            }, function (error) {
+                vm.widgets = [];
+                vm.message = error.data;
+            });
 
         vm.getTrustedHtml = getTrustedHtml;
         vm.getTrustedUrl = getTrustedUrl;
 
         function getTrustedHtml(widget) {
-            var html = $sce.trustAsHtml(widget.text);
-            return html;
+             return $sce.trustAsHtml(widget.text);
         }
 
         function getTrustedUrl(widget) {

@@ -18,7 +18,7 @@
                     vm.websites = resp.data;
                 }, function (error) {
                     vm.websites = [];
-                    vm.message = "You have no websites right now.";
+                    vm.message = error.data;
                 })
         }
         init();

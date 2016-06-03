@@ -27,7 +27,7 @@
             WebsiteService
                 .updateWebsite(vm.websiteId, vm.website)
                 .then(function (resp) {
-                        $location.url("/user/" + vm.userId + "/website");
+                    $location.url("/user/" + vm.userId + "/website");
                 },
                 function (error) {
                     vm.error = error.data;

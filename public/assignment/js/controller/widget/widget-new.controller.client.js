@@ -9,23 +9,27 @@
 
     function NewWidgetController($routeParams, $location, WidgetService) {
         var vm = this;
-        vm.userId = $routeParams["uid"];
-        vm.websiteId = $routeParams["wid"];
-        vm.pageId = $routeParams["pid"];
         vm.createWidget = createWidget;
+
+        function init() {
+            vm.userId = $routeParams["uid"];
+            vm.websiteId = $routeParams["wid"];
+            vm.pageId = $routeParams["pid"];
+        }
+        init();
 
         function createWidget(widgetType) {
             var newWidget = {
-                _id: (new Date()).getTime(),
                 widgetType: widgetType
             };
-            if(WidgetService.createWidget(vm.pageId, newWidget)) {
-                $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId +
+            WidgetService
+                .createWidget(vm.pageId, newWidget)
+                .then(function (resp) {
+                    $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId +
                     "/widget/" + newWidget._id);
-            } else {
-                vm.error = "Could not create widget. Please try again.";
-                return false;
-            }
+                }, function (error) {
+                    vm.error = error.data;
+                });
         }
     }
 })();
