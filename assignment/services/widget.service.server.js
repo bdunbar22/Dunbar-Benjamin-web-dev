@@ -6,7 +6,7 @@
 module.exports = function(app) {
     /* Image upload */
     var multer = require('multer'); //npm install multer --save
-    var upload = multer({dest: __dirname+'/../../public/uploads' });
+    var upload = multer({dest: __dirname + '/../../public/uploads' });
 
     app.post("/api/upload", upload.single('myFile'), uploadImage);
 
@@ -101,11 +101,10 @@ module.exports = function(app) {
         var newWidget = req.body;
         for(var i in widgets) {
             if(widgets[i]._id === widgetId) {
+                widgets[i].text = newWidget.text;
+                widgets[i].name = newWidget.name;
                 if(newWidget.widgetType === "HEADER") {
                     widgets[i].size = newWidget.size;
-                }
-                if(newWidget.widgetType === "HEADER" || newWidget.widgetType === "HTML") {
-                    widgets[i].text = newWidget.text;
                 }
                 if(newWidget.widgetType === "YOUTUBE" || newWidget.widgetType === "IMAGE") {
                     widgets[i].width = newWidget.width;
