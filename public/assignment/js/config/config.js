@@ -28,6 +28,11 @@
                 controller: "RegisterController",
                 controllerAs: "model"
             })
+            .when("/flickr", {
+                    templateUrl: "views/widget/widget-flickr-search.view.client.html",
+                    controller: "FlickrImageSearchController",
+                    controllerAs: "model"
+            })
             .when("/user/:uid", {
                 templateUrl: "views/user/profile.view.client.html",
                 controller: "ProfileController",
