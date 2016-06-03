@@ -25,6 +25,9 @@
         vm.getTrustedHtml = getTrustedHtml;
         vm.getTrustedUrl = getTrustedUrl;
 
+        $(".widget-container")
+            .sortable({axis: "y"});
+
         function getTrustedHtml(widget) {
              return $sce.trustAsHtml(widget.text);
         }
