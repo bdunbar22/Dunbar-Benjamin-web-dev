@@ -30,7 +30,7 @@ module.exports = function(app) {
             if(widgets[i]._id === widgetId && widgets[i].pageId === pageId) {
                 widgetFound = true;
                 widgets[i].width = width;
-                widgets[i].url = path;
+                widgets[i].url = "/../uploads/" + filename;
             }
         }
         if(widgetFound) {
