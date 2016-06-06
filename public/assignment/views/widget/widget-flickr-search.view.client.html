@@ -14,6 +14,10 @@
         </div>
     </nav>
     <div class="container">
+        <div ng-if="model.error" class="alert alert-danger bmd-margin-top-10">
+            {{model.error}}
+        </div>
+
         <div class="input-group">
             <input ng-model="searchText" type="text" class="form-control">
             <span class="input-group-btn">
