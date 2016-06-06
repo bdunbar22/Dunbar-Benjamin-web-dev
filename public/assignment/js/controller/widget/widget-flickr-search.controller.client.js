@@ -43,6 +43,10 @@
 
         //Update the url to be the url of the chosen photo.
         function selectPhoto(photo) {
+            if(!vm.widget) {
+                vm.error = "Could not update widget. Widget not found.";
+                return;
+            }
             vm.widget.url = "https://farm" + photo.farm + ".staticflickr.com/" + photo.server + "/" + photo.id +
                             "_" + photo.secret + "_s.jpg";
             WidgetService.updateWidget(vm.widgetId, vm.widget)
