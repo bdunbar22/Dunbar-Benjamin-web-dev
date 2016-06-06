@@ -28,11 +28,7 @@
                 controller: "RegisterController",
                 controllerAs: "model"
             })
-            .when("/flickr", {
-                    templateUrl: "views/widget/widget-flickr-search.view.client.html",
-                    controller: "FlickrImageSearchController",
-                    controllerAs: "model"
-            })
+            
             .when("/user/:uid", {
                 templateUrl: "views/user/profile.view.client.html",
                 controller: "ProfileController",
@@ -81,6 +77,11 @@
             .when("/user/:uid/website/:wid/page/:pid/widget/:wgid", {
                 templateUrl: "views/widget/widget-edit.view.client.html",
                 controller: "EditWidgetController",
+                controllerAs: "model"
+            })
+            .when("/user/:uid/website/:wid/page/:pid/widget/:wgid/flickr", {
+                templateUrl: "views/widget/widget-flickr-search.view.client.html",
+                controller: "FlickrImageSearchController",
                 controllerAs: "model"
             })
             .otherwise({

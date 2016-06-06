@@ -40,3 +40,7 @@ a:hover {
 .bmd-margin-top-10 {
     margin-top: 10px;
 }
+
+.bmd-photo-array {
+    padding: 4px;
+}
