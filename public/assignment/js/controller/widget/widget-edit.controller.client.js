@@ -11,6 +11,7 @@
         var vm = this;
         vm.updateWidget = updateWidget;
         vm.deleteWidget = deleteWidget;
+        vm.flickrNavigation = flickrNavigation;
 
         function init() {
             vm.userId = $routeParams["uid"];
@@ -40,6 +41,17 @@
                 .deleteWidget(vm.widgetId)
                 .then(function (resp) {
                     $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
+                }, function (error) {
+                    vm.error = error.data;
+                });
+        }
+        
+        function flickrNavigation() {
+            WidgetService
+                .updateWidget(vm.widgetId, vm.widget)
+                .then(function (resp) {
+                    $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId +
+                                  "/widget/" + vm.widgetId + "/flickr");
                 }, function (error) {
                     vm.error = error.data;
                 });
