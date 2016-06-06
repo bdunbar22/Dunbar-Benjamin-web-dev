@@ -3,8 +3,9 @@
  * Allows for user CRUD operations. (Create, Read, Update, Delete)
  */
 
-module.exports = function(app) {
-
+module.exports = function(app, models) {
+    var userModel = models.userModel;
+    
     /* Data */
     var users = 
         [
@@ -28,16 +29,27 @@ module.exports = function(app) {
     function createUser(req, resp) {
         var newUser = req.body;
 
-        for (var i in users) {
-            if (users[i].username === newUser.username) {
-                resp.status(400).send("Username " + newUser.username + " is already in use.");
-                return;
-            }
-        }
-
-        newUser._id = (new Date()).getTime() + "";
-        users.push(newUser);
-        resp.send(newUser);
+        userModel
+            .createUser(newUser)
+            .then(
+                function (user) {
+                        resp.json(user);
+                },
+                function (error) {
+                    resp.status(400).send("Username " + newUser.username + " is already in use.");
+                }
+            );
+        
+        // for (var i in users) {
+        //     if (users[i].username === newUser.username) {
+        //         resp.status(400).send("Username " + newUser.username + " is already in use.");
+        //         return;
+        //     }
+        // }
+        //
+        // newUser._id = (new Date()).getTime() + "";
+        // users.push(newUser);
+        // resp.send(newUser);
     }
 
     function deleteUser(req, resp) {
@@ -78,13 +90,25 @@ module.exports = function(app) {
 
     function findUserById(req, resp) {
         var userId = req.params["userId"];
-        for (var i in users) {
-            if (users[i]._id === userId) {
-                resp.send(users[i]);
-                return;
-            }
-        }
-        resp.status(403).send("Could not find user with id: " + userId);
+
+        userModel
+            .findUserById(userId)
+            .then(
+                function (user) {
+                    resp.json(user);
+                },
+                function (error) {
+                    resp.status(400).send("User with id: " + userId + " was not found.");
+                }
+            );
+
+        // for (var i in users) {
+        //     if (users[i]._id === userId) {
+        //         resp.send(users[i]);
+        //         return;
+        //     }
+        // }
+        // resp.status(403).send("Could not find user with id: " + userId);
     }
 
     function getUsers(req, resp) {
