@@ -4,6 +4,7 @@
  */
 
 module.exports = function(app, models) {
+    /* DB Model */
     var userModel = models.userModel;
     
     /* Data */
@@ -33,13 +34,14 @@ module.exports = function(app, models) {
             .createUser(newUser)
             .then(
                 function (user) {
-                        resp.json(user);
+                    resp.json(user);
                 },
                 function (error) {
                     resp.status(400).send("Username " + newUser.username + " is already in use.");
                 }
             );
-        
+
+        /* Old Code From Server Hosted Data */
         // for (var i in users) {
         //     if (users[i].username === newUser.username) {
         //         resp.status(400).send("Username " + newUser.username + " is already in use.");
@@ -54,22 +56,35 @@ module.exports = function(app, models) {
 
     function deleteUser(req, resp) {
         var userId = req.params["userId"];
-        var startLength = users.length;
 
-        var keepUsers = [];
-        for (var i in users) {
-            if (users[i]._id != userId) {
-                keepUsers.push(users[i]);
-            }
-        }
-
-        users = keepUsers;
-
-        if (users.length < startLength) {
-            resp.sendStatus(200);
-        } else {
-            resp.status(404).send("User with id: " + userId + " could not be deleted. User not found.");
-        }
+        userModel
+            .deleteUser(userId)
+            .then(
+                function (user) {
+                    resp.json(user);
+                },
+                function (error) {
+                    resp.status(404).send("User with id: " + userId + " could not be deleted. User not found.");
+                }
+            );
+        /* Old Code From Server Hosted Data */
+        // var userId = req.params["userId"];
+        // var startLength = users.length;
+        //
+        // var keepUsers = [];
+        // for (var i in users) {
+        //     if (users[i]._id != userId) {
+        //         keepUsers.push(users[i]);
+        //     }
+        // }
+        //
+        // users = keepUsers;
+        //
+        // if (users.length < startLength) {
+        //     resp.sendStatus(200);
+        // } else {
+        //     resp.status(404).send("User with id: " + userId + " could not be deleted. User not found.");
+        // }
     }
 
     function updateUser(req, resp) {
@@ -102,6 +117,7 @@ module.exports = function(app, models) {
                 }
             );
 
+        /* Old Code From Server Hosted Data */
         // for (var i in users) {
         //     if (users[i]._id === userId) {
         //         resp.send(users[i]);

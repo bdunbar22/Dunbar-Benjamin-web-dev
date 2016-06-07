@@ -34,7 +34,7 @@ module.exports = function () {
     }
     
     function updateUser(userId,user) {
-        return User.update({_id: userId}, {$set: {user}})
+        return User.update({_id: userId}, {$set: user});
     }
     
     function deleteUser(userId) {
