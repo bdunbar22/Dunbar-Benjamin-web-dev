@@ -13,3 +13,15 @@
 a:hover {
     text-decoration: none;
 }
+
+.navbar-header {
+    width: 100%
+}
+
+.navbar-footer {
+    width: 100%
+}
+
+.navbar {
+    background-color: #EAF3EF;
+}
