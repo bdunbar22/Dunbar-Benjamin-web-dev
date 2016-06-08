@@ -4,7 +4,7 @@
 
 module.exports = function () {
     var mongoose = require('mongoose');
-    var connectionString = 'mongodb://127.0.0.1:27017/WebDev2016/assignment';
+    var connectionString = 'mongodb://127.0.0.1:27017/WebDev2016.project';
 
     if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
         connectionString = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
@@ -17,16 +17,16 @@ module.exports = function () {
     mongoose.connect(connectionString);
 
     var userModel = require("./user/user.model.server")();
-    var websiteModel = require("./website/website.model.server")();
-    var pageModel = require("./page/page.model.server")();
-    var widgetModel = require("./widget/widget.model.server")();
+    var eventModel = require("./event/event.model.server")();
+    var competitionModel = require("./competition/competition.model.server")();
+    var postModel = require("./post/post.model.server")();
 
 
     var models = {
         userModel: userModel,
-        websiteModel: websiteModel,
-        pageModel: pageModel,
-        widgetModel: widgetModel
+        eventModel: eventModel,
+        competitionModel: competitionModel,
+        postModel: postModel
     };
 
     return models;
