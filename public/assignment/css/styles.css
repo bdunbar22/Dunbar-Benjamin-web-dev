@@ -55,7 +55,7 @@ a:hover {
 
 .youtube­widget  {
     position: relative;
-    padding­bottom: 56.25%; /* 16:9 */
+    padding-bottom: 56.25%; /* 16:9 */
     height: 0;
 }
 .youtube­widget iframe  {
