@@ -14,12 +14,12 @@
                 controllerAs: "model"
             })
             .when("/", {
-                templateUrl: "templates/user/login.view.client.html",
+                templateUrl: "templates/home/home.view.client.html",
                 controller: "LoginController",
                 controllerAs: "model"
             })
             .when("/default", {
-                templateUrl: "templates/user/login.view.client.html",
+                templateUrl: "templates/home/home.view.client.html",
                 controller: "LoginController",
                 controllerAs: "model"
             })
