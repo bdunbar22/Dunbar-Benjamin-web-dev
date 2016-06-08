@@ -4,7 +4,7 @@
 
 module.exports = function(app) {
 
-    var models = require("./models/models")();
+    var models = require("./models/models.server")();
 
     /**
      * Get the services from the different service files.
