@@ -33,7 +33,7 @@ module.exports = function () {
         return User.find({username: username, password: password});
     }
     
-    function updateUser(userId,user) {
+    function updateUser(userId, user) {
         return User.update({_id: userId}, {$set: user});
     }
     
