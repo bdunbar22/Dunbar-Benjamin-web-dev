@@ -6,10 +6,6 @@
     padding-bottom: 75px;
 }
 
-.header-glyphicon {
-    padding-right: 10px;
-}
-
 .bmd-widget {
     margin-top: 10px;
     margin-bottom: 5px;
@@ -47,11 +43,17 @@ a:hover {
 }
 
 .navbar-header {
+    margin-left: -5px !important;
     width: 100%
 }
 
 .navbar {
     background-color: #EAF3EF;
+}
+
+.navbar-brand {
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .youtube­widget  {

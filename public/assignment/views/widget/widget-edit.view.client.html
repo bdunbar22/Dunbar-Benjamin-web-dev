@@ -8,7 +8,7 @@
                 </a>
                 <a class="navbar-brand"
                    href="">
-                    Widget Edit
+                     {{model.widget.widgetType}} Widget
                 </a>
                 <p class="navbar-text pull-right">
                     <a ng-click="model.updateWidget()"
@@ -24,9 +24,7 @@
         <div ng-if="model.error" class="alert alert-danger bmd-margin-top-10">
             {{model.error}}
         </div>
-
         <div ng-switch="model.widget.widgetType">
-
             <div ng-switch-when="HEADER">
                  <!-- <div ng­include="'/assignment/views/widget/widget­heading.view.client.html'"></div> -->
                 <form>
@@ -132,6 +130,49 @@
                     </div>
                 </form>
             </div>
+            <div ng-switch-when="TEXT">
+                <form>
+                    <div class="form-group">
+                        <label for="nameTEXT">Name</label>
+                        <input type="text"
+                               class="form-control"
+                               id="nameTEXT"
+                               ng-model="model.widget.name">
+                    </div>
+                    <div class="form-group">
+                        <label for="textTEXT">Text</label>
+                        <input type="text"
+                               class="form-control"
+                               id="textTEXT"
+                               ng-model="model.widget.text">
+                    </div>
+                    <div class="form-group">
+                        <label for="rowsTEXT">Rows</label>
+                        <input ng-model="model.widget.rows"
+                               class="form-control"
+                               type="number"
+                               id="rowsTEXT">
+                    </div>
+                    <div class="form-group">
+                        <label for="placeholderTEXT">Placeholder</label>
+                        <input ng-model="model.widget.placeholder"
+                               class="form-control"
+                               type="text"
+                               id="placeholderTEXT">
+                    </div>
+                    <div class="form-group">
+                        <label for="formattedTEXT">Formatted</label>
+                        <input ng-model="model.widget.formatted"
+                               type="checkbox"
+                               id="formattedTEXT"/>
+                    </div>
+                </form>
+            </div>
+            <div ng-switch-when="HTML">
+                <div  ng-model="model.widget.text"
+                      text-angular>
+                </div>
+            </div>
             <div ng-switch-default>
                 <!-- <div ng­include="'/assignment/views/widget/widget­heading.view.client.html'"></div> -->
                 <form>
@@ -158,7 +199,6 @@
                     </div>
                 </form>
             </div>
-
         </div>
 
         <a ng-click="model.deleteWidget()"
