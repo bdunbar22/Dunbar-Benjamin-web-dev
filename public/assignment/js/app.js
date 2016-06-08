@@ -9,5 +9,5 @@
  * Create the module that will be used in the other js files.
  */
 (function () {
-    angular.module("WebAppMaker", ["ngRoute"]);
+    angular.module("WebAppMaker", ["ngRoute", "textAngular"]);
 })();
