@@ -7,6 +7,14 @@ module.exports = function () {
     var connectionString = 'mongodb://127.0.0.1:27017/assignment';
     mongoose.connect(connectionString);
 
+    if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
+        connectionString = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
+            process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@" +
+            process.env.OPENSHIFT_MONGODB_DB_HOST + ':' +
+            process.env.OPENSHIFT_MONGODB_DB_PORT + '/' +
+            process.env.OPENSHIFT_APP_NAME;
+    }
+
     var userModel = require("./user/user.model.server")();
     var websiteModel;// = require("./website/website.model.server")();
     var pageModel;// = require("./page/page.model.server")();
