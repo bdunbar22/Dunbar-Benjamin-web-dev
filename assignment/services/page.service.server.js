@@ -4,6 +4,8 @@
  */
 
 module.exports = function(app) {
+    /* DB Model */
+    var pageModel = models.pageModel;
 
     /* Data */
     var pages =
@@ -25,74 +27,76 @@ module.exports = function(app) {
         var newPage = req.body;
         newPage.websiteId = req.params["websiteId"];
 
-        for (var i in pages) {
-            if (pages[i].name === newPage.name && pages[i].websiteId === newPage.websiteId) {
-                resp.status(400).send("This website already has a page with the name: " + newPage.name + ".");
-                return;
-            }
-        }
-
-        newPage._id = (new Date()).getTime() + "";
-        pages.push(newPage);
-        resp.send(newPage);
+        pageModel
+            .createPage(websiteId, newPage)
+            .then(
+                function (page) {
+                    resp.json(page);
+                },
+                function (error) {
+                    resp.status(400).send("Page creation failed.");
+                }
+            );
     }
 
     function findPagesByWebsiteId(req, resp) {
         var websiteId =  req.params["websiteId"];
-        var pagesForWebsite = [];
-        for(var i in pages) {
-            if(pages[i].websiteId === websiteId) {
-                pagesForWebsite.push(pages[i]);
-            }
-        }
-        if(pagesForWebsite.length > 0) {
-            resp.send(pagesForWebsite);
-            return;
-        }
-        resp.status(403).send("Website with id: " + websiteId + " has no pages.");
+
+        pageModel
+            .findPagesByWebsiteId(websiteId)
+            .then(
+                function (page) {
+                    resp.json(page);
+                },
+                function (error) {
+                    resp.status(400).send("Website with id: " + websiteId + " has no pages.");
+                }
+            );
     }
 
     function findPageById(req, resp) {
         var pageId =  req.params["pageId"];
-        for(var i in pages) {
-            if(pages[i]._id === pageId) {
-                resp.send(pages[i]);
-                return;
-            }
-        }
-        resp.status(403).send("Could not find page with id: " + pageId);
+
+        pageModel
+            .findPageById(pageId)
+            .then(
+                function (page) {
+                    resp.json(page);
+                },
+                function (error) {
+                    resp.status(400).send("Page with id: " + pageId + " was not found.");
+                }
+            );
     }
 
     function updatePage(req, resp) {
         var pageId =  req.params["pageId"];
         var newPage = req.body;
-        for(var i in pages) {
-            if(pages[i]._id === pageId) {
-                pages[i].name = newPage.name;
-                resp.sendStatus(200);
-                return;
-            }
-        }
-        resp.status(400).send("Page with id: " + pageId + " could not be updated. Page not found.");
+
+        pageModel
+            .updatePage(pageId, newPage)
+            .then(
+                function (page) {
+                    resp.json(page);
+                },
+                function (error) {
+                    resp.status(400).send("Page with id: " + pageId + " was not found. Update failed.");
+                }
+            );
     }
 
     function deletePage(req, resp) {
         var pageId =  req.params["pageId"];
-        var startLength = pages.length;
 
-        var keepPages = [];
-        for(var i in pages) {
-            if(pages[i]._id != pageId) {
-                keepPages.push(pages[i]);
-            }
-        }
-
-        pages = keepPages;
-
-        if (pages.length < startLength) {
-            resp.sendStatus(200);
-        } else {
-            resp.status(404).send("Page with id: " + pageId + " could not be deleted. Page not found.");
-        }
+        pageModel
+            .deletePage(pageId)
+            .then(
+                function (page) {
+                    resp.json(page);
+                },
+                function (error) {
+                    resp.status(400).send("Page with id: " + pageId + " was not found. Delete failed.");
+                }
+            );
     }
 };
