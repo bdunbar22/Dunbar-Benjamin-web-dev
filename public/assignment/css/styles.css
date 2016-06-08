@@ -25,6 +25,7 @@
 
 .bmd-widget-edit {
     position: absolute;
+    z-index: 2;
     right: 0px;
     background-color: white;
     padding-left: 5px;
