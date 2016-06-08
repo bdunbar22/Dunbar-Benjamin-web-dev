@@ -25,7 +25,7 @@ module.exports = function(app, models) {
     /* Functions */
     function createPage(req, resp) {
         var newPage = req.body;
-        newPage.websiteId = req.params["websiteId"];
+        var websiteId = req.params["websiteId"];
 
         pageModel
             .createPage(websiteId, newPage)

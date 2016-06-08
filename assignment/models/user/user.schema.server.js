@@ -12,7 +12,7 @@ module.exports = function () {
         lastName: String,
         email: String,
         phone: String,
-        websites: [Number],
+        websites: [String],
         dateCreated: {type: Date, default: Date.now},
         dateUpdated: Date
     }, {collection: "WebDev2016.assignment.user"});

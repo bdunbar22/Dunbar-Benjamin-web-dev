@@ -28,13 +28,13 @@ module.exports = function(app, models) {
     /* Functions */
     function createWebsite(req, resp) {
         var newWebsite = req.body;
-        newWebsite.developerId = req.params["userId"];
+        var developerId = req.params["userId"];
 
         websiteModel
             .createWebsite(developerId, newWebsite)
             .then(
-                function (page) {
-                    resp.json(page);
+                function (website) {
+                    resp.json(website);
                 },
                 function (error) {
                     resp.status(400).send("Website creation failed.");

@@ -6,10 +6,10 @@ module.exports = function () {
     var mongoose = require("mongoose");
 
     var WebsiteSchema = mongoose.Schema({
-        _user: Number,
+        _user: String,
         name: String,
         description: String,
-        pages: [Number],
+        pages: [String],
         dateCreated: {type: Date, default: Date.now},
         dateUpdated: Date
     }, {collection: "WebDev2016.assignment.website"});

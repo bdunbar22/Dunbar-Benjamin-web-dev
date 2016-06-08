@@ -6,7 +6,7 @@ module.exports = function () {
     var mongoose = require("mongoose");
 
     var WidgetSchema = mongoose.Schema({
-        _page: Number,
+        _page: String,
         type: String,
         name: String,
         text: String,
