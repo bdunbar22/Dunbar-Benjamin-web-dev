@@ -3,7 +3,7 @@
  * Allows for page CRUD operations. (Create, Read, Update, Delete)
  */
 
-module.exports = function(app) {
+module.exports = function(app, models) {
     /* DB Model */
     var pageModel = models.pageModel;
 

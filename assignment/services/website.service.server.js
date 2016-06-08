@@ -3,7 +3,7 @@
  * Allows for website CRUD operations. (Create, Read, Update, Delete)
  */
 
-module.exports = function(app) {
+module.exports = function(app, models) {
     /* DB Model */
     var websiteModel = models.websiteModel;
 
@@ -33,8 +33,8 @@ module.exports = function(app) {
         websiteModel
             .createWebsite(developerId, newWebsite)
             .then(
-                function (user) {
-                    resp.json(user);
+                function (page) {
+                    resp.json(page);
                 },
                 function (error) {
                     resp.status(400).send("Website creation failed.");
@@ -48,8 +48,8 @@ module.exports = function(app) {
         websiteModel
             .findWebsitesByUser(userId)
             .then(
-                function (user) {
-                    resp.json(user);
+                function (website) {
+                    resp.json(website);
                 },
                 function (error) {
                     resp.status(400).send("User with id: " + userId + " has no websites.");
@@ -63,8 +63,8 @@ module.exports = function(app) {
         websiteModel
             .findWebsiteById(websiteId)
             .then(
-                function (user) {
-                    resp.json(user);
+                function (website) {
+                    resp.json(website);
                 },
                 function (error) {
                     resp.status(400).send("Website with id: " + websiteId + " not found.");
@@ -79,8 +79,8 @@ module.exports = function(app) {
         websiteModel
             .updateWebsite(websiteId, newWebsite)
             .then(
-                function (user) {
-                    resp.json(user);
+                function (website) {
+                    resp.json(website);
                 },
                 function (error) {
                     resp.status(400).send("Website with id: " + websiteId + " not found.");
@@ -94,8 +94,8 @@ module.exports = function(app) {
         websiteModel
             .deleteWebsite(websiteId)
             .then(
-                function (user) {
-                    resp.json(user);
+                function (website) {
+                    resp.json(website);
                 },
                 function (error) {
                     resp.status(400).send("Website with id: " + websiteId + " not found.");
