@@ -15,7 +15,7 @@ module.exports = function () {
         websites: [String],
         dateCreated: {type: Date, default: Date.now},
         dateUpdated: Date
-    }, {collection: "user"});
+    }, {collection: "assignment.user"});
 
     return UserSchema;
 };

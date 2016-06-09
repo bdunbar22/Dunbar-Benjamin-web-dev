@@ -12,7 +12,7 @@ module.exports = function () {
         widgets: [String],
         dateCreated: {type: Date, default: Date.now},
         dateUpdated: Date
-    }, {collection: "WebDev2016.assignment.page"});
+    }, {collection: "assignment.page"});
 
 
     return PageSchema;

@@ -23,7 +23,7 @@ module.exports = function () {
         formatted: Boolean,
         dateCreated: {type: Date, default: Date.now},
         dateUpdated: Date
-    }, {collection: "WebDev2016.assignment.widget"});
+    }, {collection: "assignment.widget"});
 
     return WidgetSchema;
 };
