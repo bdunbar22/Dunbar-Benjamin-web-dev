@@ -8,17 +8,31 @@
     
     function bmdSortTable() {
         function linker(scope, element, attributes) {
-           $(element)
+            var start = -1;
+            var stop = -1;
+            $(element)
                .find("tbody")
-               .sortable();
+               .sortable({
+                   start: function (event, ui) {
+                       start =  ui.item.index;
+                       console.log("Start");
+                   },
+                   stop: function (event, ui) {
+                       stop = ui.item.index;
+                       console.log("Stop");
+                       scope.sort(start, stop);
+                   }
+               });
         }
         return {
-            templateUrl: "bmdSortTable.html",
+            templateUrl: "js/directives/bmdSortTable.html",
             scope: {
                 title: "=",
                 border: "=",
-                data: "="
-            }
+                data: "=",
+                sort: "&sortList"
+            },
+            link: linker
         }
     }
 })();
