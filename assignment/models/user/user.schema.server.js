@@ -12,7 +12,7 @@ module.exports = function () {
         lastName: String,
         email: String,
         phone: String,
-        websites: [String],
+        websites: [mongoose.Schema.Types.ObjectId],
         dateCreated: {type: Date, default: Date.now},
         dateUpdated: Date
     }, {collection: "assignment.user"});
