@@ -12,10 +12,12 @@ module.exports = function () {
         lastName: String,
         email: String,
         phone: String,
-        websites: [String],
+        events: [mongoose.Schema.Types.ObjectId],
+        competitions: [mongoose.Schema.Types.ObjectId],
+        posts: [mongoose.Schema.Types.ObjectId],
         dateCreated: {type: Date, default: Date.now},
         dateUpdated: Date
-    }, {collection: "WebDev2016.project.user"});
+    }, {collection: "project.user"});
 
     return UserSchema;
 };
