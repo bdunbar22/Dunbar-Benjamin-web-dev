@@ -39,8 +39,28 @@ module.exports = function () {
     }
 
     function reorderWidget(pageId, start, end) {
-        //TODO: finish.
+        var widgets = Widget.find({_page: pageId});
 
-        Widget.find({_page: pageId});
+        for(var i in widgets) {
+            var widget = widgets[i];
+
+            if(start < end) {
+                if(widget.order >= start && widget.order < end) {
+                    widget.order --;
+                    widget.save();
+                } else if(widget.order === start) {
+                    widget.order = end;
+                    widget.save();
+                }
+            } else {
+                if(widget.order >= start && widget.order < end) {
+                    widget.order ++;
+                    widget.save();
+                } else if(widget.order === end) {
+                    widget.order = start;
+                    widget.save();
+                }
+            }
+        }
     }
 };

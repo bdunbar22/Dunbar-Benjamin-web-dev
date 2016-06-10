@@ -14,6 +14,9 @@
         </div>
     </nav>
     <div class="container">
+        <div ng-if="model.error" class="alert alert-danger bmd-margin-top-10">
+            {{model.error}}
+        </div>
         <a href=""
            ng-click="model.createWidget('HEADER')"
             class="row">Header</a>
