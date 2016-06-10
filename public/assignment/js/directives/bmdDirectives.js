@@ -20,7 +20,14 @@
                    stop: function (event, ui) {
                        stop = ui.item.index;
                        console.log("Stop");
-                       scope.sort(start, stop);
+
+                       var sortedElement = scope.data.splice(start, 1)[0];
+                       scope.data.splice(stop, 0, sortedElement);
+
+                       scope.$apply();
+
+                       //scope.$parent.model.sortList(start, stop);
+                       scope.sort({start: start, stop: stop});
                    }
                });
         }

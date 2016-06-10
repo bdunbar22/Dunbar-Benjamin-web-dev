@@ -88,9 +88,13 @@
         </div>
 
         <bmd-sort-table title="'Your Table'"
-                        border="5" sortet="model.sortList(start, stop)"
+                        border="5"
+                        sort="model.sortList(start, stop)"
                         data="model.sortTableItems">
         </bmd-sort-table>
+
+        {{model.sortTableItems}}
+
     </div>
     <nav class="navbar navbar-default navbar-fixed-bottom">
         <div class="container-fluid">

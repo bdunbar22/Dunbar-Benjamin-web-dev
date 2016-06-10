@@ -44,7 +44,7 @@ module.exports = function(app, models) {
                 function (error) {
                     resp.status(400).send("Widget reorder failed.");
                 }
-            )
+            );
     }
     
     function createWidget(req, resp) {
