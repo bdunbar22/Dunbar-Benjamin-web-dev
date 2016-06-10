@@ -26,19 +26,31 @@
             vm.pageId = $routeParams["pid"];
             WidgetService
                 .findWidgetsByPageId(vm.pageId)
-                .then(function (resp) {
-                    vm.widgets = resp.data;
-                }, function (error) {
-                    vm.widgets = [];
-                    vm.message = error.data;
-                });
+                .then(
+                    function (resp) {
+                        vm.widgets = resp.data;
+                    },
+                    function (error) {
+                        vm.widgets = [];
+                        vm.message = error.data;
+                    }
+                );
         }
         init();
 
         function sortList(start, stop) {
             console.log("WidgetListController");
             console.log("start: " + start + ", stop: " + stop);
-            //TODO: call a sort function in the service. It should call a sort function from the DB
+            WidgetService
+                .reorderWidgetsByPageId(vm.pageId, start, stop)
+                .then(
+                    function (resp) {
+                        vm.widgets = resp.data;
+                    },
+                    function (error) {
+                        vm.error = error.data;
+                    }
+                );
         }
 
         function getTrustedHtml(widget) {

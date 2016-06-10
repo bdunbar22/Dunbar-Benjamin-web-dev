@@ -26,9 +26,27 @@ module.exports = function(app, models) {
     app.get("/api/page/:pageId/widget", findWidgetsByPageId);
     app.get("/api/widget/:widgetId", findWidgetById);
     app.put("/api/widget/:widgetId", updateWidget);
+    app.put("/api/page/:pageId/widget", reorderWidgetsByPageId);
     app.delete("/api/widget/:widgetId", deleteWidget);
-
+    
     /* Functions */
+    function reorderWidgetsByPageId(req, resp) {
+        var start = req.query["start"];
+        var end = req.query["end"];
+        var pageId = req.params["pageId"];
+
+        widgetModel
+            .reorderWidgetsByPageId(pageId, start, end)
+            .then(
+                function (widget) {
+                    resp.send(widget);
+                },
+                function (error) {
+                    resp.status(400).send("Widget reorder failed.");
+                }
+            )
+    }
+    
     function createWidget(req, resp) {
         var newWidget = req.body;
         var pageId = req.params["pageId"];

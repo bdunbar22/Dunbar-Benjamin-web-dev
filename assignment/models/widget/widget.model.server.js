@@ -13,7 +13,7 @@ module.exports = function () {
         findWidgetById: findWidgetById,
         updateWidget: updateWidget,
         deleteWidget: deleteWidget,
-        reorderWidget: reorderWidget
+        reorderWidgetsByPageId: reorderWidgetsByPageId
     };
     return api;
 
@@ -38,7 +38,7 @@ module.exports = function () {
         return Widget.remove({_id: widgetId});
     }
 
-    function reorderWidget(pageId, start, end) {
+    function reorderWidgetsByPageId(pageId, start, end) {
         var widgets = Widget.find({_page: pageId});
 
         for(var i in widgets) {
@@ -62,5 +62,6 @@ module.exports = function () {
                 }
             }
         }
+        return Widget.find({_page: pageId});
     }
 };
