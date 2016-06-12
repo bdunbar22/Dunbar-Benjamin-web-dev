@@ -19,9 +19,14 @@ module.exports = function () {
 
     function createWidget(pageId, widget) {
         widget._page = pageId;
-        var widgets = Widget.find({_page: pageId});
-        widget.order = widgets.length;
-        return Widget.create(widget);
+        Widget
+            .find({_page: pageId})
+            .then(
+            function (widgets) {
+                widget.order = widgets.length;
+                return Widget.create(widget);
+            }
+        );
     }
 
     function findWidgetsByPageId(pageId) {
@@ -41,29 +46,36 @@ module.exports = function () {
     }
 
     function reorderWidgetsByPageId(pageId, start, end) {
-        var widgets = Widget.find({_page: pageId});
+        Widget
+            .find({_page: pageId})
+            .then(
+                function (widgets) {
+                    for(var i in widgets) {
+                        var widget = widgets[i];
 
-        for(var i in widgets) {
-            var widget = widgets[i];
-
-            if(start < end) {
-                if(widget.order >= start && widget.order < end) {
-                    widget.order --;
-                    widget.save();
-                } else if(widget.order === start) {
-                    widget.order = end;
-                    widget.save();
+                        if(start < end) {
+                            if(widget.order >= start && widget.order < end) {
+                                widget.order --;
+                                widget.save();
+                            } else if(widget.order === start) {
+                                widget.order = end;
+                                widget.save();
+                            }
+                        } else {
+                            if(widget.order >= start && widget.order < end) {
+                                widget.order ++;
+                                widget.save();
+                            } else if(widget.order === end) {
+                                widget.order = start;
+                                widget.save();
+                            }
+                        }
+                    }
+                    return Widget.find({_page: pageId});
+                },
+                function (error) {
+                    return null;
                 }
-            } else {
-                if(widget.order >= start && widget.order < end) {
-                    widget.order ++;
-                    widget.save();
-                } else if(widget.order === end) {
-                    widget.order = start;
-                    widget.save();
-                }
-            }
-        }
-        return Widget.find({_page: pageId});
+            );
     }
 };

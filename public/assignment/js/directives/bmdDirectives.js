@@ -14,20 +14,20 @@
                .find("tbody")
                .sortable({
                    start: function (event, ui) {
-                       start =  ui.item.index;
+                       start =  ui.item.index();
                        console.log("Start");
                    },
                    stop: function (event, ui) {
-                       stop = ui.item.index;
+                       stop = ui.item.index();
                        console.log("Stop");
 
                        var sortedElement = scope.data.splice(start, 1)[0];
                        scope.data.splice(stop, 0, sortedElement);
 
-                       scope.$apply();
+                       //scope.$apply();
 
-                       //scope.$parent.model.sortList(start, stop);
-                       scope.sort({start: start, stop: stop});
+                       scope.$parent.model.sortList(start, stop);
+                       //scope.reorder({start: start, stop: stop});
                    }
                });
         }
@@ -37,7 +37,7 @@
                 title: "=",
                 border: "=",
                 data: "=",
-                sort: "&sortList"
+                reorder: "&sortList"
             },
             link: linker
         }
