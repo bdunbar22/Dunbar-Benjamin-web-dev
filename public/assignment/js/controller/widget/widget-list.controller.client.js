@@ -9,10 +9,6 @@
 
     function WidgetListController($routeParams, $sce, WidgetService) {
         var vm = this;
-        vm.sortTableItems = [
-            {title: "Item 1", task: "Let's go running"},
-            {title: "Item 2", task: "Make a website"}
-        ];
         vm.getTrustedHtml = getTrustedHtml;
         vm.getTrustedUrl = getTrustedUrl;
         vm.sortList = sortList;

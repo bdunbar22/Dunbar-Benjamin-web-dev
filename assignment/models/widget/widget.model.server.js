@@ -19,13 +19,16 @@ module.exports = function () {
 
     function createWidget(pageId, widget) {
         widget._page = pageId;
-        Widget
+        return Widget
             .find({_page: pageId})
             .then(
-            function (widgets) {
-                widget.order = widgets.length;
-                return Widget.create(widget);
-            }
+                function (widgets) {
+                    widget.order = widgets.length;
+                    return Widget.create(widget);
+                },
+                function (error) {
+                    return null;
+                }
         );
     }
 
@@ -46,7 +49,9 @@ module.exports = function () {
     }
 
     function reorderWidgetsByPageId(pageId, start, end) {
-        Widget
+        start = parseInt(start);
+        end = parseInt(end);
+        return Widget
             .find({_page: pageId})
             .then(
                 function (widgets) {
@@ -54,19 +59,19 @@ module.exports = function () {
                         var widget = widgets[i];
 
                         if(start < end) {
-                            if(widget.order >= start && widget.order < end) {
+                            if(widget.order > start && widget.order <= end) {
                                 widget.order --;
                                 widget.save();
                             } else if(widget.order === start) {
                                 widget.order = end;
                                 widget.save();
                             }
-                        } else {
-                            if(widget.order >= start && widget.order < end) {
+                        } else if (start > end) {
+                            if(widget.order >= end && widget.order < start) {
                                 widget.order ++;
                                 widget.save();
-                            } else if(widget.order === end) {
-                                widget.order = start;
+                            } else if(widget.order === start) {
+                                widget.order = end;
                                 widget.save();
                             }
                         }

@@ -3,15 +3,15 @@
  */
 
 (function () {
-    angular.module("bmdDirectives", [])
-        .directive("bmdSortTable", bmdSortTable);
+    angular.module("wamDirectives", [])
+        .directive("wamSortable", wamSortable);
     
-    function bmdSortTable() {
+    function wamSortable() {
         function linker(scope, element, attributes) {
             var start = -1;
             var stop = -1;
             $(element)
-               .find("tbody")
+               .find(".sortWidgets")
                .sortable({
                    start: function (event, ui) {
                        start =  ui.item.index();
@@ -20,22 +20,16 @@
                    stop: function (event, ui) {
                        stop = ui.item.index();
                        console.log("Stop");
-
-                       var sortedElement = scope.data.splice(start, 1)[0];
-                       scope.data.splice(stop, 0, sortedElement);
-
                        //scope.$apply();
-
                        scope.$parent.model.sortList(start, stop);
                        //scope.reorder({start: start, stop: stop});
                    }
                });
         }
         return {
-            templateUrl: "js/directives/bmdSortTable.html",
+            templateUrl: "js/directives/wam-directives.html",
             scope: {
                 title: "=",
-                border: "=",
                 data: "=",
                 reorder: "&sortList"
             },
