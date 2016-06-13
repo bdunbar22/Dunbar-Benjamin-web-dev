@@ -169,8 +169,15 @@
                 </form>
             </div>
             <div ng-switch-when="HTML">
-                <div  ng-model="model.widget.text"
-                      text-angular
+                <div class="form-group">
+                    <label for="nameHTML">Name</label>
+                    <input type="text"
+                           class="form-control"
+                           id="nameHTML"
+                           ng-model="model.widget.name">
+                </div>
+                <div  text-angular
+                      ng-model="model.widget.text"
                       ta-angular="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'], ['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'], ['indent','outdent'],['html']]">
                 </div>
             </div>
