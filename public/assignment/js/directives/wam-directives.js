@@ -15,11 +15,11 @@
                .sortable({
                    start: function (event, ui) {
                        start =  ui.item.index();
-                       console.log("Start");
+                       //console.log("Start");
                    },
                    stop: function (event, ui) {
                        stop = ui.item.index();
-                       console.log("Stop");
+                       //console.log("Stop");
                        //scope.$apply();
                        scope.$parent.model.sortList(start, stop);
                        //scope.reorder({start: start, stop: stop});

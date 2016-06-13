@@ -35,8 +35,8 @@
         init();
 
         function sortList(start, stop) {
-            console.log("WidgetListController");
-            console.log("start: " + start + ", stop: " + stop);
+            //console.log("WidgetListController");
+            //console.log("start: " + start + ", stop: " + stop);
             WidgetService
                 .reorderWidgetsByPageId(vm.pageId, start, stop)
                 .then(
