@@ -18,6 +18,7 @@ module.exports = function(app, models) {
 
     /* Paths that are allowed. */
     app.post("/api/user/", createUser);
+    app.post("/api/login", passport.authenticate('wam'), login);
     app.get("/api/user/", getUsers);
     //Above covers query cases:
     //api/user/?username=username
@@ -26,7 +27,23 @@ module.exports = function(app, models) {
     app.put("/api/user/:userId", updateUser);
     app.delete("/api/user/:userId", deleteUser);
 
+
+    passport.use('wam', new LocalStrategy(localStrategy));
+
     /* Functions */
+    function localStrategy(username, password, done) {
+        userModel
+            .findUserByCredentials(username, password)
+            .then(
+                function (user) {
+                    done(null, user);
+                },
+                function (error) {
+                    done(null, null);
+                }
+            );
+    }
+
     function createUser(req, resp) {
         var newUser = req.body;
 
@@ -38,6 +55,22 @@ module.exports = function(app, models) {
                 },
                 function (error) {
                     resp.status(400).send("Username " + newUser.username + " is already in use.");
+                }
+            );
+    }
+
+    function login(req, resp) {
+        var user = req.body;
+        var username = user.username;
+        var password = user.password;
+        userModel
+            .findUserByCredentials(username, password)
+            .then(
+                function (user) {
+                    resp.json(user[0]);
+                },
+                function (error) {
+                    resp.status(400).send("User with id: " + userId + " was not found.");
                 }
             );
     }
