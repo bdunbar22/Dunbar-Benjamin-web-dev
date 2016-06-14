@@ -95,7 +95,7 @@ module.exports = function(app, models) {
     }
 
     function login(req, resp) {
-        var user = req.body;
+        var user = req.user;
         resp.json(user);
     }
 
@@ -149,16 +149,16 @@ module.exports = function(app, models) {
         var username = req.query["username"];
         var password = req.query["password"];
         if (username && password) {
-            findUserByCredentials(username, password, resp);
+            findUserByCredentials(username, password, req, resp);
         } else if (username) {
-            findUserByUsername(username, resp);
+            findUserByUsername(username, req, resp);
         } else {
             //In the future maybe check if admin.
             resp.status(400).send("Username nor password provided.");
         }
     }
 
-    function findUserByCredentials(username, password, resp) {
+    function findUserByCredentials(username, password, req, resp) {
         userModel
             .findUserByCredentials(username, password)
             .then(
@@ -171,7 +171,7 @@ module.exports = function(app, models) {
             );
     }
 
-    function findUserByUsername(username, resp) {
+    function findUserByUsername(username, req, resp) {
         userModel
             .findUserByUsername(username)
             .then(
