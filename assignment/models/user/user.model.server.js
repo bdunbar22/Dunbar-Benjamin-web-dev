@@ -26,7 +26,7 @@ module.exports = function () {
     }
     
     function findUserByUsername(username) {
-        return User.find({username: username});
+        return User.findOne({username: username});
     }
     
     function findUserByCredentials(username, password) {

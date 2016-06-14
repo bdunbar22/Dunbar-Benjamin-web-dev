@@ -21,6 +21,7 @@ module.exports = function(app, models) {
     /* Paths that are allowed. */
     app.post("/api/user/", createUser);
     app.post("/api/login", passport.authenticate('wam'), login);
+    app.post("/api/register", register);
     app.get("/api/user/", getUsers);
     //Above covers query cases:
     //api/user/?username=username
@@ -92,6 +93,42 @@ module.exports = function(app, models) {
                     resp.status(400).send("Username " + newUser.username + " is already in use.");
                 }
             );
+    }
+
+    function register(req, resp) {
+        var username = req.body.username;
+        userModel
+            .findUserByUsername(username)
+            .then(
+                function (user) {
+                    if(user) {
+                        resp.status(400).send("Username: " + username + " is already in use.");
+                    }
+                    else {
+                        return userModel
+                            .createUser(req.body);
+                    }
+                },
+                function (error) {
+                    resp.status(400).send(error);
+                }
+            )
+            .then(
+                function (user) {
+                    if(user){
+                        req.login(user, function(err) {
+                            if(err) {
+                                resp.status(400).send(err);
+                            } else {
+                                resp.json(user);
+                            }
+                        });
+                    }
+                },
+                function (error) {
+                    resp.status(400).send(error);
+                }
+            )
     }
 
     function login(req, resp) {
