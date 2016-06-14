@@ -18,7 +18,7 @@ module.exports = function(app, models) {
 
     /* Paths that are allowed. */
     app.post("/api/user/", createUser);
-    //app.post("/api/login", passport.authenticate('wam'), login);
+    app.post("/api/login", passport.authenticate('wam'), login);
     app.get("/api/user/", getUsers);
     //Above covers query cases:
     //api/user/?username=username
@@ -28,15 +28,34 @@ module.exports = function(app, models) {
     app.delete("/api/user/:userId", deleteUser);
 
 
-    //passport.use('wam', new LocalStrategy(localStrategy));
+    passport.use('wam', new LocalStrategy(localStrategy));
 
-    /* Functions */
+    /**
+     *  Passport Functions
+     */
+    function serializeUser(user, done) {
+        done(null, user);
+    }
+
+    function deserializeUser(user, done) {
+        developerModel
+            .findDeveloperById(user._id)
+            .then(
+                function(user){
+                    done(null, user);
+                },
+                function(err){
+                    done(err, null);
+                }
+            );
+    }
+
     function localStrategy(username, password, done) {
         userModel
             .findUserByCredentials(username, password)
             .then(
                 function (user) {
-                    done(null, user);
+                    serializeUser(user, done);
                 },
                 function (error) {
                     done(null, null);
@@ -44,6 +63,9 @@ module.exports = function(app, models) {
             );
     }
 
+    /**
+     *  Functions
+     */
     function createUser(req, resp) {
         var newUser = req.body;
 
