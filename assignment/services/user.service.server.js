@@ -6,6 +6,8 @@
 module.exports = function(app, models) {
     /* DB Model */
     var userModel = models.userModel;
+    var passport = require('passport');
+    var LocalStrategy = require('passport-local').Strategy;
     
     /* Data */
     var users = 
@@ -29,6 +31,8 @@ module.exports = function(app, models) {
 
 
     passport.use('wam', new LocalStrategy(localStrategy));
+    passport.serializeUser(serializeUser);
+    passport.deserializeUser(deleteUser);
 
     /**
      *  Passport Functions
@@ -55,10 +59,19 @@ module.exports = function(app, models) {
             .findUserByCredentials(username, password)
             .then(
                 function (user) {
-                    serializeUser(user, done);
+                    if(user.username === username && user.password === password) {
+                        return done(null, user);
+                    }
+                    else {
+                        return done(null, false);
+                    }
                 },
                 function (error) {
-                    done(null, null);
+                    if (error) {
+                        return done(error);
+                    } else {
+                        return done(null, false);
+                    }
                 }
             );
     }
@@ -83,18 +96,7 @@ module.exports = function(app, models) {
 
     function login(req, resp) {
         var user = req.body;
-        var username = user.username;
-        var password = user.password;
-        userModel
-            .findUserByCredentials(username, password)
-            .then(
-                function (user) {
-                    resp.json(user[0]);
-                },
-                function (error) {
-                    resp.status(400).send("User with id: " + userId + " was not found.");
-                }
-            );
+        resp.json(user);
     }
 
     function deleteUser(req, resp) {
