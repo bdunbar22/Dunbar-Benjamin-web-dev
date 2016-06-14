@@ -30,7 +30,7 @@ module.exports = function () {
     }
     
     function findUserByCredentials(username, password) {
-        return User.find({username: username, password: password});
+        return User.findOne({username: username, password: password});
     }
     
     function updateUser(userId, user) {

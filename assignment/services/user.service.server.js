@@ -26,6 +26,7 @@ module.exports = function(app, models) {
     //Above covers query cases:
     //api/user/?username=username
     //api/user/?username=username&password=password
+    app.get("/api/loggedin", loggedIn);
     app.get("/api/user/:userId", findUserById);
     app.put("/api/user/:userId", updateUser);
     app.delete("/api/user/:userId", deleteUser);
@@ -33,7 +34,7 @@ module.exports = function(app, models) {
 
     passport.use('wam', new LocalStrategy(localStrategy));
     passport.serializeUser(serializeUser);
-    passport.deserializeUser(deleteUser);
+    passport.deserializeUser(deserializeUser);
 
     /**
      *  Passport Functions
@@ -43,8 +44,8 @@ module.exports = function(app, models) {
     }
 
     function deserializeUser(user, done) {
-        developerModel
-            .findDeveloperById(user._id)
+        userModel
+            .findUserById(user._id)
             .then(
                 function(user){
                     done(null, user);
@@ -219,5 +220,9 @@ module.exports = function(app, models) {
                     resp.status(400).send("User with id: " + userId + " was not found.");
                 }
             );
+    }
+
+    function loggedIn(req, resp) {
+        resp.send(req.isAuthenticated() ? req.user : '0');
     }
 };
