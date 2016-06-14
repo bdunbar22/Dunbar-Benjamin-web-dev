@@ -25,30 +25,27 @@ a:hover {
 .navbar {
     color: #f7f7f7;;
     background-color: #388E3C;
+    border-color: #000000;
 }
 
-.bmd-backdrop {
+.bmd-dominant {
     color: black;
     background-color: #4CAF50;
 }
 
-.bmd-dominant-color {
-    background-color: #4CAF50;
-}
-
-.bmd-status-color {
+.bmd-status {
     background-color: #388E3C;
 }
 
-.bmd-secondary-color {
+.bmd-secondary {
     background-color: #81C784;
 }
 
-.bmd-accent-color {
-    color: #18FFFF;
+.bmd-accent {
+    color: #18FFFF !important;
 }
 
-.bmd-tertiary-color {
+.bmd-tertiary {
     background-color: #FFA726;
 }
 
