@@ -15,8 +15,9 @@
     </nav>
     <div class="container">
         <div ng-show="model.success"
-             class="alert alert-success">
-            Successfully updated your profile!
+             class="alert alert-success bmd-margin-top-10">Successfully updated your profile!</div>
+        <div ng-if="model.error" class="alert alert-danger bmd-margin-top-10">
+            {{model.error}}
         </div>
         <form>
             <div class="form-group">
@@ -53,9 +54,17 @@
             </div>
         </form>
 
-        <a href="#/user/{{model.user._id}}/website"
+        <a href="#/user/{{model.user._id}}/post"
            class="btn btn-block btn-primary">
-            Websites
+            Posts
+        </a>
+        <a href="#/user/{{model.user._id}}/event"
+           class="btn btn-block btn-primary">
+            Events
+        </a>
+        <a href="#/user/{{model.user._id}}/competition"
+           class="btn btn-block btn-primary">
+            Competitions
         </a>
         <a href="#/login"
            class="btn btn-block btn-danger">

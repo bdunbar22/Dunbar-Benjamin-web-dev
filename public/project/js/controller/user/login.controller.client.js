@@ -1,5 +1,5 @@
 /**
- * Created by Ben on 5/24/16.
+ * Created by Ben on 6/13/16.
  */
 
 (function() {
@@ -12,13 +12,20 @@
         vm.login = login;
 
         function login(username, password) {
-            var user = UserService.findUserByCredentials(username, password);
-            if(user) {
-                $location.url("/user/" + user._id);
-            }
-            else {
-                vm.error = "Could not match username and password.";
-            }
+            UserService
+                .login(username, password)
+                .then(function (resp) {
+                    var user = resp.data;
+                    if(user) {
+                       $location.url("/user/" + user._id);
+                    }
+                    else {
+                      vm.error = "Could not match username and password.";
+                    }
+                },
+                function (error) {
+                    vm.error = "Could not match username and password.";
+                });
         }
     }
 })();
