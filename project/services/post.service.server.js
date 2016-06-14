@@ -8,34 +8,34 @@ module.exports = function(app, models) {
     var postModel = models.postModel;
 
     /* Paths that are allowed. */
-    app.post("/api/user/:userId/post", createWebsite);
-    app.get("/api/user/:userId/post", findWebsitesByUser);
-    app.get("/api/post/:postId", findWebsiteById);
-    app.put("/api/post/:postId", updateWebsite);
-    app.delete("/api/post/:postId", deleteWebsite);
+    app.post("/api/user/:userId/post", createPost);
+    app.get("/api/user/:userId/post", findPostsByUser);
+    app.get("/api/post/:postId", findPostById);
+    app.put("/api/post/:postId", updatePost);
+    app.delete("/api/post/:postId", deletePost);
 
     /* Functions */
-    function createWebsite(req, resp) {
-        var newWebsite = req.body;
-        var developerId = req.params["userId"];
+    function createPost(req, resp) {
+        var newPost = req.body;
+        var userId = req.params["userId"];
 
         postModel
-            .createWebsite(developerId, newWebsite)
+            .createPost(userId, newPost)
             .then(
                 function (post) {
                     resp.json(post);
                 },
                 function (error) {
-                    resp.status(400).send("Website creation failed.");
+                    resp.status(400).send("Post creation failed.");
                 }
             );
     }
 
-    function findWebsitesByUser(req, resp) {
+    function findPostsByUser(req, resp) {
         var userId =  req.params["userId"];
 
         postModel
-            .findWebsitesByUser(userId)
+            .findPostsByUser(userId)
             .then(
                 function (post) {
                     resp.json(post);
@@ -46,48 +46,48 @@ module.exports = function(app, models) {
             );
     }
 
-    function findWebsiteById(req, resp) {
+    function findPostById(req, resp) {
         var postId =  req.params["postId"];
 
         postModel
-            .findWebsiteById(postId)
+            .findPostById(postId)
             .then(
                 function (post) {
                     resp.json(post);
                 },
                 function (error) {
-                    resp.status(400).send("Website with id: " + postId + " not found.");
+                    resp.status(400).send("Post with id: " + postId + " not found.");
                 }
             );
     }
 
-    function updateWebsite(req, resp) {
+    function updatePost(req, resp) {
         var postId =  req.params["postId"];
-        var newWebsite = req.body;
+        var newPost = req.body;
 
         postModel
-            .updateWebsite(postId, newWebsite)
+            .updatePost(postId, newPost)
             .then(
                 function (post) {
                     resp.json(post);
                 },
                 function (error) {
-                    resp.status(400).send("Website with id: " + postId + " not found.");
+                    resp.status(400).send("Post with id: " + postId + " not found.");
                 }
             );
     }
 
-    function deleteWebsite(req, resp) {
+    function deletePost(req, resp) {
         var postId =  req.params["postId"];
 
         postModel
-            .deleteWebsite(postId)
+            .deletePost(postId)
             .then(
                 function (post) {
                     resp.json(post);
                 },
                 function (error) {
-                    resp.status(400).send("Website with id: " + postId + " not found.");
+                    resp.status(400).send("Post with id: " + postId + " not found.");
                 }
             );
     }
