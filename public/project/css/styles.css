@@ -23,13 +23,32 @@ a:hover {
 }
 
 .navbar {
-    background-color: #EAF3EF;
+    color: #f7f7f7;;
+    background-color: #388E3C;
 }
 
 .bmd-backdrop {
-    background-color: #102622;
+    color: black;
+    background-color: #4CAF50;
 }
 
-.navbar-fixed-bottom {
-
+.bmd-dominant-color {
+    background-color: #4CAF50;
 }
+
+.bmd-status-color {
+    background-color: #388E3C;
+}
+
+.bmd-secondary-color {
+    background-color: #81C784;
+}
+
+.bmd-accent-color {
+    color: #18FFFF;
+}
+
+.bmd-tertiary-color {
+    background-color: #FFA726;
+}
+

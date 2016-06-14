@@ -1,0 +1,10 @@
+Color Theme:
+Dominant: (500) : #4CAF50
+Status: (700) : #388E3C
+Secondary: (300) : #81C784
+Accent: (200, diff primary) : #18FFFF
+Orange: #FFA726
+
+
+These choices were made by using Google Color as a guidance resource.
+Please see: https://design.google.com/videos/palette-perfect/

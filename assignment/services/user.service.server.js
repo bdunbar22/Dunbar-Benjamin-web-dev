@@ -18,7 +18,7 @@ module.exports = function(app, models) {
 
     /* Paths that are allowed. */
     app.post("/api/user/", createUser);
-    app.post("/api/login", passport.authenticate('wam'), login);
+    //app.post("/api/login", passport.authenticate('wam'), login);
     app.get("/api/user/", getUsers);
     //Above covers query cases:
     //api/user/?username=username
@@ -28,7 +28,7 @@ module.exports = function(app, models) {
     app.delete("/api/user/:userId", deleteUser);
 
 
-    passport.use('wam', new LocalStrategy(localStrategy));
+    //passport.use('wam', new LocalStrategy(localStrategy));
 
     /* Functions */
     function localStrategy(username, password, done) {
