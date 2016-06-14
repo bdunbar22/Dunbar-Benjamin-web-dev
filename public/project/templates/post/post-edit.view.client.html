@@ -1,0 +1,60 @@
+<div class="header-present footer-present">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="#/user/{{model.userId}}/post" class="navbar-link navbar-brand">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a class="navbar-brand"
+                   href="">
+                    Edit Post
+                </a>
+                <p class="navbar-text pull-right">
+                    <a href=""
+                       ng-click="model.updatePost()"
+                       class="navbar-link">
+                        <span class="glyphicon glyphicon-ok header-glyphicon"></span>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div ng-if="model.error" class="alert alert-danger bmd-margin-top-10">
+            {{model.error}}
+        </div>
+        <form>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text"
+                       class="form-control"
+                       id="name"
+                       placeholder="Test Website"
+                       ng-model="model.post.name">
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea rows="5"
+                          id="description"
+                          class="form-control"
+                          placeholder="Lorem Ipsum"
+                          ng-model="model.post.description"></textarea>
+            </div>
+        </form>
+
+        <a ng-click="model.deletePost()"
+           href=""
+           class="btn btn-block btn-danger">Delete</a>
+    </div>
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <p class="navbar-text pull-right">
+                    <a href="#/user/{{model.userId}}">
+                        <span class="glyphicon glyphicon-user header-glyphicon"></span>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </nav>
+</div>
