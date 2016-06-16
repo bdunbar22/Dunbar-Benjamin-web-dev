@@ -14,7 +14,11 @@ module.exports = function () {
         phone: String,
         websites: [mongoose.Schema.Types.ObjectId],
         dateCreated: {type: Date, default: Date.now},
-        dateUpdated: Date
+        dateUpdated: Date,
+        facebook: {
+            id: String,
+            token: String
+        }
     }, {collection: "assignment.user"});
 
     return UserSchema;
