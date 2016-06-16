@@ -20,27 +20,27 @@
         return api;
 
         function createEvent(userId, event) {
-            var url = "/api/user/" + userId + "/event";
+            var url = "/project/api/user/" + userId + "/event";
             return $http.event(url, event);
         }
 
         function findEventsByUser(userId) {
-            var url = "/api/user/" + userId + "/event";
+            var url = "/project/api/user/" + userId + "/event";
             return $http.get(url);
         }
 
         function findEventById(eventId) {
-            var url = "/api/event/" + eventId;
+            var url = "/project/api/event/" + eventId;
             return $http.get(url);
         }
 
         function updateEvent(eventId, event) {
-            var url = "/api/event/" + eventId;
+            var url = "/project/api/event/" + eventId;
             return $http.put(url, event);
         }
 
         function deleteEvent(eventId) {
-            var url = "/api/event/" + eventId;
+            var url = "/project/api/event/" + eventId;
             return $http.delete(url);
         }
     }

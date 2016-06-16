@@ -14,12 +14,12 @@ module.exports = function () {
             process.env.OPENSHIFT_APP_NAME;
     }
 
-    mongoose.connect(connectionString);
+    var projectDB = mongoose.createConnection(connectionString);
 
-    var userModel = require("./user/user.model.server")();
-    var eventModel = require("./event/event.model.server")();
-    var competitionModel = require("./competition/competition.model.server")();
-    var postModel = require("./post/post.model.server")();
+    var userModel = require("./user/user.model.server")(projectDB);
+    var eventModel = require("./event/event.model.server")(projectDB);
+    var competitionModel = require("./competition/competition.model.server")(projectDB);
+    var postModel = require("./post/post.model.server")(projectDB);
 
 
     var models = {

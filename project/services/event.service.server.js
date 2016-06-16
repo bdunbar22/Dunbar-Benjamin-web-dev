@@ -8,11 +8,11 @@ module.exports = function(app, models) {
     var eventModel = models.eventModel;
 
     /* Paths that are allowed. */
-    app.event("/api/user/:userId/event", createEvent);
-    app.get("/api/user/:userId/event", findEventsByUser);
-    app.get("/api/event/:eventId", findEventById);
-    app.put("/api/event/:eventId", updateEvent);
-    app.delete("/api/event/:eventId", deleteEvent);
+    app.post("/project/api/user/:userId/event", createEvent);
+    app.get("/project/api/user/:userId/event", findEventsByUser);
+    app.get("/project/api/event/:eventId", findEventById);
+    app.put("/project/api/event/:eventId", updateEvent);
+    app.delete("/project/api/event/:eventId", deleteEvent);
 
     /* Functions */
     function createEvent(req, resp) {

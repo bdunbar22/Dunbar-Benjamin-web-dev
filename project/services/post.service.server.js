@@ -8,11 +8,11 @@ module.exports = function(app, models) {
     var postModel = models.postModel;
 
     /* Paths that are allowed. */
-    app.post("/api/user/:userId/post", createPost);
-    app.get("/api/user/:userId/post", findPostsByUser);
-    app.get("/api/post/:postId", findPostById);
-    app.put("/api/post/:postId", updatePost);
-    app.delete("/api/post/:postId", deletePost);
+    app.post("/project/api/user/:userId/post", createPost);
+    app.get("/project/api/user/:userId/post", findPostsByUser);
+    app.get("/project/api/post/:postId", findPostById);
+    app.put("/project/api/post/:postId", updatePost);
+    app.delete("/project/api/post/:postId", deletePost);
 
     /* Functions */
     function createPost(req, resp) {

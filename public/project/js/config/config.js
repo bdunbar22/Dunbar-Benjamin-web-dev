@@ -29,37 +29,37 @@
                 controllerAs: "model"
             })
             .when("/user/:uid/post", {
-                templateUrl: "views/post/post-list.view.client.html",
+                templateUrl: "templates/post/post-list.view.client.html",
                 controller: "PostListController",
                 controllerAs: "model"
             })
             .when("/user/:uid/post/new", {
-                templateUrl: "views/post/post-new.view.client.html",
+                templateUrl: "templates/post/post-new.view.client.html",
                 controller: "NewPostController",
                 controllerAs: "model"
             })
             .when("/user/:uid/post/:pid", {
-                templateUrl: "views/post/post-edit.view.client.html",
+                templateUrl: "templates/post/post-edit.view.client.html",
                 controller: "EditPostController",
                 controllerAs: "model"
             })
             .when("/user/:uid/event", {
-                templateUrl: "views/event/event-list.view.client.html",
+                templateUrl: "templates/event/event-list.view.client.html",
                 controller: "EventListController",
                 controllerAs: "model"
             })
             .when("/user/:uid/event/new", {
-                templateUrl: "views/event/event-new.view.client.html",
+                templateUrl: "templates/event/event-new.view.client.html",
                 controller: "NewEventController",
                 controllerAs: "model"
             })
             .when("/user/:uid/event/:eid", {
-                templateUrl: "views/event/event-edit.view.client.html",
+                templateUrl: "templates/event/event-edit.view.client.html",
                 controller: "EditEventController",
                 controllerAs: "model"
             })
             .otherwise({
-                templateUrl: "views/user/login.view.client.html",
+                templateUrl: "templates/user/login.view.client.html",
                 controller: "LoginController",
                 controllerAs: "model"
             });

@@ -2,10 +2,9 @@
  * Created by Ben on 6/6/16.
  */
 
-module.exports = function () {
-    var mongoose = require("mongoose");
+module.exports = function (projectDB) {
     var UserSchema = require("./user.schema.server")();
-    var User = mongoose.model("User", UserSchema);
+    var User = projectDB.model("User", UserSchema);
 
     var api = {
         createUser: createUser,
@@ -26,11 +25,11 @@ module.exports = function () {
     }
     
     function findUserByUsername(username) {
-        return User.find({username: username});
+        return User.findOne({username: username});
     }
     
     function findUserByCredentials(username, password) {
-        return User.find({username: username, password: password});
+        return User.findOne({username: username, password: password});
     }
     
     function updateUser(userId, user) {

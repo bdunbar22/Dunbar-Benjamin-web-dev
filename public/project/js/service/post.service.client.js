@@ -20,27 +20,27 @@
         return api;
 
         function createPost(userId, post) {
-            var url = "/api/user/" + userId + "/post";
+            var url = "/project/api/user/" + userId + "/post";
             return $http.post(url, post);
         }
 
         function findPostsByUser(userId) {
-            var url = "/api/user/" + userId + "/post";
+            var url = "/project/api/user/" + userId + "/post";
             return $http.get(url);
         }
 
         function findPostById(postId) {
-            var url = "/api/post/" + postId;
+            var url = "/project/api/post/" + postId;
             return $http.get(url);
         }
 
         function updatePost(postId, post) {
-            var url = "/api/post/" + postId;
+            var url = "/project/api/post/" + postId;
             return $http.put(url, post);
         }
 
         function deletePost(postId) {
-            var url = "/api/post/" + postId;
+            var url = "/project/api/post/" + postId;
             return $http.delete(url);
         }
     }

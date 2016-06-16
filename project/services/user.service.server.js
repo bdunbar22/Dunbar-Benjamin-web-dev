@@ -6,27 +6,72 @@
 module.exports = function(app, models) {
     /* DB Model */
     var userModel = models.userModel;
-    
-    /* Data */
-    var users = 
-        [
-            {_id: "123", username: "alice", password: "alice", email: "", firstName: "Alice", lastName: "Wonder"},
-            {_id: "234", username: "bob", password: "bob", email: "", firstName: "Bob", lastName: "Marley"},
-            {_id: "345", username: "charly", password: "charly", email: "", firstName: "Charly", lastName: "Garcia"},
-            {_id: "456", username: "jannunzi", password: "jannunzi", email: "", firstName: "Jose", lastName: "Annunzi"}
-        ];
+    var passport = require('passport');
+    var LocalStrategy = require('passport-local').Strategy;
 
     /* Paths that are allowed. */
-    app.post("/api/user/", createUser);
-    app.get("/api/user/", getUsers);
+    app.post("/project/api/user/", createUser);
+    app.post("/project/api/login", passport.authenticate('benProject'), login);
+    app.post("/project/api/register", register);
+    app.get("/project/api/user/", getUsers);
     //Above covers query cases:
-    //api/user/?username=username
-    //api/user/?username=username&password=password
-    app.get("/api/user/:userId", findUserById);
-    app.put("/api/user/:userId", updateUser);
-    app.delete("/api/user/:userId", deleteUser);
+    //project/api/user/?username=username
+    //project/api/user/?username=username&password=password
+    app.get("/project/api/loggedin", loggedIn);
+    app.get("/project/api/user/:userId", findUserById);
+    app.put("/project/api/user/:userId", updateUser);
+    app.delete("/project/api/user/:userId", deleteUser);
 
-    /* Functions */
+
+    passport.use('benProject', new LocalStrategy(localStrategy));
+    passport.serializeUser(serializeUser);
+    passport.deserializeUser(deserializeUser);
+
+    /**
+     *  Passport Functions
+     */
+    function serializeUser(user, done) {
+        done(null, user);
+    }
+
+    function deserializeUser(user, done) {
+        userModel
+            .findUserById(user._id)
+            .then(
+                function(user){
+                    done(null, user);
+                },
+                function(err){
+                    done(err, null);
+                }
+            );
+    }
+
+    function localStrategy(username, password, done) {
+        userModel
+            .findUserByCredentials(username, password)
+            .then(
+                function (user) {
+                    if(user && user.username === username && user.password === password) {
+                        return done(null, user);
+                    }
+                    else {
+                        return done(null, false);
+                    }
+                },
+                function (error) {
+                    if (error) {
+                        return done(error);
+                    } else {
+                        return done(null, false);
+                    }
+                }
+            );
+    }
+
+    /**
+     *  Functions
+     */
     function createUser(req, resp) {
         var newUser = req.body;
 
@@ -40,6 +85,47 @@ module.exports = function(app, models) {
                     resp.status(400).send("Username " + newUser.username + " is already in use.");
                 }
             );
+    }
+
+    function register(req, resp) {
+        var username = req.body.username;
+        userModel
+            .findUserByUsername(username)
+            .then(
+                function (user) {
+                    if(user) {
+                        resp.status(400).send("Username: " + username + " is already in use.");
+                    }
+                    else {
+                        return userModel
+                            .createUser(req.body);
+                    }
+                },
+                function (error) {
+                    resp.status(400).send(error);
+                }
+            )
+            .then(
+                function (user) {
+                    if(user){
+                        req.login(user, function(err) {
+                            if(err) {
+                                resp.status(400).send(err);
+                            } else {
+                                resp.json(user);
+                            }
+                        });
+                    }
+                },
+                function (error) {
+                    resp.status(400).send(error);
+                }
+            )
+    }
+
+    function login(req, resp) {
+        var user = req.user;
+        resp.json(user);
     }
 
     function deleteUser(req, resp) {
@@ -92,16 +178,16 @@ module.exports = function(app, models) {
         var username = req.query["username"];
         var password = req.query["password"];
         if (username && password) {
-            findUserByCredentials(username, password, resp);
+            findUserByCredentials(username, password, req, resp);
         } else if (username) {
-            findUserByUsername(username, resp);
+            findUserByUsername(username, req, resp);
         } else {
             //In the future maybe check if admin.
             resp.status(400).send("Username nor password provided.");
         }
     }
 
-    function findUserByCredentials(username, password, resp) {
+    function findUserByCredentials(username, password, req, resp) {
         userModel
             .findUserByCredentials(username, password)
             .then(
@@ -114,7 +200,7 @@ module.exports = function(app, models) {
             );
     }
 
-    function findUserByUsername(username, resp) {
+    function findUserByUsername(username, req, resp) {
         userModel
             .findUserByUsername(username)
             .then(
@@ -125,5 +211,9 @@ module.exports = function(app, models) {
                     resp.status(400).send("User with id: " + userId + " was not found.");
                 }
             );
+    }
+
+    function loggedIn(req, resp) {
+        resp.send(req.isAuthenticated() ? req.user : '0');
     }
 };

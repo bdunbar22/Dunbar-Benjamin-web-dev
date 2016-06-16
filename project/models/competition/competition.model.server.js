@@ -2,10 +2,9 @@
  * Created by Ben on 6/13/16.
  */
 
-module.exports = function () {
-    var mongoose = require("mongoose");
+module.exports = function (projectDB) {
     var CompetitionSchema = require("./competition.schema.server.js")();
-    var Competition = mongoose.model("Competition", CompetitionSchema);
+    var Competition = projectDB.model("Competition", CompetitionSchema);
 
     var api = {
         createCompetition: createCompetition,

@@ -2,10 +2,9 @@
  * Created by Ben on 6/13/16.
  */
 
-module.exports = function () {
-    var mongoose = require("mongoose");
+module.exports = function (projectDB) {
     var EventSchema = require("./event.schema.server.js")();
-    var Event = mongoose.model("Event", EventSchema);
+    var Event = projectDB.model("Event", EventSchema);
 
     var api = {
         createEvent: createEvent,

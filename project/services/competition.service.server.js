@@ -8,11 +8,11 @@ module.exports = function(app, models) {
     var competitionModel = models.competitionModel;
 
     /* Paths that are allowed. */
-    app.competition("/api/user/:userId/competition", createCompetition);
-    app.get("/api/user/:userId/competition", findCompetitionsByUser);
-    app.get("/api/competition/:competitionId", findCompetitionById);
-    app.put("/api/competition/:competitionId", updateCompetition);
-    app.delete("/api/competition/:competitionId", deleteCompetition);
+    app.post("/project/api/user/:userId/competition", createCompetition);
+    app.get("/project/api/user/:userId/competition", findCompetitionsByUser);
+    app.get("/project/api/competition/:competitionId", findCompetitionById);
+    app.put("/project/api/competition/:competitionId", updateCompetition);
+    app.delete("/project/api/competition/:competitionId", deleteCompetition);
 
     /* Functions */
     function createCompetition(req, resp) {
