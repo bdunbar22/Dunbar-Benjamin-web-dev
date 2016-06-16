@@ -38,9 +38,24 @@
                 controller: "NewPostController",
                 controllerAs: "model"
             })
-            .when("/user/:uid/post/:wid", {
+            .when("/user/:uid/post/:pid", {
                 templateUrl: "views/post/post-edit.view.client.html",
                 controller: "EditPostController",
+                controllerAs: "model"
+            })
+            .when("/user/:uid/event", {
+                templateUrl: "views/event/event-list.view.client.html",
+                controller: "EventListController",
+                controllerAs: "model"
+            })
+            .when("/user/:uid/event/new", {
+                templateUrl: "views/event/event-new.view.client.html",
+                controller: "NewEventController",
+                controllerAs: "model"
+            })
+            .when("/user/:uid/event/:eid", {
+                templateUrl: "views/event/event-edit.view.client.html",
+                controller: "EditEventController",
                 controllerAs: "model"
             })
             .otherwise({
