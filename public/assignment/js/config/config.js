@@ -112,8 +112,9 @@
                             def.reject();
                         }
                         else {
-                            $rootScope.currentUser = user;
                             def.resolve();
+                            $rootScope.currentUser = user;
+                            //$location.url("/profile/" + user._id);
                         }
                     },
                     function (err) {

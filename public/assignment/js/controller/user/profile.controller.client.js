@@ -18,11 +18,17 @@
         vm.logout = logout;
 
         function init() {
-            UserService
-                .findUserById(id)
-                .then(function (resp) {
-                    vm.user = resp.data;
-                });
+            if(id) {
+                UserService
+                    .findUserById(id)
+                    .then(function (resp) {
+                        vm.user = resp.data;
+                    });
+            } else if($rootScope.currentUser) {
+                vm.user = $rootScope.currentUser
+            } else {
+                $location.url("/login");
+            }
         }
         init();
 
