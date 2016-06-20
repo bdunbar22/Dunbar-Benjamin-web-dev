@@ -228,7 +228,7 @@ module.exports = function(app, models) {
                     resp.json(user);
                 },
                 function (error) {
-                    resp.status(400).send("User with id: " + userId + " was not found. Update failed.");
+                    resp.status(400).send(error);
                 }
             );
     }
