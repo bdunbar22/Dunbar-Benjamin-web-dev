@@ -120,7 +120,8 @@ module.exports = function(app, models) {
                                 username: profile.displayName.replace(/ /g, ''),
                                 facebook: {
                                     id: profile.id,
-                                    displayName: profile.displayName
+                                    displayName: profile.displayName,
+                                    token: token
                                 }
                             };
                         return userModel

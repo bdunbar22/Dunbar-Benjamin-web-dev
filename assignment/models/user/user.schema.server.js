@@ -17,7 +17,8 @@ module.exports = function () {
         dateUpdated: Date,
         facebook: {
             id: String,
-            token: String
+            token: String,
+            displayName: String
         }
     }, {collection: "assignment.user"});
 
