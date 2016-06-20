@@ -17,35 +17,54 @@
         <div ng-if="model.error" class="alert alert-danger bmd-margin-top-10">
             {{model.error}}
         </div>
+
+        <form name="newWidgetForm"
+              novalidate>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text"
+                       class="form-control"
+                       name="name"
+                       id="name"
+                       placeholder="Widget Name"
+                       ng-model="name"
+                       required>
+                <span class="validationSpan"
+                      ng-show="newWidgetForm.name.$touched && !newWidgetForm.name.$modelValue">
+                    Name is required.
+                </span>
+            </div>
+        </form>
+
         <a href=""
-           ng-click="model.createWidget('HEADER')"
+           ng-click="model.createWidget('HEADER', name)"
             class="row">Header</a>
         <a href=""
-           ng-click="model.createWidget('HEADER')"
+           ng-click="model.createWidget('HEADER', name)"
            class="row">Label</a>
         <a href=""
-           ng-click="model.createWidget('HTML')"
+           ng-click="model.createWidget('HTML', name)"
            class="row">HTML</a>
         <a href=""
-           ng-click="model.createWidget('TEXT')"
+           ng-click="model.createWidget('TEXT', name)"
            class="row">Text Input</a>
         <a href=""
-           ng-click="model.createWidget('HEADER')"
+           ng-click="model.createWidget('HEADER', name)"
            class="row">Link</a>
         <a href=""
-           ng-click="model.createWidget('HEADER')"
+           ng-click="model.createWidget('HEADER', name)"
            class="row">Button</a>
         <a href=""
-           ng-click="model.createWidget('IMAGE')"
+           ng-click="model.createWidget('IMAGE', name)"
            class="row">Image</a>
         <a href=""
-           ng-click="model.createWidget('YOUTUBE')"
+           ng-click="model.createWidget('YOUTUBE', name)"
            class="row">YouTube</a>
         <a href=""
-           ng-click="model.createWidget('HEADER')"
+           ng-click="model.createWidget('HEADER', name)"
            class="row">Data Table</a>
         <a href=""
-           ng-click="model.createWidget('HEADER')"
+           ng-click="model.createWidget('HEADER', name)"
            class="row">Repeater</a>
     </div>
     <nav class="navbar navbar-default navbar-fixed-bottom">

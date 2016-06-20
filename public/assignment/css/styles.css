@@ -80,6 +80,6 @@ a:hover {
 }
 
 .ng-valid-required {
-    background-color: inherit;
-    border-color: inherit;
+    background-color: inherit !important;
+    border-color: inherit !important;
 }

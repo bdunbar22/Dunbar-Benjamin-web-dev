@@ -24,14 +24,21 @@
         <div ng-if="model.error" class="alert alert-danger bmd-margin-top-10">
             {{model.error}}
         </div>
-        <form>
+        <form name="newPageForm"
+              novalidate>
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text"
                        class="form-control"
+                       name="name"
                        id="name"
                        placeholder="Page Name"
-                       ng-model="name">
+                       ng-model="name"
+                       required>
+                <span class="validationSpan"
+                      ng-show="newPageForm.name.$touched && !newPageForm.name.$modelValue">
+                    Name is required.
+                </span>
             </div>
             <div class="form-group">
                 <label for="title">Title</label>

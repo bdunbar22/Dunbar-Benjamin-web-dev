@@ -18,9 +18,14 @@
         }
         init();
 
-        function createWidget(widgetType) {
+        function createWidget(widgetType, name) {
+            if(!name) {
+                vm.error = "Name is required";
+                return;
+            }
             var newWidget = {
-                widgetType: widgetType
+                widgetType: widgetType,
+                name: name
             };
             WidgetService
                 .createWidget(vm.pageId, newWidget)
