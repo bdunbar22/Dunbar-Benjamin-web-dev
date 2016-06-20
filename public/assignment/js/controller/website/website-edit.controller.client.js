@@ -24,6 +24,10 @@
         init();
 
         function updateWebsite() {
+            if(!vm.website.name) {
+                vm.error = "Website needs a name.";
+                return;
+            }
             WebsiteService
                 .updateWebsite(vm.websiteId, vm.website)
                 .then(function (resp) {

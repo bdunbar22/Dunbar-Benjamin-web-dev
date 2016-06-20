@@ -25,6 +25,10 @@
         init();
 
         function updatePage() {
+            if(!vm.page.name) {
+                vm.error = "Page needs a name.";
+                return;
+            }
             PageService
                 .updatePage(vm.pageId, vm.page)
                 .then(function(resp) {

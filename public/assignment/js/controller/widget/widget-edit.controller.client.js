@@ -27,6 +27,10 @@
         init();
 
         function updateWidget() {
+            if(!vm.widget.name) {
+                vm.error = "Widget needs a name.";
+                return;
+            }
             WidgetService
                 .updateWidget(vm.widgetId, vm.widget)
                 .then(function (resp) {
