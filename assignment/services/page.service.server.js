@@ -72,6 +72,7 @@ module.exports = function(app, models) {
     function updatePage(req, resp) {
         var pageId =  req.params["pageId"];
         var newPage = req.body;
+        delete newPage['_id'];
 
         pageModel
             .updatePage(pageId, newPage)

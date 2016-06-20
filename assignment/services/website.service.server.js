@@ -75,6 +75,7 @@ module.exports = function(app, models) {
     function updateWebsite(req, resp) {
         var websiteId =  req.params["websiteId"];
         var newWebsite = req.body;
+        delete newWebsite['_id'];
 
         websiteModel
             .updateWebsite(websiteId, newWebsite)
