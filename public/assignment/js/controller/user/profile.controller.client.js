@@ -25,7 +25,8 @@
                         vm.user = resp.data;
                     });
             } else if($rootScope.currentUser) {
-                vm.user = $rootScope.currentUser
+                vm.user = $rootScope.currentUser;
+                id = vm.user._id;
             } else {
                 $location.url("/login");
             }
