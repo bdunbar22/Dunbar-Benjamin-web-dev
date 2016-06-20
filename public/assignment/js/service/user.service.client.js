@@ -17,6 +17,7 @@
             findUserByUsername: findUserByUsername,
             findUserByCredentials: findUserByCredentials,
             login: login,
+            logout: logout,
             updateUser: updateUser,
             deleteUser: deleteUser,
             checkLoggedIn: checkLoggedIn
@@ -74,6 +75,10 @@
         function checkLoggedIn() {
             var url = "/api/loggedin";
             return $http.get(url);
+        }
+
+        function logout() {
+            return $http.post('/api/logout');
         }
     }
 })();

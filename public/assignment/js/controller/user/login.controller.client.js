@@ -7,7 +7,7 @@
         .module("WebAppMaker")
         .controller("LoginController", LoginController)
 
-    function LoginController($location, UserService) {
+    function LoginController($location, $rootScope, UserService) {
         var vm = this;
         vm.login = login;
 
@@ -17,7 +17,8 @@
                 .then(function (resp) {
                     var user = resp.data;
                     if(user) {
-                       $location.url("/user/" + user._id);
+                        $rootScope.currentUser = user;
+                        $location.url("/user/" + user._id);
                     }
                     else {
                       vm.error = "Could not match username and password.";

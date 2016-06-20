@@ -33,10 +33,8 @@ module.exports = function(app, models) {
     app.post("/api/login", passport.authenticate('wam'), login);
     app.post("/api/register", register);
     app.get("/api/user/", getUsers);
-    //Above covers query cases:
-    //api/user/?username=username
-    //api/user/?username=username&password=password
     app.get("/api/loggedin", loggedIn);
+    app.post("/api/logout", logout);
     app.get("/api/user/:userId", findUserById);
     app.put("/api/user/:userId", updateUser);
     app.delete("/api/user/:userId", auth, deleteUser);
@@ -105,12 +103,35 @@ module.exports = function(app, models) {
     }
 
     function facebookStrategy(token, refreshToken, profile, done) {
+        var id = profile.id;
         userModel
-            .findUserByFacebookId(profile.id)
+            .findUserByFacebookId(id)
+            .then(
+                function(user) {
+                    if(user) {
+                        return done(null, user);
+                    } else {
+                        var user = {
+                                username: profile.displayName.replace(/ /g, ''),
+                                facebook: {
+                                    id: profile.id,
+                                    displayName: profile.displayName
+                                }
+                            };
+                        return userModel
+                            .createUser(user);
+                    }
+                }
+            )
+            .then(
+                function (user) {
+                    return done(null, user);
+                }
+            );
     }
 
 
-        /**
+    /**
      *  Functions
      */
     function createUser(req, resp) {
@@ -262,5 +283,10 @@ module.exports = function(app, models) {
 
     function loggedIn(req, resp) {
         resp.send(req.isAuthenticated() ? req.user : '0');
+    }
+
+    function logout(req, res) {
+        req.logout();
+        res.send(200);
     }
 };

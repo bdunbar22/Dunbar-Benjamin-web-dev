@@ -28,12 +28,21 @@
                 controller: "RegisterController",
                 controllerAs: "model"
             })
-            
             .when("/user/:uid", {
                 templateUrl: "views/user/profile.view.client.html",
                 controller: "ProfileController",
                 controllerAs: "model",
-                resolve: {loggedin: checkLoggedIn}
+                resolve: {
+                    loggedin: checkLoggedIn
+                }
+            })
+            .when("/user", {
+                templateUrl: "views/user/profile.view.client.html",
+                controller: "ProfileController",
+                controllerAs: "model",
+                resolve: {
+                    loggedin: checkLoggedIn
+                }
             })
             .when("/user/:uid/website", {
                 templateUrl: "views/website/website-list.view.client.html",
@@ -103,6 +112,7 @@
                             def.reject();
                         }
                         else {
+                            $rootScope.currentUser = user;
                             def.resolve();
                         }
                     },
@@ -113,6 +123,8 @@
                         def.reject();
                     }
                 );
+
+            return def.promise;
         }
     }
 })();
