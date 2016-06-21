@@ -11,6 +11,7 @@ module.exports = function(app, models) {
     app.post("/project/api/user/:userId/event", createEvent);
     app.get("/project/api/user/:userId/event", findEventsByUser);
     app.get("/project/api/event/:eventId", findEventById);
+    app.get("/project/api/event/", findAll);
     app.put("/project/api/event/:eventId", updateEvent);
     app.delete("/project/api/event/:eventId", deleteEvent);
 
@@ -57,6 +58,19 @@ module.exports = function(app, models) {
                 },
                 function (error) {
                     resp.status(400).send("Event with id: " + eventId + " not found.");
+                }
+            );
+    }
+
+    function findAll(req, resp) {
+        eventModel
+            .findAll()
+            .then(
+                function (events) {
+                    resp.json(events);
+                },
+                function (error) {
+                    resp.status(400).send(error);
                 }
             );
     }

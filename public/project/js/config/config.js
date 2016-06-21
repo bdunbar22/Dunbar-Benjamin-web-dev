@@ -27,6 +27,16 @@
                 controller: "RegisterController",
                 controllerAs: "model"
             })
+            .when("/search/user", {
+                templateUrl: "templates/user/user-search-results.view.client.html",
+                controller: "UserSearchController",
+                controllerAs: "model"
+            })
+            .when("/search/post", {
+                templateUrl: "templates/post/post-search-results.view.client.html",
+                controller: "PostSearchController",
+                controllerAs: "model"
+            })
             .when("/user/:uid", {
                 templateUrl: "templates/user/profile.view.client.html",
                 controller: "ProfileController",

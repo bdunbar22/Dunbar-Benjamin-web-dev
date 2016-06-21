@@ -14,6 +14,7 @@
             createPost: createPost,
             findPostsByUser: findPostsByUser,
             findPostById: findPostById,
+            findAll: findAll,
             updatePost: updatePost,
             deletePost: deletePost
         };
@@ -31,6 +32,11 @@
 
         function findPostById(postId) {
             var url = "/project/api/post/" + postId;
+            return $http.get(url);
+        }
+
+        function findAll() {
+            var url = "/project/api/post/";
             return $http.get(url);
         }
 

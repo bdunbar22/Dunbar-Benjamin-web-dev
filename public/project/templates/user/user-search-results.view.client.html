@@ -9,24 +9,18 @@
             </div>
         </div>
     </nav>
-
     <div class="container">
-        <h2>Search</h2>
-        <a href="#/search/user"
-           class="btn btn-block bmd-tertiary">Search Athletes</a>
+        <div ng-if="model.error"
+             class="alert alert-info bmd-margin-top-10">{{model.error}}</div>
 
-        <a href="#/search/post"
-           class="btn btn-block bmd-tertiary">Search Posts</a>
-
-        <a href=""
-           class="btn btn-block bmd-tertiary">Search Events</a>
-
-        <a href=""
-           class="btn btn-block bmd-tertiary">Search Competitions</a>
-            </div>
-        </div>
+        <ul class="list-group">
+            <li ng-repeat="user in model.users"
+                class="list-group-item">
+                <a href="#/user/{{model.userId}}">{{user.username}}</a>
+                <p>Age: {{user.age}} Trophies: {{user.trophyCount}}</p>
+            </li>
+        </ul>
     </div>
-
     <nav class="navbar navbar-default navbar-fixed-bottom">
         <div class="container-fluid">
             <div class="navbar-header">

@@ -12,6 +12,7 @@ module.exports = function () {
         lastName: String,
         email: String,
         phone: String,
+        trophyCount: Number,
         events: [mongoose.Schema.Types.ObjectId],
         competitions: [mongoose.Schema.Types.ObjectId],
         posts: [mongoose.Schema.Types.ObjectId],

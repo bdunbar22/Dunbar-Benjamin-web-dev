@@ -11,6 +11,7 @@ module.exports = function(app, models) {
     app.post("/project/api/user/:userId/post", createPost);
     app.get("/project/api/user/:userId/post", findPostsByUser);
     app.get("/project/api/post/:postId", findPostById);
+    app.get("/project/api/post/", findAll);
     app.put("/project/api/post/:postId", updatePost);
     app.delete("/project/api/post/:postId", deletePost);
 
@@ -57,6 +58,19 @@ module.exports = function(app, models) {
                 },
                 function (error) {
                     resp.status(400).send("Post with id: " + postId + " not found.");
+                }
+            );
+    }
+
+    function findAll(req, resp) {
+        postModel
+            .findAll()
+            .then(
+                function (posts) {
+                    resp.json(posts);
+                },
+                function (error) {
+                    resp.status(400).send(error);
                 }
             );
     }

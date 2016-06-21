@@ -182,8 +182,16 @@ module.exports = function(app, models) {
         } else if (username) {
             findUserByUsername(username, req, resp);
         } else {
-            //In the future maybe check if admin.
-            resp.status(400).send("Username nor password provided.");
+            userModel
+                .findAll()
+                .then(
+                    function (users) {
+                        resp.json(users);
+                    },
+                    function (err) {
+                        resp.status(400).send(err);
+                    }
+                )
         }
     }
 

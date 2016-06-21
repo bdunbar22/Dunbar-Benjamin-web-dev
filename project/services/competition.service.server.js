@@ -11,6 +11,7 @@ module.exports = function(app, models) {
     app.post("/project/api/user/:userId/competition", createCompetition);
     app.get("/project/api/user/:userId/competition", findCompetitionsByUser);
     app.get("/project/api/competition/:competitionId", findCompetitionById);
+    app.get("/project/api/competition/", findAll);
     app.put("/project/api/competition/:competitionId", updateCompetition);
     app.delete("/project/api/competition/:competitionId", deleteCompetition);
 
@@ -57,6 +58,19 @@ module.exports = function(app, models) {
                 },
                 function (error) {
                     resp.status(400).send("Competition with id: " + competitionId + " not found.");
+                }
+            );
+    }
+
+    function findAll(req, resp) {
+        competitionModel
+            .findAll()
+            .then(
+                function (competitions) {
+                    resp.json(competitions);
+                },
+                function (error) {
+                    resp.status(400).send(error);
                 }
             );
     }

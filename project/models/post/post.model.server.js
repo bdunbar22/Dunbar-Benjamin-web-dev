@@ -10,6 +10,7 @@ module.exports = function (projectDB) {
         createPost: createPost,
         findPostsByUser: findPostsByUser,
         findPostById: findPostById,
+        findAll: findAll,
         updatePost: updatePost,
         deletePost: deletePost
     };
@@ -26,6 +27,10 @@ module.exports = function (projectDB) {
 
     function findPostById(postId) {
         return Post.findById(postId);
+    }
+
+    function findAll() {
+        return Post.find();
     }
 
     function updatePost(postId, post) {

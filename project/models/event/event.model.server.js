@@ -10,6 +10,7 @@ module.exports = function (projectDB) {
         createEvent: createEvent,
         findEventsByUser: findEventsByUser,
         findEventById: findEventById,
+        findAll: findAll,
         updateEvent: updateEvent,
         deleteEvent: deleteEvent
     };
@@ -26,6 +27,10 @@ module.exports = function (projectDB) {
 
     function findEventById(eventId) {
         return Event.findById(eventId);
+    }
+
+    function findAll() {
+        return Event.find();
     }
 
     function updateEvent(eventId, event) {

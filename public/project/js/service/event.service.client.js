@@ -14,6 +14,7 @@
             createEvent: createEvent,
             findEventsByUser: findEventsByUser,
             findEventById: findEventById,
+            findAll: findAll,
             updateEvent: updateEvent,
             deleteEvent: deleteEvent
         };
@@ -31,6 +32,11 @@
 
         function findEventById(eventId) {
             var url = "/project/api/event/" + eventId;
+            return $http.get(url);
+        }
+        
+        function findAll() {
+            var url = "/project/api/event/";
             return $http.get(url);
         }
 

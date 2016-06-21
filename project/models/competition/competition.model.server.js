@@ -10,6 +10,7 @@ module.exports = function (projectDB) {
         createCompetition: createCompetition,
         findCompetitionsByUser: findCompetitionsByUser,
         findCompetitionById: findCompetitionById,
+        findAll: findAll,
         updateCompetition: updateCompetition,
         deleteCompetition: deleteCompetition
     };
@@ -26,6 +27,10 @@ module.exports = function (projectDB) {
 
     function findCompetitionById(competitionId) {
         return Competition.findById(competitionId);
+    }
+
+    function findAll() {
+        return Competition.find();
     }
 
     function updateCompetition(competitionId, competition) {

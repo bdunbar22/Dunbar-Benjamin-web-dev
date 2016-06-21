@@ -16,6 +16,7 @@
             findUserById: findUserById,
             findUserByUsername: findUserByUsername,
             findUserByCredentials: findUserByCredentials,
+            findAll: findAll,
             login: login,
             updateUser: updateUser,
             deleteUser: deleteUser,
@@ -39,6 +40,11 @@
 
         function findUserById(userId) {
             var url = "/project/api/user/" + userId;
+            return $http.get(url);
+        }
+
+        function findAll() {
+            var url = "/project/api/user/";
             return $http.get(url);
         }
 

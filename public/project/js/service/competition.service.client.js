@@ -14,6 +14,7 @@
             createCompetition: createCompetition,
             findCompetitionsByUser: findCompetitionsByUser,
             findCompetitionById: findCompetitionById,
+            findAll: findAll,
             updateCompetition: updateCompetition,
             deleteCompetition: deleteCompetition
         };
@@ -31,6 +32,11 @@
 
         function findCompetitionById(competitionId) {
             var url = "/project/api/competition/" + competitionId;
+            return $http.get(url);
+        }
+
+        function findAll() {
+            var url = "/project/api/competition/";
             return $http.get(url);
         }
 

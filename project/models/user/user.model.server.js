@@ -11,6 +11,7 @@ module.exports = function (projectDB) {
         findUserById: findUserById,
         findUserByUsername: findUserByUsername,
         findUserByCredentials: findUserByCredentials,
+        findAll: findAll,
         updateUser: updateUser,
         deleteUser: deleteUser
     };
@@ -30,6 +31,10 @@ module.exports = function (projectDB) {
     
     function findUserByCredentials(username, password) {
         return User.findOne({username: username, password: password});
+    }
+
+    function findAll() {
+        return User.find();
     }
     
     function updateUser(userId, user) {
