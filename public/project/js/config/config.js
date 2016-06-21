@@ -8,16 +8,19 @@
 
     function Config($routeProvider) {
         $routeProvider
+            .when("/home", {
+                templateUrl: "templates/home/home.view.client.html"
+            })
+            .when("/about", {
+                templateUrl: "templates/home/about.view.client.html"
+            })
+            .when("/search", {
+                templateUrl: "templates/home/search.view.client.html"
+            })
             .when("/login", {
                 templateUrl: "templates/user/login.view.client.html",
                 controller: "LoginController",
                 controllerAs: "model"
-            })
-            .when("/home", {
-                templateUrl: "templates/home/home.view.client.html",
-            })
-            .when("/", {
-                templateUrl: "templates/home/home.view.client.html",
             })
             .when("/register", {
                 templateUrl: "templates/user/register.view.client.html",
@@ -76,9 +79,7 @@
                 controllerAs: "model"
             })
             .otherwise({
-                templateUrl: "templates/user/login.view.client.html",
-                controller: "LoginController",
-                controllerAs: "model"
+                templateUrl: "templates/home/home.view.client.html"
             });
     }
 })();
