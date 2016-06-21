@@ -1,20 +1,98 @@
-body {
-    background-color: #af0000;
-}
-
 a {
     color: #0000af;
+}
+
+a:hover {
+    text-decoration: none!important;
+}
+
+.header-present {
+    padding-top: 75px;
+}
+
+.footer-present {
+    padding-bottom: 75px;
+}
+
+.header-glyphicon {
+    padding-right: 10px;
+}
+
+.home-glyphicon {
+    padding-left: 15px;
 }
 
 a:hover {
     text-decoration: none;
 }
 
-.darkGray {
-    background-color: #8a8a8a;
+.navbar-header {
+    width: 100%
 }
 
-.square-45-percent {
-    height: 45%;
-    width: 45%;
+.navbar-footer {
+    width: 100%
+}
+
+.navbar-brand-center {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+    float: none;
+}
+
+.navbar {
+    color: #f7f7f7;;
+    background-color: #388E3C;
+    border-color: #000000;
+}
+
+
+.navbar-text {
+    float: none;
+    margin-right: 15px;
+    margin-left: 15px;
+}
+
+.bmd-dominant {
+    color: black;
+    background-color: #4CAF50;
+}
+
+.bmd-status {
+    background-color: #388E3C;
+}
+
+.bmd-secondary {
+    background-color: #81C784;
+}
+
+.bmd-accent {
+    color: #18FFFF !important;
+}
+
+.bmd-tertiary {
+    background-color: #FFA726;
+    border-color: #bd7c1c;
+    color: #fff;
+}
+
+.bmd-tertiary:hover {
+    background-color: #E58D0C;
+    border-color: #A36202;
+    color: #fff;
+}
+
+.bmd-margin-top-10 {
+    margin-top: 10px;
+}
+
+.image {
+    width: 100%;
+    border: 2px solid black;
+}
+
+.bmd-text-column {
+    text-align: justify;
 }

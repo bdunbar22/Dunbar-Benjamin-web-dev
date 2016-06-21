@@ -2,12 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Web Dev Course Home Page</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="viewport" content="initial-scale=1.25, user-scalable = no">
+    <title>Ben Dunbar Web Dev</title>
     <!-- Link necessary pages -->
     <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet"/>
 
     <script   src="https://code.jquery.com/jquery-2.2.4.min.js"
               integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
@@ -16,36 +20,62 @@
               integrity="sha256-xNjb53/rY+WmG+4L6tTl9m6PpqknWZvRt0rO1SRnJzw="
               crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet"/>
-
 </head>
 <body>
-    <div class="container col-xs-8 col-xs-offset-2 darkGray">
-        <h1 class="text-center text-capitalize">Web Dev Course Home Page</h1>
+    <div class="header-present footer-present bmd-dominant">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a href="project/index.html"
+                       class="navbar-brand bmd-accent">Project</a>
+                    <a href="assignment/index.html"
+                       class="navbar-brand bmd-accent pull-right">Assignment</a>
+                </div>
+            </div>
+        </nav>
 
-        <div id="picture" class="row text-center">
-            <img src="images/Ben.jpg" class="square-45-percent">
-        </div>
-        <div id="links">
-            <h2>Links</h2>
-            <ul>
-                <li>
-                    <a href="project/index.html"><h1>Project</h1></a>
-                </li>
-                <li>
-                    <a href="assignment/index.html"><h1>Assignment</h1></a>
-                </li>
-                <li>
-                    <a href="test/index.html"><h1>Test MongoDB</h1></a>
-                </li>
-                <li>
-                    <a href="https://github.com/bdunbar22/Dunbar-Benjamin-web-dev" target="_blank"><h1>Ben Dunbar Github</h1></a>
-                </li>
-                <li>
-                    <a href="#"><h1>Project Video</h1></a>
-                </li>
-            </ul>
+        <div class="container">
+            <h2>CS4550</h2>
+            <h2>Web Development</h2>
+
+            <div class="row">
+                <div class="col-md-6">
+                        <img src="images/SeaAndBen.jpg" class="image">
+                </div>
+                <div class="col-md-6">
+                    <h2>
+                        Hello!
+                    </h2>
+                    <p class="bmd-text-column">
+                        This is Ben Dunbar. You are currently visiting my website for CS 4550: Web Development.
+                        Here you will find links to my project website and assignment website. You can also find
+                        links to my github page and a video describing my project below.
+                        Enjoy exploring the website!
+                    </p>
+
+                    <h2>Links</h2>
+                    <a href="project/index.html"
+                       class="btn btn-block bmd-tertiary">Project</a>
+
+                    <a href="assignment/index.html"
+                       class="btn btn-block bmd-tertiary">Assignment</a>
+
+                    <a href="test/index.html"
+                       class="btn btn-block bmd-tertiary">Test MongoDB</a>
+
+                    <a href="https://github.com/bdunbar22/Dunbar-Benjamin-web-dev" target="_blank"
+                       class="btn btn-block bmd-tertiary">Ben Dunbar Github</a>
+
+                    <a href="#"
+                       class="btn btn-block bmd-tertiary">Project Video</a>
+                </div>
+            </div>
+
+
+
+            </div>
         </div>
     </div>
 </body>

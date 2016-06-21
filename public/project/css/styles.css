@@ -40,6 +40,13 @@ a:hover {
     border-color: #000000;
 }
 
+
+.navbar-text {
+    float: none;
+    margin-right: 15px;
+    margin-left: 15px;
+}
+
 .bmd-dominant {
     color: black;
     background-color: #4CAF50;
@@ -58,10 +65,21 @@ a:hover {
 }
 
 .bmd-tertiary {
+    color: #fff;
     background-color: #FFA726;
+    border-color: #bd7c1c;
+}
+
+.bmd-tertiary:hover {
+    background-color: #E58D0C;
+    border-color: #A36202;
+    color: #fff;
 }
 
 .bmd-margin-top-10 {
     margin-top: 10px;
 }
 
+.bmd-text-column {
+    text-align: justify;
+}
