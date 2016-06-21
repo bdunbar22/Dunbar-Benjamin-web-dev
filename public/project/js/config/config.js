@@ -58,6 +58,22 @@
                 controller: "EditEventController",
                 controllerAs: "model"
             })
+
+            .when("/user/:uid/competition", {
+                templateUrl: "templates/competition/competition-list.view.client.html",
+                controller: "CompetitionListController",
+                controllerAs: "model"
+            })
+            .when("/user/:uid/competition/new", {
+                templateUrl: "templates/competition/competition-new.view.client.html",
+                controller: "NewCompetitionController",
+                controllerAs: "model"
+            })
+            .when("/user/:uid/competition/:eid", {
+                templateUrl: "templates/competition/competition-edit.view.client.html",
+                controller: "EditCompetitionController",
+                controllerAs: "model"
+            })
             .otherwise({
                 templateUrl: "templates/user/login.view.client.html",
                 controller: "LoginController",

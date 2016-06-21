@@ -1,0 +1,56 @@
+<div class="header-present footer-present">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="#/user/{{model.userId}}/competition" class="navbar-link navbar-brand">
+                    <span class="glyphicon glyphicon-chevron-left bmd-accent"></span>
+                </a>
+                <a class="navbar-brand bmd-accent"
+                   href="">
+                    New Competition
+                </a>
+                <p class="navbar-text pull-right">
+                    <a href=""
+                       ng-click="model.createCompetition(name, description)"
+                       class="navbar-link">
+                        <span class="glyphicon glyphicon-ok header-glyphicon bmd-accent"></span>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div ng-if="model.error" class="alert alert-danger bmd-margin-top-10">
+            {{model.error}}
+        </div>
+        <form>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text"
+                       class="form-control"
+                       id="name"
+                       placeholder="Name"
+                       ng-model="name">
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea rows="5"
+                          id="description"
+                          class="form-control"
+                          placeholder="Description"
+                          ng-model="description"></textarea>
+            </div>
+        </form>
+    </div>
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <p class="navbar-text pull-right">
+                    <a href="#/user/{{model.userId}}">
+                        <span class="glyphicon glyphicon-user header-glyphicon bmd-accent"></span>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </nav>
+</div>

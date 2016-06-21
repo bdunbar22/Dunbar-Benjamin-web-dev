@@ -15,6 +15,7 @@ module.exports = function () {
         events: [mongoose.Schema.Types.ObjectId],
         competitions: [mongoose.Schema.Types.ObjectId],
         posts: [mongoose.Schema.Types.ObjectId],
+        following: [mongoose.Schema.Types.ObjectId],
         dateCreated: {type: Date, default: Date.now},
         dateUpdated: Date
     }, {collection: "project.user"});

@@ -21,7 +21,7 @@
 
         function createEvent(userId, event) {
             var url = "/project/api/user/" + userId + "/event";
-            return $http.event(url, event);
+            return $http.post(url, event);
         }
 
         function findEventsByUser(userId) {

@@ -1,0 +1,46 @@
+<div class="header-present footer-present">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="#/user/{{model.userId}}" class="navbar-link navbar-brand">
+                    <span class="glyphicon glyphicon-chevron-left bmd-accent"></span>
+                </a>
+                <a class="navbar-brand bmd-accent"
+                   href="">
+                    Competitions
+                </a>
+                <p class="navbar-text pull-right">
+                    <a href="#/user/{{model.userId}}/competition/new" class="navbar-link">
+                        <span class="glyphicon glyphicon-plus header-glyphicon bmd-accent"></span>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div ng-if="model.error"
+             class="alert alert-info bmd-margin-top-10">{{model.error}}</div>
+
+        <ul class="list-group">
+            <li ng-repeat="competition in model.competitions"
+                class="list-group-item">
+                <a href="#/user/{{model.userId}}/competition/{{competition._id}}">{{competition.name}}</a>
+                <a href="#/user/{{model.userId}}/competition/{{competition._id}}">
+                    <span class="glyphicon glyphicon-play pull-right"></span>
+                    <span class="glyphicon glyphicon-cog pull-right"></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <p class="navbar-text pull-right">
+                    <a href="#/user/{{model.userId}}">
+                        <span class="glyphicon glyphicon-user header-glyphicon bmd-accent"></span>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </nav>
+</div>
