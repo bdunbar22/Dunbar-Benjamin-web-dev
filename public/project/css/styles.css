@@ -83,3 +83,8 @@ a:hover {
 .bmd-text-column {
     text-align: justify;
 }
+
+.image {
+    width: 100%;
+    border: 2px solid black;
+}
