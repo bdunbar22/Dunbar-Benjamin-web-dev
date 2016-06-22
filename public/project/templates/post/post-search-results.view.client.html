@@ -13,9 +13,17 @@
         <div ng-if="model.error"
              class="alert alert-info bmd-margin-top-10">{{model.error}}</div>
 
+        <div class="form-group">
+            <input type="text"
+                   placeholder="Search text"
+                   class="form-control"
+                   ng-model="searchText">
+            <button class="btn btn-sm bmd-margin-top-5 bmd-tertiary" ng-click="model.search(searchText)">Search</button>
+        </div>
+
         <ul class="list-group">
             <li ng-repeat="post in model.posts"
-                class="list-group-item">
+                class="list-group-item  bmd-secondary">
                 <a href="">{{post.name}}</a>
             </li>
         </ul>

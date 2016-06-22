@@ -6,31 +6,31 @@
 (function () {
     angular
         .module("BenProject")
-        .controller("PostSearchController", PostSearchController);
+        .controller("CompetitionSearchController", CompetitionSearchController);
 
-    function PostSearchController(PostService) {
+    function CompetitionSearchController(CompetitionService) {
         var vm = this;
         vm.search = search;
 
         function init() {
-            PostService
-                .findAllPosts()
+            CompetitionService
+                .findAllCompetitions()
                 .then(function (resp) {
-                    vm.posts = resp.data;
+                    vm.competitions = resp.data;
                 }, function (error) {
-                    vm.posts = [];
+                    vm.competitions = [];
                     vm.message = error.data;
                 })
         }
         init();
 
         function search(text) {
-            PostService
+            CompetitionService
                 .search(text)
                 .then(function (resp) {
-                    vm.posts = resp.data;
+                    vm.competitions = resp.data;
                 }, function (error) {
-                    vm.posts = [];
+                    vm.competitions = [];
                     vm.message = error.data;
                 });
         }

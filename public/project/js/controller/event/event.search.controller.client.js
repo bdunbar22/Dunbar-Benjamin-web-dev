@@ -6,31 +6,31 @@
 (function () {
     angular
         .module("BenProject")
-        .controller("PostSearchController", PostSearchController);
+        .controller("EventSearchController", EventSearchController);
 
-    function PostSearchController(PostService) {
+    function EventSearchController(EventService) {
         var vm = this;
         vm.search = search;
 
         function init() {
-            PostService
-                .findAllPosts()
+            EventService
+                .findAllEvents()
                 .then(function (resp) {
-                    vm.posts = resp.data;
+                    vm.events = resp.data;
                 }, function (error) {
-                    vm.posts = [];
+                    vm.events = [];
                     vm.message = error.data;
                 })
         }
         init();
 
         function search(text) {
-            PostService
+            EventService
                 .search(text)
                 .then(function (resp) {
-                    vm.posts = resp.data;
+                    vm.events = resp.data;
                 }, function (error) {
-                    vm.posts = [];
+                    vm.events = [];
                     vm.message = error.data;
                 });
         }

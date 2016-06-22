@@ -14,7 +14,8 @@
             createPost: createPost,
             findPostsByUser: findPostsByUser,
             findPostById: findPostById,
-            findAll: findAll,
+            findAllPosts: findAllPosts,
+            search: search,
             updatePost: updatePost,
             deletePost: deletePost
         };
@@ -35,8 +36,13 @@
             return $http.get(url);
         }
 
-        function findAll() {
+        function findAllPosts() {
             var url = "/project/api/post/";
+            return $http.get(url);
+        }
+
+        function search(text) {
+            var url = "/project/api/post/search/" + text;
             return $http.get(url);
         }
 
