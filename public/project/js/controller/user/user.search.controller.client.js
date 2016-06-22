@@ -10,10 +10,11 @@
 
     function UserSearchController(UserService) {
         var vm = this;
+        vm.search = search;
 
         function init() {
             UserService
-                .findAll()
+                .findAllUsers()
                 .then(function (resp) {
                     vm.users = resp.data;
                 }, function (error) {
@@ -22,5 +23,16 @@
                 })
         }
         init();
+
+        function search(text) {
+            UserService
+                .search(text)
+                .then(function (resp) {
+                    vm.users = resp.data;
+                }, function (error) {
+                    vm.users = [];
+                    vm.message = error.data;
+                })
+        }
     }
 })();

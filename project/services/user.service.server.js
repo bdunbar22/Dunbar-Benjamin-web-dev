@@ -13,6 +13,7 @@ module.exports = function(app, models) {
     app.post("/project/api/user/", createUser);
     app.post("/project/api/login", passport.authenticate('benProject'), login);
     app.post("/project/api/register", register);
+    app.get("/project/api/user/search/:text", search);
     app.get("/project/api/user/", getUsers);
     //Above covers query cases:
     //project/api/user/?username=username
@@ -174,6 +175,21 @@ module.exports = function(app, models) {
             );
     }
 
+    function search(req, resp) {
+        var searchText = req.params["text"];
+
+        userModel
+            .search(searchText)
+            .then(
+                function (users) {
+                    resp.json(users);
+                },
+                function (err) {
+                    resp.status(400).send(err);
+                }
+            );
+    }
+
     function getUsers(req, resp) {
         var username = req.query["username"];
         var password = req.query["password"];
@@ -183,7 +199,7 @@ module.exports = function(app, models) {
             findUserByUsername(username, req, resp);
         } else {
             userModel
-                .findAll()
+                .findAllUsers()
                 .then(
                     function (users) {
                         resp.json(users);
@@ -191,7 +207,7 @@ module.exports = function(app, models) {
                     function (err) {
                         resp.status(400).send(err);
                     }
-                )
+                );
         }
     }
 

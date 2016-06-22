@@ -11,7 +11,8 @@ module.exports = function (projectDB) {
         findUserById: findUserById,
         findUserByUsername: findUserByUsername,
         findUserByCredentials: findUserByCredentials,
-        findAll: findAll,
+        findAllUsers: findAllUsers,
+        search: search,
         updateUser: updateUser,
         deleteUser: deleteUser
     };
@@ -33,8 +34,17 @@ module.exports = function (projectDB) {
         return User.findOne({username: username, password: password});
     }
 
-    function findAll() {
-        return User.find();
+    function findAllUsers() {
+        return User.find({},{password: 0, dateCreated: 0, dateUpdated: 0});
+    }
+
+    function search(searchText) {
+        return User.find({$or: [
+                            {'email': {$regex:searchText, $options:'i'}},
+                            {'username': {$regex:searchText, $options:'i'}},
+                            {'firstName': {$regex:searchText, $options:'i'}},
+                            {'lastName': {$regex:searchText, $options:'i'}}]
+                        }, {password: 0, dateCreated: 0, dateUpdated: 0});
     }
     
     function updateUser(userId, user) {
