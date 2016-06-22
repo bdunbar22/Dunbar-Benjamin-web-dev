@@ -78,6 +78,7 @@ module.exports = function(app, models) {
     function updateCompetition(req, resp) {
         var competitionId =  req.params["competitionId"];
         var newCompetition = req.body;
+        delete newCompetition['_id'];
 
         competitionModel
             .updateCompetition(competitionId, newCompetition)

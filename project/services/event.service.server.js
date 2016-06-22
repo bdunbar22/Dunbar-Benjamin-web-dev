@@ -78,6 +78,7 @@ module.exports = function(app, models) {
     function updateEvent(req, resp) {
         var eventId =  req.params["eventId"];
         var newEvent = req.body;
+        delete newEvent['_id'];
 
         eventModel
             .updateEvent(eventId, newEvent)

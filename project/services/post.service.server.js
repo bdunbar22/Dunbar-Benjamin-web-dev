@@ -78,6 +78,7 @@ module.exports = function(app, models) {
     function updatePost(req, resp) {
         var postId =  req.params["postId"];
         var newPost = req.body;
+        delete newPost['_id'];
 
         postModel
             .updatePost(postId, newPost)
