@@ -25,7 +25,13 @@
             <li ng-repeat="user in model.users"
                 class="list-group-item bmd-secondary">
                 <a href="#/user/{{model.userId}}">{{user.username}}</a>
-                <p>Age: {{user.age}} Trophies: {{user.trophyCount}}</p>
+                <div class="user-info">
+                    <ul>
+                        <li>Name: {{user.firstName}} {{user.lastName}}</li>
+                        <li>Age: {{user.age}} </li>
+                        <li>Trophies: {{user.trophyCount}}</li>
+                    </ul>
+                </div>
             </li>
         </ul>
     </div>
