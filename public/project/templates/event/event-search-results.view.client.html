@@ -13,7 +13,7 @@
         <div ng-if="model.error"
              class="alert alert-info bmd-margin-top-10">{{model.error}}</div>
 
-        <h2>Search For Posts</h2>
+        <h2>Search For Events</h2>
 
         <div class="form-group">
             <input type="text"
@@ -24,9 +24,9 @@
         </div>
 
         <ul class="list-group">
-            <li ng-repeat="post in model.posts"
+            <li ng-repeat="event in model.events"
                 class="list-group-item  bmd-secondary">
-                <a href="">{{post.name}}</a>
+                <a href="">{{event.name}}</a>
             </li>
         </ul>
     </div>

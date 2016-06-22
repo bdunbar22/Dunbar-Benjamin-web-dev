@@ -37,6 +37,16 @@
                 controller: "PostSearchController",
                 controllerAs: "model"
             })
+            .when("/search/event", {
+                templateUrl: "templates/event/event-search-results.view.client.html",
+                controller: "EventSearchController",
+                controllerAs: "model"
+            })
+            .when("/search/competition", {
+                templateUrl: "templates/competition/competition-search-results.view.client.html",
+                controller: "CompetitionSearchController",
+                controllerAs: "model"
+            })
             .when("/user/:uid", {
                 templateUrl: "templates/user/profile.view.client.html",
                 controller: "ProfileController",
