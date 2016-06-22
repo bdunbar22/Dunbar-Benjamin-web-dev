@@ -88,3 +88,8 @@ a:hover {
     width: 100%;
     border: 2px solid black;
 }
+
+li.list-group-item {
+    background-color: #81C784;
+    border-color: #67ad6a;
+}
