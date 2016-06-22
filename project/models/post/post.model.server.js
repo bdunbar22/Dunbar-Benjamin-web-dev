@@ -10,7 +10,8 @@ module.exports = function (projectDB) {
         createPost: createPost,
         findPostsByUser: findPostsByUser,
         findPostById: findPostById,
-        findAll: findAll,
+        findAllPosts: findAllPosts,
+        search: search,
         updatePost: updatePost,
         deletePost: deletePost
     };
@@ -29,8 +30,16 @@ module.exports = function (projectDB) {
         return Post.findById(postId);
     }
 
-    function findAll() {
+    function findAllPosts() {
         return Post.find();
+    }
+
+    function search(searchText) {
+        return Post.find({$or: [
+                        {'name': {$regex:searchText, $options:'i'}},
+                        {'description': {$regex:searchText, $options:'i'}},
+                        {'url': {$regex:searchText, $options:'i'}}]
+                    });
     }
 
     function updatePost(postId, post) {

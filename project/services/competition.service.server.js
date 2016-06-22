@@ -11,7 +11,8 @@ module.exports = function(app, models) {
     app.post("/project/api/user/:userId/competition", createCompetition);
     app.get("/project/api/user/:userId/competition", findCompetitionsByUser);
     app.get("/project/api/competition/:competitionId", findCompetitionById);
-    app.get("/project/api/competition/", findAll);
+    app.get("/project/api/competition/", findAllCompetitions);
+    app.get("/project/api/competition/search/:text", search);
     app.put("/project/api/competition/:competitionId", updateCompetition);
     app.delete("/project/api/competition/:competitionId", deleteCompetition);
 
@@ -62,15 +63,30 @@ module.exports = function(app, models) {
             );
     }
 
-    function findAll(req, resp) {
+    function findAllCompetitions(req, resp) {
         competitionModel
-            .findAll()
+            .findAllCompetitions()
             .then(
                 function (competitions) {
                     resp.json(competitions);
                 },
                 function (error) {
                     resp.status(400).send(error);
+                }
+            );
+    }
+
+    function search(req, resp) {
+        var searchText = req.params["text"];
+
+        competitionModel
+            .search(searchText)
+            .then(
+                function (competitions) {
+                    resp.json(competitions);
+                },
+                function (err) {
+                    resp.status(400).send(err);
                 }
             );
     }

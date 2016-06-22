@@ -11,7 +11,8 @@ module.exports = function(app, models) {
     app.post("/project/api/user/:userId/post", createPost);
     app.get("/project/api/user/:userId/post", findPostsByUser);
     app.get("/project/api/post/:postId", findPostById);
-    app.get("/project/api/post/", findAll);
+    app.get("/project/api/post/", findAllPosts);
+    app.get("/project/api/post/search/:text", search);
     app.put("/project/api/post/:postId", updatePost);
     app.delete("/project/api/post/:postId", deletePost);
 
@@ -62,15 +63,30 @@ module.exports = function(app, models) {
             );
     }
 
-    function findAll(req, resp) {
+    function findAllPosts(req, resp) {
         postModel
-            .findAll()
+            .findAllPosts()
             .then(
                 function (posts) {
                     resp.json(posts);
                 },
                 function (error) {
                     resp.status(400).send(error);
+                }
+            );
+    }
+
+    function search(req, resp) {
+        var searchText = req.params["text"];
+
+        postModel
+            .search(searchText)
+            .then(
+                function (posts) {
+                    resp.json(posts);
+                },
+                function (err) {
+                    resp.status(400).send(err);
                 }
             );
     }

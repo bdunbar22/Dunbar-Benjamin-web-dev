@@ -10,7 +10,8 @@ module.exports = function (projectDB) {
         createEvent: createEvent,
         findEventsByUser: findEventsByUser,
         findEventById: findEventById,
-        findAll: findAll,
+        findAllEvents: findAllEvents,
+        search: search,
         updateEvent: updateEvent,
         deleteEvent: deleteEvent
     };
@@ -29,8 +30,17 @@ module.exports = function (projectDB) {
         return Event.findById(eventId);
     }
 
-    function findAll() {
+    function findAllEvents() {
         return Event.find();
+    }
+
+    function search(searchText) {
+        return Event.find({$or: [
+                        {'name': {$regex:searchText, $options:'i'}},
+                        {'when': {$regex:searchText, $options:'i'}},
+                        {'where': {$regex:searchText, $options:'i'}},
+                        {'description': {$regex:searchText, $options:'i'}}]
+                    });
     }
 
     function updateEvent(eventId, event) {

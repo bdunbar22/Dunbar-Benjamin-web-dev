@@ -11,7 +11,8 @@ module.exports = function(app, models) {
     app.post("/project/api/user/:userId/event", createEvent);
     app.get("/project/api/user/:userId/event", findEventsByUser);
     app.get("/project/api/event/:eventId", findEventById);
-    app.get("/project/api/event/", findAll);
+    app.get("/project/api/event/", findAllEvents);
+    app.get("/project/api/event/search/:text", search);
     app.put("/project/api/event/:eventId", updateEvent);
     app.delete("/project/api/event/:eventId", deleteEvent);
 
@@ -62,15 +63,30 @@ module.exports = function(app, models) {
             );
     }
 
-    function findAll(req, resp) {
+    function findAllEvents(req, resp) {
         eventModel
-            .findAll()
+            .findAllEvents()
             .then(
                 function (events) {
                     resp.json(events);
                 },
                 function (error) {
                     resp.status(400).send(error);
+                }
+            );
+    }
+
+    function search(req, resp) {
+        var searchText = req.params["text"];
+
+        eventModel
+            .search(searchText)
+            .then(
+                function (events) {
+                    resp.json(events);
+                },
+                function (err) {
+                    resp.status(400).send(err);
                 }
             );
     }

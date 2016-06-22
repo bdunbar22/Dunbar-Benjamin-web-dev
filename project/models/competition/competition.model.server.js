@@ -10,7 +10,8 @@ module.exports = function (projectDB) {
         createCompetition: createCompetition,
         findCompetitionsByUser: findCompetitionsByUser,
         findCompetitionById: findCompetitionById,
-        findAll: findAll,
+        findAllCompetitions: findAllCompetitions,
+        search: search,
         updateCompetition: updateCompetition,
         deleteCompetition: deleteCompetition
     };
@@ -29,8 +30,15 @@ module.exports = function (projectDB) {
         return Competition.findById(competitionId);
     }
 
-    function findAll() {
+    function findAllCompetitions() {
         return Competition.find();
+    }
+
+    function search(searchText) {
+        return Competition.find({$or: [
+            {'name': {$regex:searchText, $options:'i'}},
+            {'description': {$regex:searchText, $options:'i'}}]
+        });
     }
 
     function updateCompetition(competitionId, competition) {

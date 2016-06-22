@@ -9,6 +9,8 @@ module.exports = function () {
         _user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
         name: String,
         description: String,
+        when: String,
+        where: String,
         participants: [mongoose.Schema.Types.ObjectId],
         dateCreated: {type: Date, default: Date.now},
         dateUpdated: Date
