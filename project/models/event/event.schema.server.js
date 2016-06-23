@@ -16,5 +16,10 @@ module.exports = function () {
         dateUpdated: Date
     }, {collection: "project.event"});
 
+    /* 
+     * Note: when and where are left as strings so they can be included in the text query.
+     * It is possible to query dates, but would require too much time to implement given the short semester.
+     */
+
     return EventSchema;
 };

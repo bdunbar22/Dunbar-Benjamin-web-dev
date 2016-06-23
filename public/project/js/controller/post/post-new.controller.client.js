@@ -7,8 +7,10 @@
         .module("BenProject")
         .controller("NewPostController", NewPostController);
 
-    function NewPostController($routeParams, $location, PostService) {
+    function NewPostController($routeParams, $location, $scope, PostService) {
         var vm = this;
+        //Give Default Radio choice
+        $scope.postType = "VIDEO";
         vm.createPost = createPost;
 
         function init() {

@@ -10,7 +10,8 @@ module.exports = function () {
         judges: [mongoose.Schema.Types.ObjectId],
         name: String,
         description: String,
-        endDate: Date,
+        judgingStarts: Date,
+        winner: mongoose.Schema.Types.ObjectId,
         posts: [mongoose.Schema.Types.ObjectId],
         dateCreated: {type: Date, default: Date.now},
         dateUpdated: Date

@@ -52,6 +52,36 @@
                        id="lastName"
                        placeholder="Dunbar">
             </div>
+
+            <div class="form-group col-md-6 no-col-margin">
+                <label for="age">Age</label>
+                <input ng-model="model.user.age"
+                       type="number"
+                       class="form-control"
+                       id="age"
+                       placeholder="22">
+            </div>
+
+            <div class="form-group col-md-6 no-col-margin">
+                <label for="trophy">Trophy Count</label>
+                <input ng-model="model.user.trophyCount"
+                       type="number"
+                       class="form-control"
+                       id="trophy"
+                       placeholder="3"
+                       readonly>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input ng-model="model.user.phone"
+                       type="text"
+                       class="form-control"
+                       id="phone"
+                       placeholder="123-456-7891">
+            </div>
+
+
         </form>
 
         <a href="#/user/{{model.user._id}}/post"

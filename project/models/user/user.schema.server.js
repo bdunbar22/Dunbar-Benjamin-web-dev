@@ -18,6 +18,7 @@ module.exports = function () {
         competitions: [mongoose.Schema.Types.ObjectId],
         posts: [mongoose.Schema.Types.ObjectId],
         following: [mongoose.Schema.Types.ObjectId],
+        followers: [mongoose.Schema.Types.ObjectId],
         facebook: {
             id: String,
             token: String,

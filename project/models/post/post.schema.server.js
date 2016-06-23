@@ -9,9 +9,8 @@ module.exports = function () {
         _user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
         name: String,
         description: String,
+        postType: {type: String, enum: ['IMAGE', 'VIDEO', 'TEXT'], default: 'VIDEO'},
         url: String,
-        width: String,
-        height: String,
         dateCreated: {type: Date, default: Date.now},
         dateUpdated: Date
     }, {collection: "project.post"});

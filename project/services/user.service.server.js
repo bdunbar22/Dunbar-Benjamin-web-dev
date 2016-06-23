@@ -20,6 +20,19 @@ module.exports = function(app, models) {
         callbackURL  : process.env.FACEBOOK_CALLBACK_URL
     };
 
+    //TODO: Configure OPENSHIFT env variable for google. Update Facebook env var.
+    //TODO: Client side error handling and input validation!
+    //TODO: public view of a persons profile.
+    //TODO: public views of events etc.
+    //TODO: Customize how events/posts/comps work. Finish post image upload.
+    //TODO: Can join any event.
+    //TODO: Athletes can add posts to any competition
+    //TODO: Add judges
+    //TODO: Users can follow each other.
+    //TODO: Video
+    //TODO: REACH GOALS: Youtube Search API in new & edit Post view.
+    //TODO: Reach GOALS: Comments on everything
+
     var googleConfig = {
         clientID        : process.env.GOOGLE_CLIENT_ID,
         clientSecret    : process.env.GOOGLE_CLIENT_SECRET,
