@@ -13,6 +13,8 @@ module.exports = function (projectDB) {
         findUserByCredentials: findUserByCredentials,
         findAllUsers: findAllUsers,
         search: search,
+        findUserByFacebookId: findUserByFacebookId,
+        findUserByGoogleId: findUserByGoogleId,
         updateUser: updateUser,
         deleteUser: deleteUser
     };
@@ -46,7 +48,15 @@ module.exports = function (projectDB) {
                             {'lastName': {$regex:searchText, $options:'i'}}]
                         }, {password: 0, dateCreated: 0, dateUpdated: 0});
     }
-    
+
+    function findUserByFacebookId(facebookId) {
+        return User.findOne({'facebook.id': facebookId});
+    }
+
+    function findUserByGoogleId(googleId) {
+        return User.findOne({'google.id': googleId});
+    }
+
     function updateUser(userId, user) {
         return User.update({_id: userId}, {$set: user});
     }

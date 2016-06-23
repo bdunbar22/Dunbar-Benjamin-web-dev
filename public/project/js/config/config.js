@@ -50,7 +50,18 @@
             .when("/user/:uid", {
                 templateUrl: "templates/user/profile.view.client.html",
                 controller: "ProfileController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    loggedin: checkLoggedIn
+                }
+            })
+            .when("/user", {
+                templateUrl: "templates/user/profile.view.client.html",
+                controller: "ProfileController",
+                controllerAs: "model",
+                resolve: {
+                    loggedin: checkLoggedIn
+                }
             })
             .when("/user/:uid/post", {
                 templateUrl: "templates/post/post-list.view.client.html",
@@ -101,5 +112,35 @@
             .otherwise({
                 templateUrl: "templates/home/home.view.client.html"
             });
+
+        function checkLoggedIn(UserService, $q, $location, $rootScope) {
+            var def = $q.defer();
+
+            UserService
+                .checkLoggedIn()
+                .then(
+                    function (resp) {
+                        var user = resp.data;
+                        if(user === '0') {
+                            $rootScope.currentUser = null;
+                            $location.url("/login");
+                            def.reject();
+                        }
+                        else {
+                            def.resolve();
+                            $rootScope.currentUser = user;
+                            //$location.url("/profile/" + user._id);
+                        }
+                    },
+                    function (err) {
+                        console.log(err);
+                        $rootScope.currentUser = null;
+                        $location.url("/login");
+                        def.reject();
+                    }
+                );
+
+            return def.promise;
+        }
     }
 })();

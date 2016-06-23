@@ -10,18 +10,26 @@
     /**
      * At start retrieve user based on url uid parameter. Found in init function.
      */
-    function ProfileController($routeParams, $location, UserService) {
+    function ProfileController($routeParams, $location, $rootScope, UserService) {
         var vm = this;
         var id = $routeParams["uid"];
         vm.updateUser = updateUser;
         vm.deleteUser = deleteUser;
+        vm.logout = logout;
 
         function init() {
-            UserService
-                .findUserById(id)
-                .then(function (resp) {
-                    vm.user = resp.data;
-                });
+            if(id) {
+                UserService
+                    .findUserById(id)
+                    .then(function (resp) {
+                        vm.user = resp.data;
+                    });
+            } else if($rootScope.currentUser) {
+                vm.user = $rootScope.currentUser;
+                id = vm.user._id;
+            } else {
+                $location.url("/login");
+            }
         }
         init();
 
@@ -45,6 +53,21 @@
                 function (error) {
                     vm.error = error.data;
                 });
+        }
+
+        function logout() {
+            UserService
+                .logout()
+                .then(
+                    function() {
+                        $rootScope.currentUser = null;
+                        $location.url("/login");
+                    },
+                    function() {
+                        $rootScope.currentUser = null;
+                        $location.url("/login");
+                    }
+                );
         }
     }
 })();
