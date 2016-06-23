@@ -40,6 +40,28 @@
                           placeholder="Lorem Ipsum"
                           ng-model="model.event.description"></textarea>
             </div>
+            <div class="form-group">
+                <label for="when">When</label>
+                <input type="text"
+                       class="form-control"
+                       id="when"
+                       placeholder="Monday, June 1st at 5:00PM"
+                       ng-model="model.event.when">
+            </div>
+            <div class="form-group">
+                <label for="where">Where</label>
+                <input type="text"
+                       class="form-control"
+                       id="where"
+                       placeholder="Boston Common"
+                       ng-model="model.event.where">
+            </div>
+            <div class="form-group">
+                <label>Participants:</label>
+                <div ng-repeat="userId in model.event.participants">
+                    <a href="#/user/{{userId}}/public">Athlete: {{userId}}</a>
+                </div>
+            </div>
         </form>
 
         <a ng-click="model.deleteEvent()"

@@ -16,14 +16,21 @@
         }
         init();
 
-        function createEvent(name, description) {
-            var event = {};
+        function createEvent(name, description, when, where) {
+
             if(name == "" || name == null) {
                 vm.error = "Event needs a name.";
                 return false;
+            } else if(description == "" || description == null) {
+                vm.error = "Event needs a summary.";
+                return false;
             }
-            event.name = name;
-            event.description = description;
+            var event = {
+                name: name,
+                description: description,
+                when: when,
+                where: where
+            };
             EventService
                 .createEvent(vm.userId, event)
                 .then(function (resp) {

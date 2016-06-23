@@ -11,7 +11,7 @@
                 </a>
                 <p class="navbar-text pull-right">
                     <a href=""
-                       ng-click="model.createEvent(name, description)"
+                       ng-click="model.createEvent(name, description, when, where)"
                        class="navbar-link">
                         <span class="glyphicon glyphicon-ok header-glyphicon bmd-accent"></span>
                     </a>
@@ -39,6 +39,22 @@
                           class="form-control"
                           placeholder="Description"
                           ng-model="description"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="when">When</label>
+                <input type="text"
+                          id="when"
+                          class="form-control"
+                          placeholder="Monday, June 1st at 5:00PM"
+                          ng-model="when">
+            </div>
+            <div class="form-group">
+                <label for="where">Where</label>
+                <input type="text"
+                          id="where"
+                          class="form-control"
+                          placeholder="Northeastern University at Centennial"
+                          ng-model="where">
             </div>
         </form>
     </div>
