@@ -19,6 +19,7 @@
             findAllUsers: findAllUsers,
             search: search,
             login: login,
+            logout: logout,
             updateUser: updateUser,
             deleteUser: deleteUser,
             checkLoggedIn: checkLoggedIn
@@ -71,6 +72,11 @@
                 password: password
             };
             return $http.post(url, user);
+        }
+
+        function logout() {
+            var url = "/project/api/logout";
+            return $http.post(url);
         }
 
         function updateUser(userId, user) {

@@ -36,13 +36,13 @@ module.exports = function(app, models) {
     //project/api/user/?username=username
     //project/api/user/?username=username&password=password
     app.get("/project/api/loggedin", loggedIn);
-    app.post("/api/logout", logout);
+    app.post("/project/api/logout", logout);
     app.get("/project/api/user/:userId", findUserById);
     app.put("/project/api/user/:userId", updateUser);
     app.delete("/project/api/user/:userId", deleteUser);
     /* Google */
-    app.get("project/auth/google", passport.authenticate('google', { scope : ['profile', 'email'] }));
-    app.get   ("project/auth/google/callback",
+    app.get("/project/auth/google", passport.authenticate('google', { scope : ['profile', 'email'] }));
+    app.get("/project/auth/google/callback",
         passport.authenticate('google', {
             successRedirect: '/project/#/user',
             failureRedirect: '/project/#/login'
@@ -50,8 +50,8 @@ module.exports = function(app, models) {
 
 
     /* Facebook */
-    app.get("project/auth/facebook", passport.authenticate('facebook', { scope : 'email' }));
-    app.get("project/auth/facebook/callback",
+    app.get("/project/auth/facebook", passport.authenticate('facebook', { scope : 'email' }));
+    app.get("/project/auth/facebook/callback",
         passport.authenticate('facebook', {
             successRedirect: '/project/#/user',
             failureRedirect: '/project/#/login'
@@ -139,11 +139,25 @@ module.exports = function(app, models) {
                         return userModel
                             .createUser(user);
                     }
+                },
+                function(err) {
+                    if (error) {
+                        return done(error);
+                    } else {
+                        return done(null, false);
+                    }
                 }
             )
             .then(
-                function (user) {
+                function(user){
                     return done(null, user);
+                },
+                function(err){
+                    if (error) {
+                        return done(error);
+                    } else {
+                        return done(null, false);
+                    }
                 }
             );
     }
@@ -174,7 +188,11 @@ module.exports = function(app, models) {
                     }
                 },
                 function(err) {
-                    return done(null, false);
+                    if (error) {
+                        return done(error);
+                    } else {
+                        return done(null, false);
+                    }
                 }
             )
             .then(
@@ -182,7 +200,11 @@ module.exports = function(app, models) {
                     return done(null, user);
                 },
                 function(err){
-                    return done(null, false);
+                    if (error) {
+                        return done(error);
+                    } else {
+                        return done(null, false);
+                    }
                 }
             );
     }
@@ -207,6 +229,7 @@ module.exports = function(app, models) {
 
     function register(req, resp) {
         var username = req.body.username;
+        var password = req.body.password;
         userModel
             .findUserByUsername(username)
             .then(
@@ -215,8 +238,13 @@ module.exports = function(app, models) {
                         resp.status(400).send("Username: " + username + " is already in use.");
                     }
                     else {
+                        password = bcrypt.hashSync(password);
+                        user = {
+                            username: username,
+                            password: password
+                        };
                         return userModel
-                            .createUser(req.body);
+                            .createUser(user);
                     }
                 },
                 function (error) {
@@ -361,6 +389,6 @@ module.exports = function(app, models) {
 
     function logout(req, res) {
         req.logout();
-        res.send(200);
+        res.sendStatus(200);
     }
 };

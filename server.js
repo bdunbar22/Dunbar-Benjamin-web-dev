@@ -18,7 +18,7 @@ app.use(express.static(__dirname + '/public'));
 
 require ("./project/app.js")(app);
 require ("./test/app.js")(app);
-require ("./assignment/app.js")(app);
+//require ("./assignment/app.js")(app);
 
 
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP;

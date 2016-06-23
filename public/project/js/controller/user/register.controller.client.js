@@ -16,11 +16,8 @@
                 vm.error = "Could not verify password.";
                 return false;
             }
-            var user = {};
-            user.username = username;
-            user.password = password;
             UserService
-                .createUser(user)
+                .register(username, password)
                 .then(function (resp) {
                     var userId = resp.data._id;
                     $location.url("/user/" + userId);
