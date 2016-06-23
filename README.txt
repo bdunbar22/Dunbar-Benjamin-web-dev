@@ -17,3 +17,4 @@ The js directory contains the subdirectories for configuration, controllers and 
 
 Project:
 All project files are within the project directory, i.e. css, js, images and html
+The project is a human movement sharing project called Freedom to Flip.
