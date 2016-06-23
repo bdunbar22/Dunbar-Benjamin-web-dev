@@ -30,6 +30,23 @@
                     <span class="glyphicon glyphicon-cog pull-right"></span>
                 </a>
                 <p>{{post.description}}</p>
+                <div ng-switch="post.postType">
+                    <div ng-switch-when="IMAGE">
+                        <img class="post-display"
+                             ng-src="{{post.url}}">
+                    </div>
+                    <div ng-switch-when="VIDEO"
+                         class="bmd-widget youtube­post">
+                        <iframe height="auto"
+                                ng-src="{{model.getTrustedUrl(post)}}"
+                                frameborder="0"
+                                allowfullscreen></iframe>
+                    </div>
+                    <div ng-switch-when="TEXT">
+                    </div>
+                    <div ng-switch-default>
+                    </div>
+                </div>
             </li>
         </ul>
     </div>

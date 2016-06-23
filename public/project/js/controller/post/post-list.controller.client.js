@@ -7,9 +7,10 @@
         .module("BenProject")
         .controller("PostListController", PostListController);
     
-    function PostListController($routeParams, PostService) {
+    function PostListController($routeParams, $sce, PostService) {
         var vm = this;
-        
+        vm.getTrustedUrl = getTrustedUrl;
+
         function init() {
             vm.userId = $routeParams["uid"];
             PostService
@@ -22,5 +23,12 @@
                 })
         }
         init();
+
+        function getTrustedUrl(post) {
+            var urlParts = post.url.split("/");
+            var id = urlParts[urlParts.length - 1];
+            var url = "https://www.youtube.com/embed/" + id;
+            return $sce.trustAsResourceUrl(url);
+        }
     }
 })();

@@ -78,6 +78,11 @@
                 controller: "EditPostController",
                 controllerAs: "model"
             })
+            .when("/user/:uid/post/:pid/flickr", {
+                templateUrl: "templates/post/post-flickr-search.view.client.html",
+                controller: "FlickrImageSearchController",
+                controllerAs: "model"
+            })
             .when("/user/:uid/event", {
                 templateUrl: "templates/event/event-list.view.client.html",
                 controller: "EventListController",

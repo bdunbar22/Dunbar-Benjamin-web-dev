@@ -11,6 +11,7 @@
         var vm = this;
         vm.updatePost = updatePost;
         vm.deletePost = deletePost;
+        vm.flickrNavigation = flickrNavigation;
 
         function init() {
             vm.userId = $routeParams["uid"];
@@ -41,6 +42,16 @@
                     $location.url("/user/" + vm.userId + "/post");
                 },
                 function (error) {
+                    vm.error = error.data;
+                });
+        }
+
+        function flickrNavigation() {
+            PostService
+                .updatePost(vm.postId, vm.post)
+                .then(function (resp) {
+                    $location.url("/user/" + vm.userId + "/post/" + vm.postId + "/flickr");
+                }, function (error) {
                     vm.error = error.data;
                 });
         }

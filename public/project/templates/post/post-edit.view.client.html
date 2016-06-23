@@ -40,11 +40,50 @@
                           placeholder="Lorem Ipsum"
                           ng-model="model.post.description"></textarea>
             </div>
+            <p>Type: {{model.post.postType}}</p>
+            <div ng-switch="model.post.postType">
+                <div ng-switch-when="IMAGE">
+                    <!-- <div ng­include="'/assignment/views/widget/widget­image.view.client.html'"></div> -->
+                    <form>
+                        <div class="form-group">
+                            <label for="urlIMAGE">URL</label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="urlIMAGE"
+                                   ng-model="model.post.url">
+                        </div>
+                    </form>
+                    <form action="/public/api/upload" method="post" enctype="multipart/form-data">
+                        <input name="myFile" type="file" class="form-control"/>
+                        <input name="widgetId" value="{{model.postId}}" style="display: none"/>
+                        <input name="userId" value="{{model.userId}}" style="display: none"/>
+                        <button type="submit" class="btn btn-block btn-primary bmd-margin-top-10">Upload Image</button>
+                    </form>
+
+                    <a ng-click="model.flickrNavigation()"
+                       href=""
+                       class="btn btn-block btn-primary bmd-margin-top-10">Search</a>
+                </div>
+                <div ng-switch-when="VIDEO">
+                    <!-- <div ng­include="'/assignment/views/widget/widget­youtube.view.client.html'"></div> -->
+                    <form>
+                        <div class="form-group">
+                            <label for="urlYOUTUBE">URL</label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="urlYOUTUBE"
+                                   ng-model="model.post.url">
+                        </div>
+                    </form>
+                </div>
+                <div ng-switch-when="TEXT">
+                </div>
+            </div>
         </form>
 
         <a ng-click="model.deletePost()"
            href=""
-           class="btn btn-block btn-danger">Delete</a>
+           class="btn btn-block btn-danger bmd-margin-top-10">Delete</a>
     </div>
     <nav class="navbar navbar-default navbar-fixed-bottom">
         <div class="container-fluid">

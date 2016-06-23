@@ -18,14 +18,19 @@
         }
         init();
 
-        function createPost(name, description) {
-            var post = {};
+        function createPost(name, description, postType) {
             if(name == "" || name == null) {
                 vm.error = "Post needs a name.";
                 return false;
+            } else if(postType == "" || postType == null) {
+                vm.error = "Post needs a type.";
+                return false;
             }
-            post.name = name;
-            post.description = description;
+            var post = {
+                name: name,
+                description: description,
+                postType: postType
+            };
             PostService
                 .createPost(vm.userId, post)
                 .then(function (resp) {
