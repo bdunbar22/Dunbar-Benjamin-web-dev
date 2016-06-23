@@ -11,7 +11,7 @@
                 </a>
                 <p class="navbar-text pull-right">
                     <a href=""
-                       ng-click="model.createCompetition(name, description)"
+                       ng-click="model.createCompetition(name, description, judgingStarts)"
                        class="navbar-link">
                         <span class="glyphicon glyphicon-ok header-glyphicon bmd-accent"></span>
                     </a>
@@ -40,6 +40,17 @@
                           placeholder="Description"
                           ng-model="description"></textarea>
             </div>
+            <div class="form-group">
+                <label for="judgingStarts">Judging Starts</label>
+                <input type="text"
+                          id="judgingStarts"
+                          class="form-control"
+                          placeholder="Friday, May 7th 2016 at 7:00pm"
+                          ng-model="judgingStarts">
+            </div>
+            <p>
+                Note: You will have to add judges by id to this event in the edit view.
+            </p>
         </form>
     </div>
     <nav class="navbar navbar-default navbar-fixed-bottom">

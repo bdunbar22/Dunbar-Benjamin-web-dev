@@ -16,7 +16,7 @@
         }
         init();
 
-        function createCompetition(name, description) {
+        function createCompetition(name, description, judgingStarts) {
             var competition = {};
             if(name == "" || name == null) {
                 vm.error = "Competition needs a name.";
@@ -24,6 +24,7 @@
             }
             competition.name = name;
             competition.description = description;
+            competition.judgingStarts = judgingStarts;
             CompetitionService
                 .createCompetition(vm.userId, competition)
                 .then(function (resp) {

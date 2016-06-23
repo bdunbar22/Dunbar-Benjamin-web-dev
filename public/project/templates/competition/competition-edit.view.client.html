@@ -23,6 +23,9 @@
         <div ng-if="model.error" class="alert alert-danger bmd-margin-top-10">
             {{model.error}}
         </div>
+        <div ng-if="model.error" class="alert alert-success bmd-margin-top-10">
+            {{model.success}}
+        </div>
         <form>
             <div class="form-group">
                 <label for="name">Name</label>
@@ -39,6 +42,27 @@
                           class="form-control"
                           placeholder="Lorem Ipsum"
                           ng-model="model.competition.description"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="judgingStarts">Judging Starts</label>
+                <input type="text"
+                       id="judgingStarts"
+                       class="form-control"
+                       placeholder="Friday, May 7th 2016 at 7:00pm"
+                       ng-model="model.competition.judgingStarts">
+            </div>
+            <div class="form-group">
+                <input type="text"
+                       placeholder="abc123efg456-bd"
+                       class="form-control"
+                       ng-model="judgeId">
+                <button class="btn btn-sm bmd-margin-top-5 bmd-tertiary" ng-click="model.addJudge(judgeId)">Add Judge</button>
+            </div>
+            <div ng-repeat="judge in model.competition.judges" class="form-group">
+                <input type="text"
+                       class="form-control"
+                       value="judge">
+                <button class="btn btn-sm bmd-margin-top-5 bmd-tertiary" ng-click="model.removeJudge(judge)">Remove Judge</button>
             </div>
         </form>
 
