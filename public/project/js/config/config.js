@@ -108,6 +108,11 @@
                 controller: "EditEventController",
                 controllerAs: "model"
             })
+            .when("/user/:uid/event/:eid/public", {
+                templateUrl: "templates/event/event-public.view.client.html",
+                controller: "PublicEventController",
+                controllerAs: "model"
+            })
             .when("/user/:uid/competition", {
                 templateUrl: "templates/competition/competition-list.view.client.html",
                 controller: "CompetitionListController",
@@ -118,9 +123,13 @@
                 controller: "NewCompetitionController",
                 controllerAs: "model"
             })
-            .when("/user/:uid/competition/:eid", {
+            .when("/user/:uid/competition/:cid", {
                 templateUrl: "templates/competition/competition-edit.view.client.html",
                 controller: "EditCompetitionController",
+                controllerAs: "model"
+            }).when("/user/:uid/competition/:cid/public", {
+                templateUrl: "templates/competition/competition-public.view.client.html",
+                controller: "PublicCompetitionController",
                 controllerAs: "model"
             })
             .otherwise({
