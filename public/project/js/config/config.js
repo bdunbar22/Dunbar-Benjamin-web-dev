@@ -127,7 +127,8 @@
                 templateUrl: "templates/competition/competition-edit.view.client.html",
                 controller: "EditCompetitionController",
                 controllerAs: "model"
-            }).when("/user/:uid/competition/:cid/public", {
+            })
+            .when("/user/:uid/competition/:cid/public", {
                 templateUrl: "templates/competition/competition-public.view.client.html",
                 controller: "PublicCompetitionController",
                 controllerAs: "model"

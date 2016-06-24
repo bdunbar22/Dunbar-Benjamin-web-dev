@@ -16,7 +16,7 @@
 
         function init() {
             vm.userId = $routeParams["uid"];
-            vm.competitionId = $routeParams["eid"];
+            vm.competitionId = $routeParams["cid"];
             CompetitionService
                 .findCompetitionById(vm.competitionId)
                 .then(function (resp) {

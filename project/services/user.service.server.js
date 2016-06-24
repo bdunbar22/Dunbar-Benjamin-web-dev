@@ -20,8 +20,7 @@ module.exports = function(app, models) {
         callbackURL  : process.env.FACEBOOK_CALLBACK_URL
     };
     
-    //TODO: make image upload work.
-    //TODO: Fix getting competitions and parameters from the url (:cid) in config now.
+    //TODO: test image upload work.
     //TODO: Add Judging
     //TODO: Client side error handling and input validation!
     //TODO: Video
