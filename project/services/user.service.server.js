@@ -19,8 +19,8 @@ module.exports = function(app, models) {
         clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
         callbackURL  : process.env.FACEBOOK_CALLBACK_URL
     };
-
-    //TODO: Customize how events/posts/comps work. Finish post image upload.
+    
+    //TODO: make image upload work.
     //TODO: public view of a persons profile.
     //TODO: public views of events etc.
     //TODO: Can join any event.

@@ -1,0 +1,64 @@
+<div class="header-present footer-present">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand bmd-accent"
+                   href="">Profile</a>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <form>
+            <div class="form-group">
+                <label>Username</label>
+                <p>{{model.user.username}}</p>
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <p>{{model.user.email}}</p>
+            </div>
+            <div class="form-group">
+                <label>First Name</label>
+                <p>{{model.user.firstName}}</p>
+            </div>
+            <div class="form-group">
+                <label>Last Name</label>
+                <p>{{model.user.lastName}}</p>
+            </div>
+
+            <div class="form-group col-md-6 no-col-margin">
+                <label>Age</label>
+                <p>{{model.user.age}}</p>
+            </div>
+
+            <div class="form-group col-md-6 no-col-margin">
+                <label>Trophy Count</label>
+                <p>{{model.user.trophyCount}}</p>
+            </div>
+            <div class="form-group">
+                <label>Phone Number</label>
+                <p>{{model.user.phone}}</p>
+            </div>
+            <div ng-show="model.user.userType === 'JUDGE'">
+                <p>Judge Id: {{model.user._id}}</p>
+            </div>
+            <a href="model.followUser()"
+               class="btn btn-block btn-primary">
+                Follow
+            </a>
+        </form>
+    </div>
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <p class="navbar-text pull-left">
+                    <a href="#/home">
+                        <span class="glyphicon glyphicon-home home-glyphicon bmd-accent"></span>
+                    </a>
+                </p>
+                <a href="#/search"
+                   class="navbar-brand bmd-accent pull-right">Search</a>
+            </div>
+        </div>
+    </nav>
+</div>
