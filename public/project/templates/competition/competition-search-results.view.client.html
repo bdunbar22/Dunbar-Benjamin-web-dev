@@ -26,7 +26,7 @@
         <ul class="list-group">
             <li ng-repeat="competition in model.competitions"
                 class="list-group-item bmd-secondary">
-                <a href="#/user/{{model.userId}}/competition/{{competition._id}}/public">{{competition.name}}</a>
+                <a href="#/user/{{competition._user}}/competition/{{competition._id}}/public">{{competition.name}}</a>
                 <p>Summary: {{competition.description}}</p>
             </li>
         </ul>

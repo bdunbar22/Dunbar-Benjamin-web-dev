@@ -26,7 +26,7 @@
         <ul class="list-group">
             <li ng-repeat="post in model.posts"
                 class="list-group-item  bmd-secondary">
-                <a href="#/user/{{model.userId}}/post/{{post._id}}/public">{{post.name}}</a>
+                <a href="#/user/{{post._user}}/post/{{post._id}}/public">{{post.name}}</a>
                 <p>Summary: {{post.description}}</p>
             </li>
         </ul>
