@@ -62,7 +62,7 @@
                        placeholder="22">
             </div>
 
-            <div ng-show="model.user.userType === ATHLETE"
+            <div ng-show="model.user.userType === 'ATHLETE'"
                  class="form-group col-md-6 no-col-margin">
                 <label for="trophy">Trophy Count</label>
                 <input ng-model="model.user.trophyCount"
@@ -95,7 +95,7 @@
 
         </form>
 
-        <div ng-show="model.user.userType === ATHLETE">
+        <div ng-show="model.user.userType === 'ATHLETE'">
             <a href="#/user/{{model.user._id}}/post"
                class="btn btn-block btn-primary">
                 Posts
