@@ -14,6 +14,12 @@
         </div>
     </nav>
     <div class="container">
+        <div ng-if="model.error" class="alert alert-danger bmd-margin-top-10">
+            {{model.error}}
+        </div>
+        <div ng-if="model.success" class="alert alert-success bmd-margin-top-10">
+            {{model.success}}
+        </div>
         <form>
             <div class="form-group">
                 <label>Name</label>

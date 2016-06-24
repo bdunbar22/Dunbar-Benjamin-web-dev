@@ -36,7 +36,7 @@
                 EventService
                     .updateEvent(vm.eventId, vm.event)
                     .then(function (resp) {
-                            vm.message = "Joined event.";
+                            vm.success = "Joined event.";
                         },
                         function (error) {
                             vm.error = error.data;
