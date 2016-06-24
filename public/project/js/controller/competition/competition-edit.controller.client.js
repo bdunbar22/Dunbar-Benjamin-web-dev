@@ -7,7 +7,7 @@
         .module("BenProject")
         .controller("EditCompetitionController", EditCompetitionController);
 
-    function EditCompetitionController($routeParams, $location, CompetitionService) {
+    function EditCompetitionController($routeParams, $location, CompetitionService, UserService) {
         var vm = this;
         vm.updateCompetition = updateCompetition;
         vm.deleteCompetition = deleteCompetition;
@@ -48,15 +48,32 @@
         }
 
         function addJudge(judgeId) {
-            vm.competition.judges.push(judgeId);
-            CompetitionService
-                .updateCompetition(vm.competitionId, vm.competition)
+            if(!judgeId) {
+                vm.error = "Must provide judge Id.";
+                return;
+            }
+            UserService
+                .findUserById(judgeId)
+                .then(
+                    function (judge) {
+                        if(judge.userType != 'JUDGE') {
+                            vm.error = "This user is not a judge.";
+                            return;
+                        }
+                        vm.competition.judges.push(judgeId);
+                        CompetitionService
+                            .updateCompetition(vm.competitionId, vm.competition);
+                    },
+                    function (err) {
+                        vm.error = err;
+                    }
+                )
                 .then(function (resp) {
-                    vm.success = "Updated Competition."
-                },
-                function (error) {
-                    vm.error = error.data;
-                });
+                        vm.success = "Updated Competition."
+                    },
+                    function (error) {
+                        vm.error = error.data;
+                    });
         }
 
         function removeJudge(judgeId) {

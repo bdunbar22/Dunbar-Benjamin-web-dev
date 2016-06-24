@@ -14,6 +14,7 @@ module.exports = function () {
         phone: String,
         trophyCount: Number,
         age: Number,
+        userType: {type: String, enum: ['ATHLETE', 'JUDGE'], default: 'ATHLETE'},
         events: [mongoose.Schema.Types.ObjectId],
         competitions: [mongoose.Schema.Types.ObjectId],
         posts: [mongoose.Schema.Types.ObjectId],

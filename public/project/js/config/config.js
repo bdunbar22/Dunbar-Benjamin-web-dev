@@ -88,6 +88,11 @@
                 controller: "FlickrImageSearchController",
                 controllerAs: "model"
             })
+            .when("/user/:uid/post/:pid/public", {
+                templateUrl: "templates/post/post-public.view.client.html",
+                controller: "PublicPostController",
+                controllerAs: "model"
+            })
             .when("/user/:uid/event", {
                 templateUrl: "templates/event/event-list.view.client.html",
                 controller: "EventListController",
@@ -103,7 +108,6 @@
                 controller: "EditEventController",
                 controllerAs: "model"
             })
-
             .when("/user/:uid/competition", {
                 templateUrl: "templates/competition/competition-list.view.client.html",
                 controller: "CompetitionListController",

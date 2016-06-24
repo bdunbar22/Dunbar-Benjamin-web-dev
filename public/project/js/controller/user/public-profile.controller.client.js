@@ -10,7 +10,7 @@
     /**
      * At start retrieve user based on url uid parameter. Found in init function.
      */
-    function PublicProfileController($routeParams, $location, $rootScope, UserService) {
+    function PublicProfileController($routeParams, $rootScope, UserService) {
         var vm = this;
         var id = $routeParams["uid"];
         vm.followUser = followUser;
