@@ -8,6 +8,13 @@
         </div>
     </nav>
     <div class="container">
+        <div ng-show="model.message"
+             class="alert alert-success bmd-margin-top-10">
+            {{model.message}}
+        </div>
+        <div ng-show="model.error" class="alert alert-danger bmd-margin-top-10">
+            {{model.error}}
+        </div>
         <form>
             <div class="form-group">
                 <label>Username</label>

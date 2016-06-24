@@ -63,6 +63,11 @@
                     loggedin: checkLoggedIn
                 }
             })
+            .when("/user/:uid/public", {
+                templateUrl: "templates/user/public-profile.view.client.html",
+                controller: "PublicProfileController",
+                controllerAs: "model",
+            })
             .when("/user/:uid/post", {
                 templateUrl: "templates/post/post-list.view.client.html",
                 controller: "PostListController",
