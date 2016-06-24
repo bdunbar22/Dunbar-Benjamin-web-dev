@@ -28,6 +28,10 @@
 
         function joinEvent() {
             if(vm.currentUser) {
+                if(vm.event.participants.indexOf(vm.currentUser._id) != -1) {
+                    vm.error = "You have already joined this event.";
+                    return;
+                }
                 vm.event.participants.push(vm.currentUser._id);
                 EventService
                     .updateEvent(vm.eventId, vm.event)
