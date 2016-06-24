@@ -15,6 +15,7 @@ module.exports = function(app, models) {
     app.get("/project/api/post/search/:text", search);
     app.put("/project/api/post/:postId", updatePost);
     app.delete("/project/api/post/:postId", deletePost);
+    app.post("/project/api/upload", upload.single('myFile'), uploadImage);
 
     /* Functions */
     function createPost(req, resp) {
@@ -119,6 +120,47 @@ module.exports = function(app, models) {
                 },
                 function (error) {
                     resp.status(400).send("Post with id: " + postId + " not found.");
+                }
+            );
+    }
+
+
+    /* Image upload */
+    var multer = require('multer'); //npm install multer --save
+    var upload = multer({dest: __dirname + '/../../public/uploads' });
+
+    function uploadImage(req, resp) {
+        var postId = req.body.postId;
+        var userId = req.body.userId;
+        var myFile = req.file; //Dedicated attribute for files.
+
+        var originalname = myFile.originalname;
+        var filename     = myFile.filename; //Service will need this filename to find the file in the future.
+        var path         = myFile.path;
+        var destination  = myFile.destination;
+        var size         = myFile.size;
+        var mimetype     = myFile.mimetype;
+
+        postModel
+            .findPostById(postId)
+            .then(
+                function (post) {
+                    var postToEdit = post;
+                    postToEdit.url = "/../uploads/" + filename;
+                    postModel
+                        .updatePost(postId, postToEdit)
+                        .then(
+                            function (post) {
+                                resp.redirect("./../project/index.html#/user/" + userId + "/post/" + postId);
+                            },
+                            function (error) {
+                                resp.status(400).send("Post with id: " + postId +
+                                    " could not be updated. Post not found.");
+                            }
+                        );
+                },
+                function (error) {
+                    resp.status(404).send("Could not add image to post with id: " + postId);
                 }
             );
     }

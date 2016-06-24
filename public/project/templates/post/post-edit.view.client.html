@@ -55,7 +55,7 @@
                     </form>
                     <form action="/public/api/upload" method="post" enctype="multipart/form-data">
                         <input name="myFile" type="file" class="form-control"/>
-                        <input name="widgetId" value="{{model.postId}}" style="display: none"/>
+                        <input name="postId" value="{{model.postId}}" style="display: none"/>
                         <input name="userId" value="{{model.userId}}" style="display: none"/>
                         <button type="submit" class="btn btn-block btn-primary bmd-margin-top-10">Upload Image</button>
                     </form>
