@@ -21,12 +21,8 @@ module.exports = function(app, models) {
     };
     
     //TODO: make image upload work.
-    //TODO: public view of a persons profile.
-    //TODO: public views of events etc.
-    //TODO: Can join any event.
-    //TODO: Athletes can add posts to any competition
-    //TODO: Add judges & Judging
-    //TODO: Users can follow each other. 
+    //TODO: Fix getting competitions and parameters from the url (:cid) in config now.
+    //TODO: Add Judging
     //TODO: Client side error handling and input validation!
     //TODO: Video
     //TODO: REACH GOALS: Youtube Search API in new & edit Post view.
