@@ -7,6 +7,10 @@ module.exports = function(app, models) {
     /* DB Model */
     var postModel = models.postModel;
 
+    /* Image upload */
+    var multer = require('multer'); //npm install multer --save
+    var upload = multer({dest: __dirname + '/../../public/uploads' });
+
     /* Paths that are allowed. */
     app.post("/project/api/user/:userId/post", createPost);
     app.get("/project/api/user/:userId/post", findPostsByUser);
@@ -123,11 +127,6 @@ module.exports = function(app, models) {
                 }
             );
     }
-
-
-    /* Image upload */
-    var multer = require('multer'); //npm install multer --save
-    var upload = multer({dest: __dirname + '/../../public/uploads' });
 
     function uploadImage(req, resp) {
         var postId = req.body.postId;
