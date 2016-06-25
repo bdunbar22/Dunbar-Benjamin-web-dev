@@ -12,7 +12,7 @@ module.exports = function () {
         lastName: String,
         email: String,
         phone: String,
-        trophyCount: Number,
+        trophyCount: {type: Number, default: 0},
         age: Number,
         userType: {type: String, enum: ['ATHLETE', 'JUDGE'], default: 'ATHLETE'},
         events: [mongoose.Schema.Types.ObjectId],

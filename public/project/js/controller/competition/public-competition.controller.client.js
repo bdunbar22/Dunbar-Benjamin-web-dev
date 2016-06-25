@@ -36,6 +36,11 @@
                 .then(
                     function (post) {
                         if(post) {
+                            post = post.data;
+                            if(vm.competition.posts.indexOf(post._id) != -1) {
+                                vm.error = "You have already added this post.";
+                                return;
+                            }
                             vm.competition.posts.push(post._id);
                             CompetitionService
                                 .updateCompetition(vm.competitionId, vm.competition);

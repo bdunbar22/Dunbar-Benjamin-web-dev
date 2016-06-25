@@ -21,7 +21,6 @@ module.exports = function(app, models) {
     };
 
 
-    //TODO: Can't follow a user twice.
     //TODO: Add Voting ability
     //TODO: Fix so that when you add posts and judges to a competition, they get saved. Look at how people join events!
     //TODO: Test Compute Winner!
