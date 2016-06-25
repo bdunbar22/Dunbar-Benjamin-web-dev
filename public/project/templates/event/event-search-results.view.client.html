@@ -26,7 +26,7 @@
         <ul class="list-group">
             <li ng-repeat="event in model.events"
                 class="list-group-item  bmd-secondary">
-                <a href="#/user/{{event._user}}/event/{{event._id}}/public">{{event.name}}</a>
+                <a href="#/event/{{event._id}}/public">{{event.name}}</a>
                 <p>Summary: {{event.description}}</p>
             </li>
         </ul>

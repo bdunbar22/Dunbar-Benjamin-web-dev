@@ -36,25 +36,39 @@
             <div class="form-group">
                 <label>Judges</label>
                 <div ng-repeat="judge in model.competition.judges">
-                    <p>Judge: {{judge}}</p>
+                    <a href="#/user/{{judge}}/public">Judge: {{judge}}</a>
                 </div>
+            </div>
+            <div ng-show="model.competition.complete"
+                 class="form-group">
+                <label>Winner</label>
+                <p>{{model.competition.winner}}</p>
+            </div>
+            <div  ng-show="!model.competition.complete"
+                  class="form-group">
+                <input type="text"
+                       placeholder="abc123efg456-bd"
+                       class="form-control"
+                       ng-model="postId">
+                <button class="btn btn-sm bmd-margin-top-5 bmd-tertiary" ng-click="model.vote(postId)">Vote</button>
             </div>
         </form>
 
-        <div class="form-group">
+        <div ng-show="!model.competition.complete"
+             class="form-group">
             <label>Add Post Entry by Post Id</label>
             <input type="text"
                    placeholder="abc123efg456-bd"
                    class="form-control"
-                   ng-model="postId">
-            <button class="btn btn-sm bmd-margin-top-5 bmd-tertiary" ng-click="model.addPost(postId)">Add Post</button>
+                   ng-model="postToAdd">
+            <button class="btn btn-sm bmd-margin-top-5 bmd-tertiary" ng-click="model.addPost(postToAdd)">Add Post</button>
         </div>
 
         <div class="form-group">
-            <label>Entry</label>
+            <label>Entries</label>
             <div ng-repeat="post in model.competition.posts">
                 <p>Post:
-                    <a href="#/user/{{model.userId}}/post/{{post._id}}/public">{{post}}</a>
+                    <a href="#/post/{{post}}/public">{{post}}</a>
                 </p>
             </div>
         </div>

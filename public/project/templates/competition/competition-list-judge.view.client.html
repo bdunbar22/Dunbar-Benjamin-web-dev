@@ -2,10 +2,13 @@
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a href="#/login"
-                   class="navbar-brand bmd-accent">Login</a>
-                <a href="#/register"
-                   class="navbar-brand bmd-accent pull-right">Register</a>
+                <a href="#/user/{{model.userId}}" class="navbar-link navbar-brand">
+                    <span class="glyphicon glyphicon-chevron-left bmd-accent"></span>
+                </a>
+                <a class="navbar-brand bmd-accent"
+                   href="">
+                    Competitions
+                </a>
             </div>
         </div>
     </nav>
@@ -13,20 +16,20 @@
         <div ng-if="model.error"
              class="alert alert-info bmd-margin-top-10">{{model.error}}</div>
 
-        <h2>Search For Competitions</h2>
-
-        <div class="form-group">
-            <input type="text"
-                   placeholder="Search text"
-                   class="form-control"
-                   ng-model="searchText">
-            <button class="btn btn-sm bmd-margin-top-5 bmd-tertiary" ng-click="model.search(searchText)">Search</button>
-        </div>
+        <p>Info:</p>
+        <p>
+            To vote for a competition, go to the page for the competition and then vote based on
+            post Id.
+        </p>
 
         <ul class="list-group">
             <li ng-repeat="competition in model.competitions"
                 class="list-group-item bmd-secondary">
                 <a href="#/competition/{{competition._id}}/public">{{competition.name}}</a>
+                <a href="#/competition/{{competition._id}}/public">
+                    <span class="glyphicon glyphicon-play pull-right"></span>
+                    <span class="glyphicon glyphicon-cog pull-right"></span>
+                </a>
                 <p>Summary: {{competition.description}}</p>
             </li>
         </ul>

@@ -12,12 +12,12 @@
         vm.addPost = addPost;
 
         function init() {
-            vm.userId = $routeParams["uid"];
             vm.competitionId = $routeParams["cid"];
             CompetitionService
                 .findCompetitionById(vm.competitionId)
                 .then(function (resp) {
                     vm.competition = resp.data;
+                    vm.userId = vm.competition._user;
                 });
 
             if($rootScope.currentUser) {
@@ -35,12 +35,16 @@
                 .findPostById(postId)
                 .then(
                     function (post) {
-                        vm.competition.posts.push(postId);
-                        CompetitionService
-                            .updateCompetition(vm.competitionId, vm.competition);
+                        if(post) {
+                            vm.competition.posts.push(post._id);
+                            CompetitionService
+                                .updateCompetition(vm.competitionId, vm.competition);
+                        } else {
+                            vm.error = "Not a valid post.";
+                        }
                     },
                     function (err) {
-                       vm.error = "Not a valid post.";
+                        vm.error = "Not a valid post.";
                     }
                 )
                 .then(function (resp) {

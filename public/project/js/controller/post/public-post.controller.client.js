@@ -12,12 +12,12 @@
         vm.getTrustedUrl = getTrustedUrl;
 
         function init() {
-            vm.userId = $routeParams["uid"];
             vm.postId = $routeParams["pid"];
             PostService
                 .findPostById(vm.postId)
                 .then(function (resp) {
                     vm.post = resp.data;
+                    vm.userId = vm.post._user;
                 });
         }
         init();

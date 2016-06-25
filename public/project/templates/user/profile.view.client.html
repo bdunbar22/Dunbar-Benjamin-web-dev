@@ -102,13 +102,20 @@
                class="btn btn-block btn-primary">
                 Events
             </a>
+            <a href="#/user/{{model.user._id}}/competition"
+               class="btn btn-block btn-primary">
+                Competitions
+            </a>
+        </div>
+        <div ng-show="model.user.userType === 'JUDGE'">
+            <a href="#/judge/{{model.user._id}}/competition"
+               class="btn btn-block btn-primary">
+                Competitions
+            </a>
         </div>
 
-        <a href="#/user/{{model.user._id}}/competition"
-           class="btn btn-block btn-primary bmd-margin-top-5">
-            Competitions
-        </a><a href="#/search"
-           class="btn btn-block bmd-tertiary">
+        <a href="#/search"
+           class="btn btn-block bmd-tertiary bmd-margin-top-5">
             Search Website
         </a>
         <a href=""

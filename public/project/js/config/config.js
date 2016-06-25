@@ -88,7 +88,7 @@
                 controller: "FlickrImageSearchController",
                 controllerAs: "model"
             })
-            .when("/user/:uid/post/:pid/public", {
+            .when("/post/:pid/public", {
                 templateUrl: "templates/post/post-public.view.client.html",
                 controller: "PublicPostController",
                 controllerAs: "model"
@@ -108,7 +108,7 @@
                 controller: "EditEventController",
                 controllerAs: "model"
             })
-            .when("/user/:uid/event/:eid/public", {
+            .when("/event/:eid/public", {
                 templateUrl: "templates/event/event-public.view.client.html",
                 controller: "PublicEventController",
                 controllerAs: "model"
@@ -116,6 +116,11 @@
             .when("/user/:uid/competition", {
                 templateUrl: "templates/competition/competition-list.view.client.html",
                 controller: "CompetitionListController",
+                controllerAs: "model"
+            })
+            .when("/judge/:uid/competition", {
+                templateUrl: "templates/competition/competition-list-judge.view.client.html",
+                controller: "CompetitionListJudgeController",
                 controllerAs: "model"
             })
             .when("/user/:uid/competition/new", {
@@ -128,7 +133,7 @@
                 controller: "EditCompetitionController",
                 controllerAs: "model"
             })
-            .when("/user/:uid/competition/:cid/public", {
+            .when("/competition/:cid/public", {
                 templateUrl: "templates/competition/competition-public.view.client.html",
                 controller: "PublicCompetitionController",
                 controllerAs: "model"

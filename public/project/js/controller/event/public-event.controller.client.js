@@ -12,12 +12,12 @@
         vm.joinEvent = joinEvent;
 
         function init() {
-            vm.userId = $routeParams["uid"];
             vm.eventId = $routeParams["eid"];
             EventService
                 .findEventById(vm.eventId)
                 .then(function (resp) {
                     vm.event = resp.data;
+                    vm.userId = vm.event._user;
                 });
 
             if($rootScope.currentUser) {

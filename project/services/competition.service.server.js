@@ -10,8 +10,10 @@ module.exports = function(app, models) {
     /* Paths that are allowed. */
     app.post("/project/api/user/:userId/competition", createCompetition);
     app.get("/project/api/user/:userId/competition", findCompetitionsByUser);
+    app.get("/project/api/judge/:userId/competition", findCompetitionsForJudge);
     app.get("/project/api/competition/:competitionId", findCompetitionById);
     app.get("/project/api/competition/", findAllCompetitions);
+    app.get("/project/api/competition/:competitionId/finish", finishCompetition);
     app.get("/project/api/competition/search/:text", search);
     app.put("/project/api/competition/:competitionId", updateCompetition);
     app.delete("/project/api/competition/:competitionId", deleteCompetition);
@@ -44,6 +46,21 @@ module.exports = function(app, models) {
                 },
                 function (error) {
                     resp.status(400).send("User with id: " + userId + " has no competitions.");
+                }
+            );
+    }
+
+    function findCompetitionsForJudge(req, resp) {
+        var userId =  req.params["userId"];
+
+        competitionModel
+            .findCompetitionsForJudge(userId)
+            .then(
+                function (competition) {
+                    resp.json(competition);
+                },
+                function (error) {
+                    resp.status(400).send("Judge with id: " + userId + " has no competitions.");
                 }
             );
     }
@@ -95,9 +112,21 @@ module.exports = function(app, models) {
         var competitionId =  req.params["competitionId"];
         var newCompetition = req.body;
         delete newCompetition['_id'];
-
         competitionModel
-            .updateCompetition(competitionId, newCompetition)
+            .findCompetitionById(competitionId)
+            .then(
+                function (competition) {
+                    if(competition.complete) {
+                        resp.status(400).send("Competition with id: " + competitionId + " is already complete.");
+                    } else {
+                        competitionModel
+                            .updateCompetition(competitionId, newCompetition);
+                    }
+                },
+                function (error) {
+                    resp.status(400).send("Competition with id: " + competitionId + " not found.");
+                }
+            )
             .then(
                 function (competition) {
                     resp.json(competition);
@@ -106,6 +135,27 @@ module.exports = function(app, models) {
                     resp.status(400).send("Competition with id: " + competitionId + " not found.");
                 }
             );
+    }
+
+    function finishCompetition(req, resp) {
+        var competitionId =  req.params["competitionId"];
+        competitionModel
+            .findCompetitionById(competitionId)
+            .then(
+                function (competition) {
+                    if(competition.complete) {
+                        resp.status(400).send("Competition with id: " + competitionId + " is already complete.");
+                    } else if(competition.votes.length < 1) {
+                        resp.status(400).send("Competition with id: " + competitionId + " has no votes.");
+                    } else {
+                        var votes = competition.votes;
+                        //TODO: Max frequency of votes.
+                    }
+                },
+                function (error) {
+                    resp.status(400).send("Competition with id: " + competitionId + " not found.");
+                }
+            )
     }
 
     function deleteCompetition(req, resp) {

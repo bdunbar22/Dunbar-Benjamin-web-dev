@@ -13,6 +13,7 @@
         vm.deleteCompetition = deleteCompetition;
         vm.addJudge = addJudge;
         vm.removeJudge = removeJudge;
+        vm.computerWinner = computerWinner;
 
         function init() {
             vm.userId = $routeParams["uid"];
@@ -61,11 +62,11 @@
                             vm.error = "This user is not a judge.";
                             return;
                         }
-                        if(vm.competition.judges.indexOf(judgeId) != -1) {
+                        if(vm.competition.judges.indexOf(judge._id) != -1) {
                             vm.error = "This judge has been added already.";
                             return;
                         }
-                        vm.competition.judges.push(judgeId);
+                        vm.competition.judges.push(judge._id);
                         CompetitionService
                             .updateCompetition(vm.competitionId, vm.competition);
                     },
@@ -105,6 +106,19 @@
                 function (error) {
                     vm.error = error.data;
                 });
+        }
+        
+        function computeWinner() {
+            CompetitionService
+                .computeWinner(vm.competition._id)
+                .then(
+                    function (resp) {
+                        vm.success = "Winner computer. Competition is over.";
+                    },
+                    function (err) {
+                        vm.error = "Could not complete competition: " + err;
+                    }
+                );
         }
     }
 })();

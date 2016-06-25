@@ -20,8 +20,8 @@ module.exports = function(app, models) {
         callbackURL  : process.env.FACEBOOK_CALLBACK_URL
     };
     
-    //TODO: test image upload work.
     //TODO: Add Judging
+    //TODO: Add Compute Winner!
     //TODO: Client side error handling and input validation!
     //TODO: Video
     //TODO: REACH GOALS: Youtube Search API in new & edit Post view.
