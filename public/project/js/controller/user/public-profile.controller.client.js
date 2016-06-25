@@ -32,6 +32,10 @@
 
         function followUser() {
             if(vm.user && vm.currentUser) {
+                if(vm.currentUser.following.indexOf(vm.user._id) != -1) {
+                    vm.error = "You have already followed this user.";
+                    return;
+                }
                 vm.user.followers.push(vm.currentUser._id);
                 vm.currentUser.following.push(vm.user._id);
                 UserService
