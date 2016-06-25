@@ -31,7 +31,7 @@
                     <ul>
                         <li>Name: {{user.firstName}} {{user.lastName}}</li>
                         <li>Age: {{user.age}} </li>
-                        <li>Trophies: {{user.trophyCount}}</li>
+                        <li ng-show="user.userType === 'ATHLETE'">Trophies: {{user.trophyCount}}</li>
                         <li ng-show="user.userType === 'JUDGE'">JUDGE</li>
                     </ul>
                 </div>

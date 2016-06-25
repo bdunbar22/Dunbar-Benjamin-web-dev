@@ -2,9 +2,8 @@
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a href="#/user/{{model.userId}}/public" class="navbar-link navbar-brand">
+                <a href="#/search/post" class="navbar-link navbar-brand">
                     <span class="glyphicon glyphicon-chevron-left bmd-accent"></span>
-                    <span class="glyphicon glyphicon-user header-glyphicon bmd-accent"></span>
                 </a>
                 <a class="navbar-brand bmd-accent"
                    href="">
@@ -24,15 +23,16 @@
                 <p>{{model.post.description}}</p>
             </div>
             <p>Type: {{model.post.postType}}</p>
-            <div ng-switch="post.postType">
+            <div ng-switch="model.post.postType"
+                 ng-show="model.post.url">
                 <div ng-switch-when="IMAGE">
                     <img class="post-display"
-                         ng-src="{{post.url}}">
+                         ng-src="{{model.post.url}}">
                 </div>
                 <div ng-switch-when="VIDEO"
                      class="bmd-widget youtube­post">
                     <iframe height="auto"
-                            ng-src="{{model.getTrustedUrl(post)}}"
+                            ng-src="{{model.getTrustedUrl(model.post)}}"
                             frameborder="0"
                             allowfullscreen></iframe>
                 </div>

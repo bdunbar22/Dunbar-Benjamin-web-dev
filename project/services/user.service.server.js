@@ -19,9 +19,12 @@ module.exports = function(app, models) {
         clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
         callbackURL  : process.env.FACEBOOK_CALLBACK_URL
     };
-    
-    //TODO: Add Judging
-    //TODO: Add Compute Winner!
+
+
+    //TODO: Can't follow a user twice.
+    //TODO: Add Voting ability
+    //TODO: Fix so that when you add posts and judges to a competition, they get saved. Look at how people join events!
+    //TODO: Test Compute Winner!
     //TODO: Client side error handling and input validation!
     //TODO: Video
     //TODO: REACH GOALS: Youtube Search API in new & edit Post view.
