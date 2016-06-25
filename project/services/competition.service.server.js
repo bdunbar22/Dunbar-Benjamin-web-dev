@@ -6,6 +6,7 @@
 module.exports = function(app, models) {
     /* DB Model */
     var competitionModel = models.competitionModel;
+    var userModel = models.userModel;
 
     /* Paths that are allowed. */
     app.post("/project/api/user/:userId/competition", createCompetition);
@@ -139,6 +140,7 @@ module.exports = function(app, models) {
 
     function finishCompetition(req, resp) {
         var competitionId =  req.params["competitionId"];
+        var winner = '';
         competitionModel
             .findCompetitionById(competitionId)
             .then(
@@ -149,13 +151,42 @@ module.exports = function(app, models) {
                         resp.status(400).send("Competition with id: " + competitionId + " has no votes.");
                     } else {
                         var votes = competition.votes;
-                        //TODO: Max frequency of votes.
+                        //Improve.
+                        competition.winner = votes[0];
+                        winner = competition.winner;
+                        competition.complete = true;
+                        delete competition['_id'];
+                        competitionModel
+                            .updateCompetition(competitionId, competition);
                     }
                 },
                 function (error) {
                     resp.status(400).send("Competition with id: " + competitionId + " not found.");
                 }
             )
+            .then(
+                function (competition) {
+                    userModel
+                        .findUserById(winner)
+                }
+            )
+            .then(
+                function (user) {
+                    user.trophyCount += 1;
+                    var userId = user._id;
+                    delete user['_id'];
+                    userModel
+                        .updateUser(userId, user);
+                }
+            )
+            .then(
+                function (user) {
+                    resp.json(user);
+                },
+                function (error) {
+                    resp.status(400).send("User with id: " + userId + " was not found. Update failed.");
+                }
+        );
     }
 
     function deleteCompetition(req, resp) {

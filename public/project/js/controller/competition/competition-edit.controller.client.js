@@ -113,7 +113,7 @@
                 .computeWinner(vm.competition._id)
                 .then(
                     function (resp) {
-                        vm.success = "Winner computer. Competition is over.";
+                        vm.success = "Winner computed. Competition is over.";
                     },
                     function (err) {
                         vm.error = "Could not complete competition: " + err;
