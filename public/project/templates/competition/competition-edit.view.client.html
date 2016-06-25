@@ -59,9 +59,7 @@
                 <button class="btn btn-sm bmd-margin-top-5 bmd-tertiary" ng-click="model.addJudge(judgeId)">Add Judge</button>
             </div>
             <div ng-repeat="judge in model.competition.judges" class="form-group">
-                <input type="text"
-                       class="form-control"
-                       value="judge">
+                <p>Judge: {{judge}}</p>
                 <button class="btn btn-sm bmd-margin-top-5 bmd-tertiary" ng-click="model.removeJudge(judge)">Remove Judge</button>
             </div>
         </form>
@@ -73,12 +71,16 @@
     <nav class="navbar navbar-default navbar-fixed-bottom">
         <div class="container-fluid">
             <div class="navbar-header">
-                <p class="navbar-text">
-                    <a href="#/home">
-                        <span class="glyphicon glyphicon-home home-glyphicon bmd-accent"></span>
-                    </a>
-                    <a href="#/user/{{model.user._id}}"
-                       class="pull-right">
+                <a href="#/home" class="navbar-link navbar-brand">
+                    <span class="glyphicon glyphicon-home home-glyphicon bmd-accent"></span>
+                </a>
+                <a class="navbar-brand bmd-accent"
+                   href="#/search">
+                    Search
+                </a>
+                <p class="navbar-text pull-right">
+                    <a href="#/user"
+                       class="navbar-link">
                         <span class="glyphicon glyphicon-user header-glyphicon bmd-accent"></span>
                     </a>
                 </p>

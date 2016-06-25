@@ -5,9 +5,9 @@
 (function () {
     angular
         .module("BenProject")
-        .controller("EditCompetitionController", EditCompetitionController);
+        .controller("PublicCompetitionController", PublicCompetitionController);
 
-    function EditCompetitionController($routeParams, $rootScope, CompetitionService, PostService) {
+    function PublicCompetitionController($routeParams, $rootScope, CompetitionService, PostService) {
         var vm = this;
         vm.addPost = addPost;
 

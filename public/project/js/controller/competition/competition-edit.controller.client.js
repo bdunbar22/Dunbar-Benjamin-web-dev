@@ -56,8 +56,13 @@
                 .findUserById(judgeId)
                 .then(
                     function (judge) {
+                        judge = judge.data;
                         if(judge.userType != 'JUDGE') {
                             vm.error = "This user is not a judge.";
+                            return;
+                        }
+                        if(vm.competition.judges.indexOf(judgeId) != -1) {
+                            vm.error = "This judge has been added already.";
                             return;
                         }
                         vm.competition.judges.push(judgeId);
@@ -69,7 +74,11 @@
                     }
                 )
                 .then(function (resp) {
-                        vm.success = "Updated Competition."
+                        if(vm.error) {
+                            return;
+                        } else {
+                            vm.success = "Updated Competition.";
+                        }
                     },
                     function (error) {
                         vm.error = error.data;

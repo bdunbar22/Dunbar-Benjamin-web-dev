@@ -150,7 +150,7 @@ module.exports = function(app, models) {
                         .updatePost(postId, postToEdit)
                         .then(
                             function (post) {
-                                resp.redirect("./../project/index.html#/user/" + userId + "/post/" + postId);
+                                resp.redirect("/../project/index.html#/user/" + userId + "/post/" + postId);
                             },
                             function (error) {
                                 resp.status(400).send("Post with id: " + postId +
