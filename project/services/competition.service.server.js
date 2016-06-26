@@ -170,7 +170,7 @@ module.exports = function(app, models) {
                     return postModel
                             .findPostById(winner);
                 }, function (error) {
-                    resp.status(400).send("Competition with id: " + competitionId + " was not completed.");
+                    resp.status(400).send("Competition with id: " + competitionId + " was not completed." + error);
                 }
             )
             .then(
