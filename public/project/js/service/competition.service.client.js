@@ -48,9 +48,9 @@
             return $http.get(url);
         }
         
-        function computeWinner(competitionId) {
+        function computeWinner(competitionId, competition) {
             var url = "/project/api/competition/" + competitionId + "/finish";
-            return $http.get(url);
+            return $http.put(url, competition);
         }
 
         function search(text) {

@@ -104,7 +104,7 @@
         
         function computeWinner() {
             CompetitionService
-                .computeWinner(vm.competition._id)
+                .computeWinner(vm.competition._id, vm.competition)
                 .then(
                     function (resp) {
                         vm.success = "Winner computed. Competition is over.";

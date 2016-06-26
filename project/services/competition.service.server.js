@@ -15,7 +15,7 @@ module.exports = function(app, models) {
     app.get("/project/api/judge/:userId/competition", findCompetitionsForJudge);
     app.get("/project/api/competition/:competitionId", findCompetitionById);
     app.get("/project/api/competition/", findAllCompetitions);
-    app.get("/project/api/competition/:competitionId/finish", finishCompetition);
+    app.put("/project/api/competition/:competitionId/finish", finishCompetition);
     app.get("/project/api/competition/search/:text", search);
     app.put("/project/api/competition/:competitionId", updateCompetition);
     app.delete("/project/api/competition/:competitionId", deleteCompetition);
@@ -141,6 +141,8 @@ module.exports = function(app, models) {
 
     function finishCompetition(req, resp) {
         var competitionId =  req.params["competitionId"];
+        var newCompetition = req.body;
+        delete newCompetition['_id'];
         var winner = '';
         competitionModel
             .findCompetitionById(competitionId)
@@ -151,14 +153,15 @@ module.exports = function(app, models) {
                     } else if(competition.votes.length < 1) {
                         resp.status(400).send("Competition with id: " + competitionId + " has no votes.");
                     } else {
-                        var votes = competition.votes;
+                        var votes = newCompetition.votes;
                         //Improve.
-                        competition.winner = votes[0];
-                        winner = competition.winner;
-                        competition.complete = true;
-                        delete competition['_id'];
+                        newCompetition.winner = votes[0];
+                        winner = newCompetition.winner;
+                        newCompetition.complete = true;
+                        delete newCompetition['_id'];
+
                         return competitionModel
-                                .updateCompetition(competitionId, competition);
+                                .updateCompetition(competitionId, newCompetition);
                     }
                 },
                 function (error) {
