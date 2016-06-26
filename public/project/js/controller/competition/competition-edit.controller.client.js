@@ -13,7 +13,7 @@
         vm.deleteCompetition = deleteCompetition;
         vm.addJudge = addJudge;
         vm.removeJudge = removeJudge;
-        vm.computerWinner = computerWinner;
+        vm.computeWinner = computeWinner;
 
         function init() {
             vm.userId = $routeParams["uid"];
@@ -60,26 +60,20 @@
                         judge = judge.data;
                         if(judge.userType != 'JUDGE') {
                             vm.error = "This user is not a judge.";
-                            return;
-                        }
-                        if(vm.competition.judges.indexOf(judge._id) != -1) {
+                        } else if(vm.competition.judges.indexOf(judge._id) != -1) {
                             vm.error = "This judge has been added already.";
-                            return;
+                        } else {
+                            vm.competition.judges.push(judge._id);
+                            return CompetitionService
+                                .updateCompetition(vm.competitionId, vm.competition);
                         }
-                        vm.competition.judges.push(judge._id);
-                        CompetitionService
-                            .updateCompetition(vm.competitionId, vm.competition);
                     },
                     function (err) {
                         vm.error = err;
                     }
                 )
                 .then(function (resp) {
-                        if(vm.error) {
-                            return;
-                        } else {
-                            vm.success = "Updated Competition.";
-                        }
+                        vm.success = "Updated Competition.";
                     },
                     function (error) {
                         vm.error = error.data;

@@ -7,6 +7,7 @@ module.exports = function(app, models) {
     /* DB Model */
     var competitionModel = models.competitionModel;
     var userModel = models.userModel;
+    var postModel = models.postModel;
 
     /* Paths that are allowed. */
     app.post("/project/api/user/:userId/competition", createCompetition);
@@ -120,8 +121,8 @@ module.exports = function(app, models) {
                     if(competition.complete) {
                         resp.status(400).send("Competition with id: " + competitionId + " is already complete.");
                     } else {
-                        competitionModel
-                            .updateCompetition(competitionId, newCompetition);
+                        return competitionModel
+                                .updateCompetition(competitionId, newCompetition);
                     }
                 },
                 function (error) {
@@ -156,8 +157,8 @@ module.exports = function(app, models) {
                         winner = competition.winner;
                         competition.complete = true;
                         delete competition['_id'];
-                        competitionModel
-                            .updateCompetition(competitionId, competition);
+                        return competitionModel
+                                .updateCompetition(competitionId, competition);
                     }
                 },
                 function (error) {
@@ -166,8 +167,19 @@ module.exports = function(app, models) {
             )
             .then(
                 function (competition) {
-                    userModel
-                        .findUserById(winner)
+                    return postModel
+                            .findPostById(winner);
+                }, function (error) {
+                    resp.status(400).send("Competition with id: " + competitionId + " was not completed.");
+                }
+            )
+            .then(
+                function (post) {
+                    var userId = post.user;
+                    return userModel
+                        .findUserById(userId);
+                }, function (error) {
+                    resp.status(400).send("Competition with id: " + competitionId + " was not completed.");
                 }
             )
             .then(
@@ -175,8 +187,10 @@ module.exports = function(app, models) {
                     user.trophyCount += 1;
                     var userId = user._id;
                     delete user['_id'];
-                    userModel
+                    return userModel
                         .updateUser(userId, user);
+                }, function (error) {
+                    resp.status(400).send("Competition with id: " + competitionId + " was not completed.");
                 }
             )
             .then(

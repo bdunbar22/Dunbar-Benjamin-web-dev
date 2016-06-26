@@ -28,6 +28,7 @@
                 class="list-group-item bmd-secondary">
                 <a href="#/competition/{{competition._id}}/public">{{competition.name}}</a>
                 <p>Summary: {{competition.description}}</p>
+                <p ng-show="competition.complete">COMPLETE</p>
             </li>
         </ul>
     </div>

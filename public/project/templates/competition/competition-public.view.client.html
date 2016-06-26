@@ -33,7 +33,7 @@
                 <p>{{model.competition.judgingStarts}}</p>
             </div>
             <div class="form-group">
-                <label>Judges</label>
+                <label>Judges:</label>
                 <div ng-repeat="judge in model.competition.judges">
                     <a href="#/user/{{judge}}/public">Judge: {{judge}}</a>
                 </div>
@@ -43,7 +43,7 @@
                 <label>Winner</label>
                 <p>{{model.competition.winner}}</p>
             </div>
-            <div  ng-show="!model.competition.complete"
+            <div  ng-show="!model.competition.complete && model.currentUser.userType === 'JUDGE'"
                   class="form-group">
                 <input type="text"
                        placeholder="abc123efg456-bd"
@@ -64,7 +64,7 @@
         </div>
 
         <div class="form-group">
-            <label>Entries</label>
+            <label>Entries:</label>
             <div ng-repeat="post in model.competition.posts">
                 <a href="#/post/{{post}}/public">Post: {{post}}</a>
             </div>

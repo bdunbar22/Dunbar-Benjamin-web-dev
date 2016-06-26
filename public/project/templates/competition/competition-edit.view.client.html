@@ -51,7 +51,13 @@
                        placeholder="Friday, May 7th 2016 at 7:00pm"
                        ng-model="model.competition.judgingStarts">
             </div>
-            <div class="form-group">
+            <div class="form-group"
+                 ng-show="model.competition.complete">
+                <label>Winner</label>
+                <a href="#/post/{{model.competition.winner}}/public">Post: {{model.competition.winner}}</a>
+            </div>
+            <div class="form-group"
+                 ng-show="!model.competition.complete">
                 <input type="text"
                        placeholder="abc123efg456-bd"
                        class="form-control"
@@ -60,11 +66,21 @@
             </div>
             <div ng-repeat="judge in model.competition.judges" class="form-group">
                 <p>Judge: {{judge}}</p>
-                <button class="btn btn-sm bmd-margin-top-5 bmd-tertiary" ng-click="model.removeJudge(judge)">Remove Judge</button>
+                <button class="btn btn-sm bmd-margin-top-5 bmd-tertiary"
+                        ng-click="model.removeJudge(judge)"
+                        ng-show="!model.competition.complete">Remove Judge</button>
+            </div>
+
+            <div class="form-group">
+                <label>Entries:</label>
+                <div ng-repeat="post in model.competition.posts">
+                    <a href="#/post/{{post}}/public">Post: {{post}}</a>
+                </div>
             </div>
         </form>
 
-        <a ng-click="model.computerWinner()"
+        <a ng-show="!model.competition.complete"
+           ng-click="model.computeWinner()"
            href=""
            class="btn btn-block btn-primary">Compute Winner!</a>
 

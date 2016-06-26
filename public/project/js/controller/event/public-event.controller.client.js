@@ -41,6 +41,8 @@
                         function (error) {
                             vm.error = error.data;
                         });
+            } else {
+                vm.error = "You are not logged in.";
             }
         }
     }
