@@ -110,7 +110,7 @@
                         vm.success = "Winner computed. Competition is over.";
                     },
                     function (err) {
-                        vm.error = "Could not complete competition: " + err.data;
+                        vm.error = "Could not finish competition: " + err.data;
                     }
                 );
         }
