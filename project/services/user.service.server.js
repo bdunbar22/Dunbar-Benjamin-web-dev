@@ -20,10 +20,6 @@ module.exports = function(app, models) {
         callbackURL  : process.env.FACEBOOK_CALLBACK_URL
     };
 
-    //TODO: Client side error handling and input validation!
-    //TODO: Video
-    //TODO: REACH GOALS: Youtube Search API in edit Post view.
-
     var googleConfig = {
         clientID        : process.env.GOOGLE_CLIENT_ID,
         clientSecret    : process.env.GOOGLE_CLIENT_SECRET,

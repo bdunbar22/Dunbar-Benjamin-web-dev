@@ -25,3 +25,6 @@ var ipaddress = process.env.OPENSHIFT_NODEJS_IP;
 var port      = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 
 app.listen(port, ipaddress);
+
+//TODO: Client side error handling and input validation!
+//TODO: Video
