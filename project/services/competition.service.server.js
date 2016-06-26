@@ -187,9 +187,12 @@ module.exports = function(app, models) {
             )
             .then(
                 function (user) {
+
+                    var user = user._doc;
                     user.trophyCount += 1;
                     var userId = user._id;
                     delete user['_id'];
+
                     return userModel
                         .updateUser(userId, user);
                 }, function (error) {
