@@ -179,7 +179,7 @@ module.exports = function(app, models) {
                     return userModel
                         .findUserById(userId);
                 }, function (error) {
-                    resp.status(400).send("Competition with id: " + competitionId + " was not completed.");
+                    resp.status(400).send("Competition with id: " + competitionId + " was not completed. Could not find post.");
                 }
             )
             .then(
@@ -190,7 +190,7 @@ module.exports = function(app, models) {
                     return userModel
                         .updateUser(userId, user);
                 }, function (error) {
-                    resp.status(400).send("Competition with id: " + competitionId + " was not completed.");
+                    resp.status(400).send("Competition with id: " + competitionId + " was not completed. Could not find owner of post.");
                 }
             )
             .then(
