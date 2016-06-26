@@ -40,8 +40,10 @@
             </div>
             <div ng-show="model.competition.complete"
                  class="form-group">
-                <label>Winner</label>
-                <p>{{model.competition.winner}}</p>
+                <label>Winner:</label>
+                <div>
+                    <a href="#/post/{{model.competition.winner}}/public">Post: {{model.competition.winner}}</a>
+                </div>
             </div>
             <div  ng-show="!model.competition.complete && model.currentUser.userType === 'JUDGE'"
                   class="form-group">
@@ -53,7 +55,7 @@
             </div>
         </form>
 
-        <div ng-show="!model.competition.complete"
+        <div ng-show="!model.competition.complete  && model.currentUser.userType === 'ATHLETE'"
              class="form-group">
             <label>Add Post Entry by Post Id</label>
             <input type="text"

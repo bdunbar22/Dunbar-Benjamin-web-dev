@@ -73,6 +73,11 @@
                 controller: "PostListController",
                 controllerAs: "model"
             })
+            .when("/user/:uid/post/public/for/user", {
+                templateUrl: "templates/post/post-list-public-for-user.view.client.html",
+                controller: "PostListController",
+                controllerAs: "model"
+            })
             .when("/user/:uid/post/new", {
                 templateUrl: "templates/post/post-new.view.client.html",
                 controller: "NewPostController",

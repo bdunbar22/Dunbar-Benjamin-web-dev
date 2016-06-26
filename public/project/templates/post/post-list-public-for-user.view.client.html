@@ -1,0 +1,64 @@
+<div class="header-present footer-present">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="#/user/{{model.userId}}/public" class="navbar-link navbar-brand">
+                    <span class="glyphicon glyphicon-chevron-left bmd-accent"></span>
+                </a>
+                <a class="navbar-brand bmd-accent"
+                   href="">
+                    Posts
+                </a>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div ng-if="model.error"
+             class="alert alert-info bmd-margin-top-10">{{model.error}}</div>
+
+        <ul class="list-group">
+            <li ng-repeat="post in model.posts"
+                class="list-group-item bmd-secondary">
+                <p>{{post.name}}</a>
+                <p>Summary: {{post.description}}</p>
+                <div ng-switch="post.postType"
+                     ng-show="post.url">
+                    <div ng-switch-when="IMAGE">
+                        <img class="post-display"
+                             ng-src="{{post.url}}">
+                    </div>
+                    <div ng-switch-when="VIDEO"
+                         class="bmd-widget youtube­post">
+                        <iframe height="auto"
+                                ng-src="{{model.getTrustedUrl(post)}}"
+                                frameborder="0"
+                                allowfullscreen></iframe>
+                    </div>
+                    <div ng-switch-when="TEXT">
+                    </div>
+                    <div ng-switch-default>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="#/home" class="navbar-link navbar-brand">
+                    <span class="glyphicon glyphicon-home home-glyphicon bmd-accent"></span>
+                </a>
+                <a class="navbar-brand bmd-accent"
+                   href="#/search">
+                    Search
+                </a>
+                <p class="navbar-text pull-right">
+                    <a href="#/user"
+                       class="navbar-link">
+                        <span class="glyphicon glyphicon-user header-glyphicon bmd-accent"></span>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </nav>
+</div>

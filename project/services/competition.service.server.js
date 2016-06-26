@@ -175,7 +175,7 @@ module.exports = function(app, models) {
             )
             .then(
                 function (post) {
-                    var userId = post.user;
+                    var userId = post._user;
                     return userModel
                         .findUserById(userId);
                 }, function (error) {

@@ -52,11 +52,6 @@
                        ng-model="model.competition.judgingStarts">
             </div>
             <div class="form-group"
-                 ng-show="model.competition.complete">
-                <label>Winner</label>
-                <a href="#/post/{{model.competition.winner}}/public">Post: {{model.competition.winner}}</a>
-            </div>
-            <div class="form-group"
                  ng-show="!model.competition.complete">
                 <input type="text"
                        placeholder="abc123efg456-bd"
@@ -64,13 +59,22 @@
                        ng-model="judgeId">
                 <button class="btn btn-sm bmd-margin-top-5 bmd-tertiary" ng-click="model.addJudge(judgeId)">Add Judge</button>
             </div>
-            <div ng-repeat="judge in model.competition.judges" class="form-group">
-                <p>Judge: {{judge}}</p>
-                <button class="btn btn-sm bmd-margin-top-5 bmd-tertiary"
-                        ng-click="model.removeJudge(judge)"
-                        ng-show="!model.competition.complete">Remove Judge</button>
+            <div class="form-group">
+                <label>Judges:</label>
+                <div ng-repeat="judge in model.competition.judges">
+                    <a href="#/user/{{judge}}/public">Judge: {{judge}}</a>
+                    <button class="btn btn-sm bmd-margin-top-5 bmd-tertiary"
+                            ng-click="model.removeJudge(judge)"
+                            ng-show="!model.competition.complete">Remove Judge</button>
+                </div>
             </div>
-
+            <div class="form-group"
+                 ng-show="model.competition.complete">
+                <label>Winner:</label>
+                <div>
+                    <a href="#/post/{{model.competition.winner}}/public">Post: {{model.competition.winner}}</a>
+                </div>
+            </div>
             <div class="form-group">
                 <label>Entries:</label>
                 <div ng-repeat="post in model.competition.posts">
@@ -79,7 +83,11 @@
             </div>
         </form>
 
-        <a ng-show="!model.competition.complete"
+        <p ng-show="!model.competition.complete && model.competition.votes.length < 1">
+            Note: Waiting on judges to vote.
+        </p>
+
+        <a ng-show="!model.competition.complete && model.competition.votes.length > 0"
            ng-click="model.computeWinner()"
            href=""
            class="btn btn-block btn-primary">Compute Winner!</a>
