@@ -22,8 +22,7 @@ module.exports = function(app, models) {
 
     //TODO: Client side error handling and input validation!
     //TODO: Video
-    //TODO: REACH GOALS: Youtube Search API in new & edit Post view.
-    //TODO: Reach GOALS: Comments on everything.
+    //TODO: REACH GOALS: Youtube Search API in edit Post view.
 
     var googleConfig = {
         clientID        : process.env.GOOGLE_CLIENT_ID,
