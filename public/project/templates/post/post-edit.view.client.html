@@ -23,14 +23,20 @@
         <div ng-if="model.error" class="alert alert-danger bmd-margin-top-10">
             {{model.error}}
         </div>
-        <form>
+        <form name="editPostForm"
+              novalidate>
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text"
                        class="form-control"
                        id="name"
                        placeholder="Test Website"
-                       ng-model="model.post.name">
+                       ng-model="model.post.name"
+                       required>
+                <span class="validationSpan"
+                      ng-show="editPostForm.name.$touched && !editPostForm.name.$modelValue">
+                    Name is required.
+                </span>
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
