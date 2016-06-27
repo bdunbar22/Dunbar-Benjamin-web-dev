@@ -173,7 +173,7 @@ module.exports = function(app, models) {
                     return postModel
                             .findPostById(winner);
                 }, function (error) {
-                    resp.status(400).send("Competition with id: " + competitionId + " was not completed." + error);
+                    resp.status(400).send("Competition with id: " + competitionId + " was not completed. Competition update failed: " + error);
                 }
             )
             .then(
@@ -204,7 +204,7 @@ module.exports = function(app, models) {
                     resp.json(user);
                 },
                 function (error) {
-                    resp.status(400).send("User with id: " + userId + " was not found. Update failed.");
+                    resp.status(400).send("User with id: " + userId + " was not found. User Update failed:" + error);
                 }
         );
     }
