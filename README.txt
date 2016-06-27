@@ -19,9 +19,3 @@ Project:
 All project files are within the public/project directory, i.e. css, js, images and html
 The project is a human movement sharing project called Freedom to Flip.
 The server side project code is located in the project folder.
-
-
-//TODO:
-Get alice and bob working.
-Make bob a JUDGE.
-Make ben/ben work.
