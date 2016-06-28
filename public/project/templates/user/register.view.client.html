@@ -6,24 +6,66 @@
 
         <h1>Register</h1>
 
-        <div class="form-group">
-            <input type="text"
-                   placeholder="username"
-                   class="form-control"
-                   ng-model="username">
-        </div>
-        <div class="form-group">
-            <input type="password"
-                   placeholder="password"
-                   class="form-control"
-                   ng-model="password">
-        </div>
-        <div class="form-group">
-            <input type="password"
-                   placeholder="verify password"
-                   class="form-control"
-                   ng-model="verifyPassword">
-        </div>
+        <form name="registerForm"
+              novalidate>
+            <div class="form-group">
+                <input type="text"
+                       name="username"
+                       placeholder="username"
+                       class="form-control"
+                       autocomplete="off"
+                       spellcheck="false"
+                       autocapitalize="off"
+                       ng-model="username"
+                       required>
+                <span class="validationSpan"
+                      ng-show="registerForm.username.$touched && !registerForm.username.$modelValue">
+                    Username is required.
+                </span>
+            </div>
+            <div class="form-group">
+                <input type="password"
+                       name="password"
+                       placeholder="password"
+                       class="form-control"
+                       autocomplete="off"
+                       spellcheck="false"
+                       autocapitalize="off"
+                       ng-model="password"
+                       required>
+                <div class="validationSpan">
+                    <span ng-show="registerForm.password.$touched && !registerForm.password.$modelValue">
+                        Password is required.
+                    </span>
+                    <span ng-show="registerForm.password.$touched &&
+                                    registerForm.verifyPassword.$touched &&
+                                    registerForm.password.$modelValue != registerForm.verifyPassword.$modelValue">
+                        Must Match.
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="password"
+                       name="verifyPassword"
+                       placeholder="verify password"
+                       class="form-control"
+                       autocomplete="off"
+                       spellcheck="false"
+                       autocapitalize="off"
+                       ng-model="verifyPassword"
+                       required>
+                <div class="validationSpan">
+                    <span ng-show="registerForm.verifyPassword.$touched && !registerForm.verifyPassword.$modelValue">
+                        Verification is required.
+                    </span>
+                    <span ng-show="registerForm.password.$touched &&
+                                    registerForm.verifyPassword.$touched &&
+                                    registerForm.password.$modelValue != registerForm.verifyPassword.$modelValue">
+                        Must Match.
+                    </span>
+                </div>
+            </div>
+        </form>
 
         <a href=""
            ng-click="model.register(username, password, verifyPassword)"

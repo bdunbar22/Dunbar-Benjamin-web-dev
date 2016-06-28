@@ -133,7 +133,7 @@ a:hover {
     border-color: #980000;
 }
 
-.ng-valid-required {
-    background-color: inherit !important;
-    border-color: inherit !important;
+.form-group .ng-valid-required {
+    background-color: white !important;
+    border-color: #c8d1c8 !important;
 }
