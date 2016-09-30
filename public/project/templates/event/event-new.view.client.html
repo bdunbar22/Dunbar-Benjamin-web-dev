@@ -23,14 +23,20 @@
         <div ng-if="model.error" class="alert alert-danger bmd-margin-top-10">
             {{model.error}}
         </div>
-        <form>
+        <form name="newEventForm"
+              novalidate>
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text"
                        class="form-control"
                        id="name"
                        placeholder="Name"
-                       ng-model="name">
+                       ng-model="name"
+                       required>
+                <span class="validationSpan"
+                      ng-show="newEventForm.name.$touched && !newEventForm.name.$modelValue">
+                    Name is required.
+                </span>
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
@@ -61,12 +67,16 @@
     <nav class="navbar navbar-default navbar-fixed-bottom">
         <div class="container-fluid">
             <div class="navbar-header">
-                <p class="navbar-text">
-                    <a href="#/home">
-                        <span class="glyphicon glyphicon-home home-glyphicon bmd-accent"></span>
-                    </a>
-                    <a href="#/user/{{model.user._id}}"
-                       class="pull-right">
+                <a href="#/home" class="navbar-link navbar-brand">
+                    <span class="glyphicon glyphicon-home home-glyphicon bmd-accent"></span>
+                </a>
+                <a class="navbar-brand bmd-accent"
+                   href="#/search">
+                    Search
+                </a>
+                <p class="navbar-text pull-right">
+                    <a href="#/user"
+                       class="navbar-link">
                         <span class="glyphicon glyphicon-user header-glyphicon bmd-accent"></span>
                     </a>
                 </p>

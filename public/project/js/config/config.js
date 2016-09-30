@@ -63,8 +63,18 @@
                     loggedin: checkLoggedIn
                 }
             })
+            .when("/user/:uid/public", {
+                templateUrl: "templates/user/public-profile.view.client.html",
+                controller: "PublicProfileController",
+                controllerAs: "model",
+            })
             .when("/user/:uid/post", {
                 templateUrl: "templates/post/post-list.view.client.html",
+                controller: "PostListController",
+                controllerAs: "model"
+            })
+            .when("/user/:uid/post/public/for/user", {
+                templateUrl: "templates/post/post-list-public-for-user.view.client.html",
                 controller: "PostListController",
                 controllerAs: "model"
             })
@@ -83,6 +93,11 @@
                 controller: "FlickrImageSearchController",
                 controllerAs: "model"
             })
+            .when("/post/:pid/public", {
+                templateUrl: "templates/post/post-public.view.client.html",
+                controller: "PublicPostController",
+                controllerAs: "model"
+            })
             .when("/user/:uid/event", {
                 templateUrl: "templates/event/event-list.view.client.html",
                 controller: "EventListController",
@@ -98,10 +113,19 @@
                 controller: "EditEventController",
                 controllerAs: "model"
             })
-
+            .when("/event/:eid/public", {
+                templateUrl: "templates/event/event-public.view.client.html",
+                controller: "PublicEventController",
+                controllerAs: "model"
+            })
             .when("/user/:uid/competition", {
                 templateUrl: "templates/competition/competition-list.view.client.html",
                 controller: "CompetitionListController",
+                controllerAs: "model"
+            })
+            .when("/judge/:uid/competition", {
+                templateUrl: "templates/competition/competition-list-judge.view.client.html",
+                controller: "CompetitionListJudgeController",
                 controllerAs: "model"
             })
             .when("/user/:uid/competition/new", {
@@ -109,9 +133,14 @@
                 controller: "NewCompetitionController",
                 controllerAs: "model"
             })
-            .when("/user/:uid/competition/:eid", {
+            .when("/user/:uid/competition/:cid", {
                 templateUrl: "templates/competition/competition-edit.view.client.html",
                 controller: "EditCompetitionController",
+                controllerAs: "model"
+            })
+            .when("/competition/:cid/public", {
+                templateUrl: "templates/competition/competition-public.view.client.html",
+                controller: "PublicCompetitionController",
                 controllerAs: "model"
             })
             .otherwise({

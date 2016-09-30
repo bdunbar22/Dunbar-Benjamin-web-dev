@@ -23,14 +23,23 @@
         <div ng-if="model.error" class="alert alert-danger bmd-margin-top-10">
             {{model.error}}
         </div>
-        <form>
+        <div ng-if="model.success" class="alert alert-success bmd-margin-top-10">
+            {{model.success}}
+        </div>
+        <form name="editCompetitionForm"
+              novalidate>
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text"
                        class="form-control"
                        id="name"
                        placeholder="Test Website"
-                       ng-model="model.competition.name">
+                       ng-model="model.competition.name"
+                       required>
+                <span class="validationSpan"
+                      ng-show="editCompetitionForm.name.$touched && !editCompetitionForm.name.$modelValue">
+                    Name is required.
+                </span>
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
@@ -40,7 +49,54 @@
                           placeholder="Lorem Ipsum"
                           ng-model="model.competition.description"></textarea>
             </div>
+            <div class="form-group">
+                <label for="judgingStarts">Judging Starts</label>
+                <input type="text"
+                       id="judgingStarts"
+                       class="form-control"
+                       placeholder="Friday, May 7th 2016 at 7:00pm"
+                       ng-model="model.competition.judgingStarts">
+            </div>
+            <div class="form-group"
+                 ng-show="!model.competition.complete">
+                <input type="text"
+                       placeholder="abc123efg456-bd"
+                       class="form-control"
+                       ng-model="judgeId">
+                <button class="btn btn-sm bmd-margin-top-5 bmd-tertiary" ng-click="model.addJudge(judgeId)">Add Judge</button>
+            </div>
+            <div class="form-group">
+                <label>Judges:</label>
+                <div ng-repeat="judge in model.competition.judges">
+                    <a href="#/user/{{judge}}/public">Judge: {{judge}}</a>
+                    <button class="btn btn-sm bmd-margin-top-5 bmd-tertiary"
+                            ng-click="model.removeJudge(judge)"
+                            ng-show="!model.competition.complete">Remove Judge</button>
+                </div>
+            </div>
+            <div class="form-group"
+                 ng-show="model.competition.complete">
+                <label>Winner:</label>
+                <div>
+                    <a href="#/post/{{model.competition.winner}}/public">Post: {{model.competition.winner}}</a>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Entries:</label>
+                <div ng-repeat="post in model.competition.posts">
+                    <a href="#/post/{{post}}/public">Post: {{post}}</a>
+                </div>
+            </div>
         </form>
+
+        <p ng-show="!model.competition.complete && model.competition.votes.length < 1">
+            Note: Waiting on judges to vote.
+        </p>
+
+        <a ng-show="!model.competition.complete && model.competition.votes.length > 0"
+           ng-click="model.computeWinner()"
+           href=""
+           class="btn btn-block btn-primary">Compute Winner!</a>
 
         <a ng-click="model.deleteCompetition()"
            href=""
@@ -49,12 +105,16 @@
     <nav class="navbar navbar-default navbar-fixed-bottom">
         <div class="container-fluid">
             <div class="navbar-header">
-                <p class="navbar-text">
-                    <a href="#/home">
-                        <span class="glyphicon glyphicon-home home-glyphicon bmd-accent"></span>
-                    </a>
-                    <a href="#/user/{{model.user._id}}"
-                       class="pull-right">
+                <a href="#/home" class="navbar-link navbar-brand">
+                    <span class="glyphicon glyphicon-home home-glyphicon bmd-accent"></span>
+                </a>
+                <a class="navbar-brand bmd-accent"
+                   href="#/search">
+                    Search
+                </a>
+                <p class="navbar-text pull-right">
+                    <a href="#/user"
+                       class="navbar-link">
                         <span class="glyphicon glyphicon-user header-glyphicon bmd-accent"></span>
                     </a>
                 </p>

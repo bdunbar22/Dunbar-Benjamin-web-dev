@@ -9,11 +9,6 @@
                    href="">
                     Competitions
                 </a>
-                <p class="navbar-text pull-right">
-                    <a href="#/user/{{model.userId}}/competition/new" class="navbar-link">
-                        <span class="glyphicon glyphicon-plus header-glyphicon bmd-accent"></span>
-                    </a>
-                </p>
             </div>
         </div>
     </nav>
@@ -21,11 +16,17 @@
         <div ng-if="model.error"
              class="alert alert-info bmd-margin-top-10">{{model.error}}</div>
 
+        <p>Info:</p>
+        <p>
+            To vote for a competition, go to the page for the competition and then vote based on
+            post Id.
+        </p>
+
         <ul class="list-group">
             <li ng-repeat="competition in model.competitions"
                 class="list-group-item bmd-secondary">
-                <a href="#/user/{{model.userId}}/competition/{{competition._id}}">{{competition.name}}</a>
-                <a href="#/user/{{model.userId}}/competition/{{competition._id}}">
+                <a href="#/competition/{{competition._id}}/public">{{competition.name}}</a>
+                <a href="#/competition/{{competition._id}}/public">
                     <span class="glyphicon glyphicon-play pull-right"></span>
                     <span class="glyphicon glyphicon-cog pull-right"></span>
                 </a>

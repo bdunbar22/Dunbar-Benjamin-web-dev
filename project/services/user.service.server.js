@@ -20,18 +20,6 @@ module.exports = function(app, models) {
         callbackURL  : process.env.FACEBOOK_CALLBACK_URL
     };
 
-    //TODO: Customize how events/posts/comps work. Finish post image upload.
-    //TODO: public view of a persons profile.
-    //TODO: public views of events etc.
-    //TODO: Can join any event.
-    //TODO: Athletes can add posts to any competition
-    //TODO: Add judges & Judging
-    //TODO: Users can follow each other. 
-    //TODO: Client side error handling and input validation!
-    //TODO: Video
-    //TODO: REACH GOALS: Youtube Search API in new & edit Post view.
-    //TODO: Reach GOALS: Comments on everything
-
     var googleConfig = {
         clientID        : process.env.GOOGLE_CLIENT_ID,
         clientSecret    : process.env.GOOGLE_CLIENT_SECRET,

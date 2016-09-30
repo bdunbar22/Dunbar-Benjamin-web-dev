@@ -26,3 +26,6 @@ var port      = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 
 console.log("Running at localhost:3000 or Deployed to Openshift.");
 app.listen(port, ipaddress);
+
+//TODO: Client side error handling and input validation!
+//TODO: Video

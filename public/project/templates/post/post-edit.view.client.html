@@ -23,14 +23,20 @@
         <div ng-if="model.error" class="alert alert-danger bmd-margin-top-10">
             {{model.error}}
         </div>
-        <form>
+        <form name="editPostForm"
+              novalidate>
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text"
                        class="form-control"
                        id="name"
                        placeholder="Test Website"
-                       ng-model="model.post.name">
+                       ng-model="model.post.name"
+                       required>
+                <span class="validationSpan"
+                      ng-show="editPostForm.name.$touched && !editPostForm.name.$modelValue">
+                    Name is required.
+                </span>
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
@@ -53,9 +59,9 @@
                                    ng-model="model.post.url">
                         </div>
                     </form>
-                    <form action="/public/api/upload" method="post" enctype="multipart/form-data">
+                    <form action="/project/api/upload" method="post" enctype="multipart/form-data">
                         <input name="myFile" type="file" class="form-control"/>
-                        <input name="widgetId" value="{{model.postId}}" style="display: none"/>
+                        <input name="postId" value="{{model.postId}}" style="display: none"/>
                         <input name="userId" value="{{model.userId}}" style="display: none"/>
                         <button type="submit" class="btn btn-block btn-primary bmd-margin-top-10">Upload Image</button>
                     </form>
@@ -78,6 +84,8 @@
                 </div>
                 <div ng-switch-when="TEXT">
                 </div>
+
+                <p>Post Id: {{model.post._id}}</p>
             </div>
         </form>
 
@@ -88,12 +96,16 @@
     <nav class="navbar navbar-default navbar-fixed-bottom">
         <div class="container-fluid">
             <div class="navbar-header">
-                <p class="navbar-text">
-                    <a href="#/home">
-                        <span class="glyphicon glyphicon-home home-glyphicon bmd-accent"></span>
-                    </a>
-                    <a href="#/user/{{model.user._id}}"
-                       class="pull-right">
+                <a href="#/home" class="navbar-link navbar-brand">
+                    <span class="glyphicon glyphicon-home home-glyphicon bmd-accent"></span>
+                </a>
+                <a class="navbar-brand bmd-accent"
+                   href="#/search">
+                    Search
+                </a>
+                <p class="navbar-text pull-right">
+                    <a href="#/user"
+                       class="navbar-link">
                         <span class="glyphicon glyphicon-user header-glyphicon bmd-accent"></span>
                     </a>
                 </p>

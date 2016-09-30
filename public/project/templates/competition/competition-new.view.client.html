@@ -11,7 +11,7 @@
                 </a>
                 <p class="navbar-text pull-right">
                     <a href=""
-                       ng-click="model.createCompetition(name, description)"
+                       ng-click="model.createCompetition(name, description, judgingStarts)"
                        class="navbar-link">
                         <span class="glyphicon glyphicon-ok header-glyphicon bmd-accent"></span>
                     </a>
@@ -23,14 +23,20 @@
         <div ng-if="model.error" class="alert alert-danger bmd-margin-top-10">
             {{model.error}}
         </div>
-        <form>
+        <form name="newCompetitionForm"
+              novalidate>
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text"
                        class="form-control"
                        id="name"
                        placeholder="Name"
-                       ng-model="name">
+                       ng-model="name"
+                       required>
+                <span class="validationSpan"
+                      ng-show="newCompetitionForm.name.$touched && !newCompetitionForm.name.$modelValue">
+                    Name is required.
+                </span>
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
@@ -40,17 +46,32 @@
                           placeholder="Description"
                           ng-model="description"></textarea>
             </div>
+            <div class="form-group">
+                <label for="judgingStarts">Judging Starts</label>
+                <input type="text"
+                          id="judgingStarts"
+                          class="form-control"
+                          placeholder="Friday, May 7th 2016 at 7:00pm"
+                          ng-model="judgingStarts">
+            </div>
+            <p>
+                Note: You will have to add judges by id to this event in the edit view.
+            </p>
         </form>
     </div>
     <nav class="navbar navbar-default navbar-fixed-bottom">
         <div class="container-fluid">
             <div class="navbar-header">
-                <p class="navbar-text">
-                    <a href="#/home">
-                        <span class="glyphicon glyphicon-home home-glyphicon bmd-accent"></span>
-                    </a>
-                    <a href="#/user/{{model.user._id}}"
-                       class="pull-right">
+                <a href="#/home" class="navbar-link navbar-brand">
+                    <span class="glyphicon glyphicon-home home-glyphicon bmd-accent"></span>
+                </a>
+                <a class="navbar-brand bmd-accent"
+                   href="#/search">
+                    Search
+                </a>
+                <p class="navbar-text pull-right">
+                    <a href="#/user"
+                       class="navbar-link">
                         <span class="glyphicon glyphicon-user header-glyphicon bmd-accent"></span>
                     </a>
                 </p>

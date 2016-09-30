@@ -13,10 +13,12 @@
         var api = {
             createCompetition: createCompetition,
             findCompetitionsByUser: findCompetitionsByUser,
+            findCompetitionsForJudge: findCompetitionsForJudge,
             findCompetitionById: findCompetitionById,
             findAllCompetitions: findAllCompetitions,
             search: search,
             updateCompetition: updateCompetition,
+            computeWinner: computeWinner,
             deleteCompetition: deleteCompetition
         };
         return api;
@@ -31,6 +33,11 @@
             return $http.get(url);
         }
 
+        function findCompetitionsForJudge(userId) {
+            var url = "/project/api/judge/" + userId + "/competition";
+            return $http.get(url);
+        }
+
         function findCompetitionById(competitionId) {
             var url = "/project/api/competition/" + competitionId;
             return $http.get(url);
@@ -39,6 +46,11 @@
         function findAllCompetitions() {
             var url = "/project/api/competition/";
             return $http.get(url);
+        }
+        
+        function computeWinner(competitionId, competition) {
+            var url = "/project/api/competition/" + competitionId + "/finish";
+            return $http.put(url, competition);
         }
 
         function search(text) {

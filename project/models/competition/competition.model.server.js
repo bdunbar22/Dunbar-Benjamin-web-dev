@@ -9,6 +9,7 @@ module.exports = function (projectDB) {
     var api = {
         createCompetition: createCompetition,
         findCompetitionsByUser: findCompetitionsByUser,
+        findCompetitionsForJudge: findCompetitionsForJudge,
         findCompetitionById: findCompetitionById,
         findAllCompetitions: findAllCompetitions,
         search: search,
@@ -24,6 +25,10 @@ module.exports = function (projectDB) {
 
     function findCompetitionsByUser(userId) {
         return Competition.find({_user: userId});
+    }
+
+    function findCompetitionsForJudge(judgeId) {
+        return Competition.find({judges: judgeId});
     }
 
     function findCompetitionById(competitionId) {

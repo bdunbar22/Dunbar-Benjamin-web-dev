@@ -2,18 +2,13 @@
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a href="#/user/{{model.userId}}" class="navbar-link navbar-brand">
+                <a href="#/user/{{model.userId}}/public" class="navbar-link navbar-brand">
                     <span class="glyphicon glyphicon-chevron-left bmd-accent"></span>
                 </a>
                 <a class="navbar-brand bmd-accent"
                    href="">
-                    Competitions
+                    Posts
                 </a>
-                <p class="navbar-text pull-right">
-                    <a href="#/user/{{model.userId}}/competition/new" class="navbar-link">
-                        <span class="glyphicon glyphicon-plus header-glyphicon bmd-accent"></span>
-                    </a>
-                </p>
             </div>
         </div>
     </nav>
@@ -22,15 +17,28 @@
              class="alert alert-info bmd-margin-top-10">{{model.error}}</div>
 
         <ul class="list-group">
-            <li ng-repeat="competition in model.competitions"
+            <li ng-repeat="post in model.posts"
                 class="list-group-item bmd-secondary">
-                <a href="#/user/{{model.userId}}/competition/{{competition._id}}">{{competition.name}}</a>
-                <a href="#/user/{{model.userId}}/competition/{{competition._id}}">
-                    <span class="glyphicon glyphicon-play pull-right"></span>
-                    <span class="glyphicon glyphicon-cog pull-right"></span>
-                </a>
-                <p>Summary: {{competition.description}}</p>
-                <p ng-show="competition.complete">COMPLETE</p>
+                <p>{{post.name}}</a>
+                <p>Summary: {{post.description}}</p>
+                <div ng-switch="post.postType"
+                     ng-show="post.url">
+                    <div ng-switch-when="IMAGE">
+                        <img class="post-display"
+                             ng-src="{{post.url}}">
+                    </div>
+                    <div ng-switch-when="VIDEO"
+                         class="bmd-widget youtube­post">
+                        <iframe height="auto"
+                                ng-src="{{model.getTrustedUrl(post)}}"
+                                frameborder="0"
+                                allowfullscreen></iframe>
+                    </div>
+                    <div ng-switch-when="TEXT">
+                    </div>
+                    <div ng-switch-default>
+                    </div>
+                </div>
             </li>
         </ul>
     </div>
