@@ -1,0 +1,23 @@
+#randomArea {
+	width: 80%;
+	height: 80%;
+	overflow: hidden;
+    word-wrap: break-word;
+    background-color: rgb(11, 75, 136);
+    margin: auto;
+    margin-top: 50px;
+    position: relative;
+    border: 2px solid #0F1637;
+}
+
+#randomButton {
+	margin: auto;
+	width: 100px;
+	height: 20px;
+	margin-top: 20px;
+}
+
+.centerButton {
+	width: 100px;
+    margin: auto;
+}

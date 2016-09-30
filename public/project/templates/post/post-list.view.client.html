@@ -36,7 +36,8 @@
                              ng-src="{{post.url}}">
                     </div>
                     <div ng-switch-when="VIDEO"
-                         class="bmd-widget youtube­post">
+                         class="youtube­post"
+                         ng-show="post.url">
                         <iframe height="auto"
                                 ng-src="{{model.getTrustedUrl(post)}}"
                                 frameborder="0"

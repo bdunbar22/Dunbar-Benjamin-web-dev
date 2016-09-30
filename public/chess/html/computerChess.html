@@ -1,0 +1,184 @@
+
+<html>
+	<head> 
+		<link rel="shortcut icon" type="image/png" href="../pictures/BenIcon.png"/>
+		<title> Chess! </title>
+		<link rel="stylesheet" type="text/css" href="../css/style1.css">
+		<link rel="stylesheet" type="text/css" href="../css/alerts.css">
+	</head>
+	<script type="text/javascript" src="../alert/dunbarAlert.js"></script>
+	<script type="text/javascript" src="../chessPlayer.js"></script>
+	<script type="text/javascript" src="../chess.js"></script>
+	<script type="text/javascript" src="../chessPieceMoves.js"></script>
+	<script type="text/javascript" src="../validation/chessValid.js"></script>
+	<script type="text/javascript" src="../models/boardModel.js"></script>
+	<script type="text/javascript" src="../models/pieceModel.js"></script>
+	<script type="text/javascript" src="../models/moveModel.js"></script>
+	<script type="text/javascript" src="../models/playerModel.js"></script>
+	<body>
+		<div class="bodyContainer">
+			<h1 class= "center">Chess!</h1>
+			<p class="center"><a href="instructions.html" target="_blank">Guide Book</a></p>
+			<button id="computerFirstOption" class="startButton" onclick="computerStart()"> Have Computer Move First </button>
+			<div id = "hidden" class="hidden">evil</div> <!-- Stores the previous person to move to check rules -->
+			<div id="page">
+				<div id="graveyard" class = "bucketOfChess1" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+				<div class = "bucketOfFun">
+					<div class = "row">
+						<div id="A1" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares white">
+							<img id="R3" class="chessMan1 chessPiecePicture"draggable="true" ondragstart="drag(event)" src= "../pictures/Chess Pieces/whiteRook.png" alt="Not found">
+						</div>
+						<div id="B1" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares black">
+							<img id="L3" class="chessMan1 chessPiecePicture"draggable="true" ondragstart="drag(event)" src= "../pictures/Chess Pieces/whiteKnight.png" alt="Not found">
+						</div>
+						<div id="C1" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares white">
+							<img id="Bi3" class="chessMan1 chessPiecePicture"draggable="true" ondragstart="drag(event)" src= "../pictures/Chess Pieces/whiteBishop.png" alt="Not found">
+						</div>
+						<div id="D1" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares black">
+							<img id="K1" class="chessMan1 chessPiecePicture"draggable="true" ondragstart="drag(event)" src= "../pictures/Chess Pieces/whiteKing.png" alt="Not found">
+						</div>
+						<div id="E1" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares white">
+							<img id="Q3" class="chessMan1 chessPiecePicture"draggable="true" ondragstart="drag(event)" src= "../pictures/Chess Pieces/whiteQueen.png" alt="Not found">
+						</div>
+						<div id="F1" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares black">
+							<img id="Bi4" class="chessMan1 chessPiecePicture"draggable="true" ondragstart="drag(event)" src= "../pictures/Chess Pieces/whiteBishop.png" alt="Not found">
+						</div>
+						<div id="G1" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares white">
+							<img id="L4" class="chessMan1 chessPiecePicture"draggable="true" ondragstart="drag(event)" src= "../pictures/Chess Pieces/whiteKnight.png" alt="Not found">
+						</div>
+						<div id="H1" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares black">
+							<img id="R4" class="chessMan1 chessPiecePicture"draggable="true" ondragstart="drag(event)" src= "../pictures/Chess Pieces/whiteRook.png" alt="Not found">
+						</div>
+					</div>
+					<div class = "row">
+						<div id="A2" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares black">
+							<img id="P1" class="chessMan1 chessPiecePicture"draggable="true" ondragstart="drag(event)" src= "../pictures/Chess Pieces/whitePawn.png" alt="Not found">
+						</div>
+						<div id="B2" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares white">
+							<img id="P2" class="chessMan1 chessPiecePicture"draggable="true" ondragstart="drag(event)" src= "../pictures/Chess Pieces/whitePawn.png" alt="Not found">
+						</div>
+						<div id="C2" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares black">
+							<img id="P3" class="chessMan1 chessPiecePicture"draggable="true" ondragstart="drag(event)" src= "../pictures/Chess Pieces/whitePawn.png" alt="Not found">
+						</div>
+						<div id="D2" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares white">
+							<img id="P4" class="chessMan1 chessPiecePicture"draggable="true" ondragstart="drag(event)" src= "../pictures/Chess Pieces/whitePawn.png" alt="Not found">
+						</div>
+						<div id="E2" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares black">
+							<img id="P5" class="chessMan1 chessPiecePicture"draggable="true" ondragstart="drag(event)" src= "../pictures/Chess Pieces/whitePawn.png" alt="Not found">
+						</div>
+						<div id="F2" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares white">
+							<img id="P6" class="chessMan1 chessPiecePicture"draggable="true" ondragstart="drag(event)" src= "../pictures/Chess Pieces/whitePawn.png" alt="Not found">
+						</div>
+						<div id="G2" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares black">
+							<img id="P7" class="chessMan1 chessPiecePicture"draggable="true" ondragstart="drag(event)" src= "../pictures/Chess Pieces/whitePawn.png" alt="Not found">
+						</div>
+						<div id="H2" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares white">
+							<img id="P8" class="chessMan1 chessPiecePicture"draggable="true" ondragstart="drag(event)" src= "../pictures/Chess Pieces/whitePawn.png" alt="Not found">
+						</div>
+					</div>	
+					<div class = "row">
+						<div id="A3" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares white"></div>
+						<div id="B3" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares black"></div>
+						<div id="C3" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares white"></div>
+						<div id="D3" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares black"></div>
+						<div id="E3" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares white"></div>
+						<div id="F3" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares black"></div>
+						<div id="G3" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares white"></div>
+						<div id="H3" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares black"></div>
+					</div>
+					<div class = "row">
+						<div id="A4" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares black"></div>
+						<div id="B4" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares white"></div>
+						<div id="C4" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares black"></div>
+						<div id="D4" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares white"></div>
+						<div id="E4" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares black"></div>
+						<div id="F4" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares white"></div>
+						<div id="G4" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares black"></div>
+						<div id="H4" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares white"></div>
+					</div>	
+					<div class = "row">
+						<div id="A5" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares white"></div>
+						<div id="B5" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares black"></div>
+						<div id="C5" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares white"></div>
+						<div id="D5" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares black"></div>
+						<div id="E5" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares white"></div>
+						<div id="F5" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares black"></div>
+						<div id="G5" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares white"></div>
+						<div id="H5" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares black"></div>
+					</div>
+					<div class = "row">
+						<div id="A6" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares black"></div>
+						<div id="B6" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares white"></div>
+						<div id="C6" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares black"></div>
+						<div id="D6" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares white"></div>
+						<div id="E6" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares black"></div>
+						<div id="F6" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares white"></div>
+						<div id="G6" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares black"></div>
+						<div id="H6" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares white"></div>
+					</div>	
+					<div class = "row">
+						<div id="A7" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares white">
+							<img id="P9" class="chessMan2 chessPiecePicture" draggable="true" ondragstart="drag(event)" src= "../pictures/Chess Pieces/blackPawn.png" alt="Not found">
+						</div>
+						<div id="B7" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares black">
+							<img id="P10" class="chessMan2 chessPiecePicture" draggable="true" ondragstart="drag(event)" src= "../pictures/Chess Pieces/blackPawn.png" alt="Not found">
+						</div>
+						<div id="C7" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares white">
+							<img id="P11" class="chessMan2 chessPiecePicture" draggable="true" ondragstart="drag(event)" src= "../pictures/Chess Pieces/blackPawn.png" alt="Not found">
+						</div>
+						<div id="D7" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares black">
+							<img id="P12" class="chessMan2 chessPiecePicture" draggable="true" ondragstart="drag(event)" src= "../pictures/Chess Pieces/blackPawn.png" alt="Not found">
+						</div>
+						<div id="E7" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares white">
+							<img id="P13" class="chessMan2 chessPiecePicture" draggable="true" ondragstart="drag(event)" src= "../pictures/Chess Pieces/blackPawn.png" alt="Not found">
+						</div>
+						<div id="F7" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares black">
+							<img id="P14" class="chessMan2 chessPiecePicture" draggable="true" ondragstart="drag(event)" src= "../pictures/Chess Pieces/blackPawn.png" alt="Not found">
+						</div>
+						<div id="G7" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares white">
+							<img id="P15" class="chessMan2 chessPiecePicture" draggable="true" ondragstart="drag(event)" src= "../pictures/Chess Pieces/blackPawn.png" alt="Not found">
+						</div>
+						<div id="H7" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares black">
+							<img id="P16" class="chessMan2 chessPiecePicture" draggable="true" ondragstart="drag(event)" src= "../pictures/Chess Pieces/blackPawn.png" alt="Not found">
+						</div>
+					</div>
+					<div class = "row">
+						<div id="A8" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares black">
+							<img id="R5" class="chessMan2 chessPiecePicture" draggable="true" ondragstart="drag(event)" src= "../pictures/Chess Pieces/blackRook.png" alt="Not found">
+						</div>
+						<div id="B8" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares white">
+							<img id="L5" class="chessMan2 chessPiecePicture" draggable="true" ondragstart="drag(event)" src= "../pictures/Chess Pieces/blackKnight.png" alt="Not found">
+						</div>
+						<div id="C8" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares black">
+							<img id="Bi5" class="chessMan2 chessPiecePicture" draggable="true" ondragstart="drag(event)" src= "../pictures/Chess Pieces/blackBishop.png" alt="Not found">
+						</div>
+						<div id="D8" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares white">
+							<img id="K2" class="chessMan2 chessPiecePicture" draggable="true" ondragstart="drag(event)" src= "../pictures/Chess Pieces/blackKing.png" alt="Not found">
+						</div>
+						<div id="E8" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares black">
+							<img id="Q4" class="chessMan2 chessPiecePicture" draggable="true" ondragstart="drag(event)" src= "../pictures/Chess Pieces/blackQueen.png" alt="Not found">
+						</div>
+						<div id="F8" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares white">
+							<img id="Bi6" class="chessMan2 chessPiecePicture" draggable="true" ondragstart="drag(event)" src= "../pictures/Chess Pieces/blackBishop.png" alt="Not found">
+						</div>
+						<div id="G8" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares black">
+							<img id="L6" class="chessMan2 chessPiecePicture" draggable="true" ondragstart="drag(event)" src= "../pictures/Chess Pieces/blackKnight.png" alt="Not found">
+						</div>
+						<div id="H8" ondrop="drop(event)" ondragover="allowDrop(event)" class = "Squares white">
+							<img id="R6" class="chessMan2 chessPiecePicture" draggable="true" ondragstart="drag(event)" src= "../pictures/Chess Pieces/blackRook.png" alt="Not found">
+						</div>
+					</div>
+				</div>
+				<div id="graveyard" class="bucketOfChess2" ondragover="allowDrop(event)" ondrop="drop(event)" ></div>
+			</div>
+			<br><br><br><br>
+			<div class="end">
+				<p>
+					Thanks for visiting!<br>
+					Created By: Ben Dunbar<br>
+					Last Modified: February 18, 2016<br>
+				</p>
+			</div>
+		</div>
+	</body>
+</html>
