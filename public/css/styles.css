@@ -96,3 +96,15 @@ a:hover {
 .bmd-text-column {
     text-align: justify;
 }
+
+.text-link {
+    font: 20px arial, sans-serif;
+    text-decoration: underline;
+}
+
+a.anchor {
+    display: block;
+    position: relative;
+    top: -30px;
+    visibility: hidden;
+}

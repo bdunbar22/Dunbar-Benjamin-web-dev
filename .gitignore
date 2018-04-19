@@ -1,2 +1,7 @@
 node_modules
 .idea
+.DS_Store
+npm-debug.log
+public/.DS_Store
+public/images/.DS_Store
+webdev.tar.gz
